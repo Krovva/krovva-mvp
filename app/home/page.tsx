@@ -1,7 +1,24 @@
-import { Box, Button, Container, Typography, Link } from "@mui/material";
+"use client";
+import { Box, Button, Container, Typography, Link, Snackbar, Alert } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
+import { WalletAuthBlock } from "@/components/WalletAuth";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function SignInPage() {
+  const [error, setError] = useState('');
+  const [showError, setShowError] = useState(false);
+
+  const handleSuccess = (address: any) => {
+    console.log('Successfully authenticated with address:', address);
+  };
+
+  const handleError = (error: { message: any; }) => {
+    console.error('Authentication error:', error);
+    setError(error.message || 'Authentication failed');
+    setShowError(true);
+  };
+
   return (
     <Box
       sx={{
@@ -16,7 +33,6 @@ export default function SignInPage() {
         overflow: "hidden",
       }}
     >
-
       <Container
         maxWidth="sm"
         sx={{
@@ -26,7 +42,6 @@ export default function SignInPage() {
           px: 3,
         }}
       >
-
         {/* Welcome Text */}
         <Typography
           variant="h3"
@@ -37,7 +52,7 @@ export default function SignInPage() {
             fontSize: { xs: "2rem", sm: "3rem" },
           }}
         >
-          Welcome To
+          Welcome to
         </Typography>
         <Typography
           variant="h3"
@@ -63,26 +78,32 @@ export default function SignInPage() {
           Your personal fitness AI Assistant 🏋️
         </Typography>
 
-        {/* Get Started Button */}
-        <Button
-          variant="contained"
-          endIcon={<ArrowForward />}
-          sx={{
-            backgroundColor: "#ff7043",
-            color: "white",
-            py: 1.5,
-            px: 4,
-            fontSize: "1.1rem",
-            borderRadius: 28,
-            textTransform: "none",
-            "&:hover": {
-              backgroundColor: "#f4511e",
-            },
-            mb: 4,
-          }}
-        >
-          Sign In
-        </Button>
+        {/* WalletAuth Integration */}
+        <WalletAuthBlock
+          onSuccess={handleSuccess}
+          onError={handleError}
+          buttonComponent={
+            <Button
+              variant="contained"
+              endIcon={<ArrowForward />}
+              sx={{
+                backgroundColor: "#ff7043",
+                color: "white",
+                py: 1.5,
+                px: 4,
+                fontSize: "1.1rem",
+                borderRadius: 28,
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#f4511e",
+                },
+                mb: 4,
+              }}
+            >
+              Sign In with World ID
+            </Button>
+          }
+        />
 
         {/* Terms and Privacy */}
         <Typography
@@ -100,7 +121,22 @@ export default function SignInPage() {
           </Link>
         </Typography>
       </Container>
+
+      {/* Error Snackbar */}
+      <Snackbar 
+        open={showError} 
+        autoHideDuration={6000} 
+        onClose={() => setShowError(false)}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+      >
+        <Alert 
+          onClose={() => setShowError(false)} 
+          severity="error" 
+          sx={{ width: '100%' }}
+        >
+          {error}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
-
