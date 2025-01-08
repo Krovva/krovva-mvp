@@ -47,7 +47,7 @@ export default function Settings() {
         <section className="w-full">
           <h3
             className="text-[10.978px] font-bold leading-[35.526px] text-white mb-2"
-            style={{ fontFamily: "Droid Sans" }}
+            
           >
             App Settings
           </h3>
@@ -108,7 +108,7 @@ export default function Settings() {
         <section className="w-full">
           <h3
             className="text-[10.978px] font-bold leading-[35.526px] text-white mb-2"
-            style={{ fontFamily: "Droid Sans" }}
+            
           >
             Support
           </h3>
@@ -118,6 +118,7 @@ export default function Settings() {
           >
             <div className="flex items-center justify-between border-b border-gray-600 pb-2">
               <span className="text-white text-[14px]">Terms Of Service</span>
+              
             </div>
             <div className="flex items-center justify-between pt-2">
               <span className="text-white text-[14px]">Privacy Policy</span>
