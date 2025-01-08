@@ -28,12 +28,12 @@ export default function GenderSelectionPage() {
         mx: "auto"
       }}
     >
-      {/* Barra de Progreso (Superior) */}
+      {/* Progress Bar (Top) */}
       <Box
         sx={{
-          width: { xs: "60%", sm: "50%", md: "40%" },
+          width: { xs: "60%", sm: "50%", md: "30%" },
           position: "absolute",
-          top: "30px",
+          top: { xs: "30px", md: "20px" },
           left: "50%",
           transform: "translateX(-50%)",
           height: "6px",
@@ -56,13 +56,13 @@ export default function GenderSelectionPage() {
       <Typography
         variant="h5"
         component="h1"
-        sx={{ fontWeight: 700, mb: 3, textAlign: "center", mt: { xs: -10, md: -5 } }}
+        sx={{ fontWeight: 700, mb: 3, textAlign: "center", mt: { xs: -10, md: 2 } }}
       >
         Welcome To Achieving Your Dream
       </Typography>
 
-      {/* Sección de Selección de Género */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: { xs: "100%", md: "40%" }, mt: 0 }}>
+      {/* Gender Selection Section */}
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: { xs: "100%", md: "50%" }, mt: 2 }}>
         <Box
           onClick={() => handleSelect('male')}
           sx={{
@@ -71,10 +71,12 @@ export default function GenderSelectionPage() {
             justifyContent: "space-between",
             bgcolor: "#000",
             color: "white",
-            p: { xs: 2, md: 3 },
+            p: { xs: 2, md: 2 },
             borderRadius: 3,
             cursor: "pointer",
-            flexDirection: { xs: "column", md: "row" }
+            flexDirection: { xs: "column", md: "row" },
+            width: { xs: "100%", md: "80%" },
+            mx: "auto"
           }}
         >
           <Box>
@@ -84,8 +86,8 @@ export default function GenderSelectionPage() {
             <Image 
               src="/Gender images/Male image.png" 
               alt="Male" 
-              width={70} 
-              height={80} 
+              width={60} 
+              height={70} 
               style={{ borderRadius: "10px" }} 
             />
             <Radio
@@ -110,10 +112,12 @@ export default function GenderSelectionPage() {
             justifyContent: "space-between",
             bgcolor: "#FFFFFF",
             color: "black",
-            p: { xs: 2, md: 3 },
+            p: { xs: 2, md: 2 },
             borderRadius: 3,
             cursor: "pointer",
-            flexDirection: { xs: "column", md: "row" }
+            flexDirection: { xs: "column", md: "row" },
+            width: { xs: "100%", md: "80%" },
+            mx: "auto"
           }}
         >
           <Box>
@@ -123,8 +127,8 @@ export default function GenderSelectionPage() {
             <Image 
               src="/Gender images/Female image.png" 
               alt="Female" 
-              width={70} 
-              height={80} 
+              width={60} 
+              height={70} 
               style={{ borderRadius: "10px" }} 
             />
             <Radio
@@ -171,17 +175,12 @@ export default function GenderSelectionPage() {
             color: "black",
             borderRadius: "12px",
             py: 1.5,
-            px: 6,
+            px: 8,
             fontSize: "16px",
             fontWeight: 700
           }}
         >
           Next
-          <Box sx={{ display: "flex", gap: 0.5, ml: 1 }}>
-            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
-          </Box>
         </Button>
       </Box>
     </Box>
