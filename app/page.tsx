@@ -1,12 +1,5 @@
-"use client"; // Habilitar rendering del lado del cliente en Next.js
-
-import Settings from "@/components/Settings/settings"; // Asegúrate de que la ruta al componente sea correcta
+import { redirect } from 'next/navigation';
 
 export default function Page() {
-  return (
-    <div>
-      {/* Aquí mostramos directamente el diseño */}
-      <Settings />
-    </div>
-  );
+  redirect('/signin'); 
 }

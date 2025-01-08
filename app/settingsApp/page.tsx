@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 
 export default function Settings() {
@@ -45,16 +46,11 @@ export default function Settings() {
 
         {/* App Settings */}
         <section className="w-full">
-          <h3
-            className="text-[10.978px] font-bold leading-[35.526px] text-white mb-2"
-            
-          >
+          <h3 className="text-[10.978px] font-bold leading-[35.526px] text-white mb-2">
             App Settings
           </h3>
 
-          <div
-            className="w-full max-w-[330px] rounded-[27px] border border-[#2B2A2D] bg-[#2B2A2D] flex flex-col"
-          >
+          <div className="w-full max-w-[330px] rounded-[27px] border border-[#2B2A2D] bg-[#2B2A2D] flex flex-col">
             {/* Account Informations */}
             <div className="flex justify-between items-center px-6 py-4">
               <span className="text-white text-[14px]">Account Informations</span>
@@ -66,59 +62,18 @@ export default function Settings() {
                 className="ml-auto"
               />
             </div>
-            <div
-              className="w-[295.489px] h-[0.998px] mx-auto"
-              style={{ backgroundColor: "rgba(255, 255, 255, 0.12)" }}
-            ></div>
-
-            {/* Notifications */}
-            <div className="flex justify-between items-center px-6 py-4">
-              <span className="text-white text-[14px]">Notifications</span>
-              <Image
-                src="/arrow.svg"
-                alt="Arrow Icon"
-                width={17}
-                height={17}
-                className="ml-auto"
-              />
-            </div>
-            <div
-              className="w-[295.489px] h-[0.998px] mx-auto"
-              style={{ backgroundColor: "rgba(255, 255, 255, 0.12)" }}
-            ></div>
-
-            {/* Text Size */}
-            <div className="flex justify-between items-center px-6 py-4">
-              <span className="text-white text-[14px]">Text Size</span>
-              <span className="flex items-center text-gray-400 text-[14px]">
-                Medium
-                <Image
-                  src="/arrow.svg"
-                  alt="Arrow Icon"
-                  width={17}
-                  height={17}
-                  className="ml-1"
-                />
-              </span>
-            </div>
           </div>
         </section>
 
         {/* Support Section */}
         <section className="w-full">
-          <h3
-            className="text-[10.978px] font-bold leading-[35.526px] text-white mb-2"
-            
-          >
+          <h3 className="text-[10.978px] font-bold leading-[35.526px] text-white mb-2">
             Support
           </h3>
 
-          <div
-            className="w-full max-w-[330px] rounded-[27.445px] border border-[#2B2A2D] bg-[#2B2A2D] flex flex-col justify-between px-6 py-4"
-          >
+          <div className="w-full max-w-[330px] rounded-[27.445px] border border-[#2B2A2D] bg-[#2B2A2D] flex flex-col justify-between px-6 py-4">
             <div className="flex items-center justify-between border-b border-gray-600 pb-2">
               <span className="text-white text-[14px]">Terms Of Service</span>
-              
             </div>
             <div className="flex items-center justify-between pt-2">
               <span className="text-white text-[14px]">Privacy Policy</span>
