@@ -22,14 +22,16 @@ export default function GenderSelectionPage() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        px: 3,
-        position: "relative"
+        px: { xs: 3, md: 6 },
+        position: "relative",
+        maxWidth: { md: "600px" },
+        mx: "auto"
       }}
     >
       {/* Barra de Progreso (Superior) */}
       <Box
         sx={{
-          width: "30%",  // La barra será más pequeña (aprox. 30% del ancho)
+          width: { xs: "60%", sm: "50%", md: "40%" },
           position: "absolute",
           top: "30px",
           left: "50%",
@@ -41,28 +43,26 @@ export default function GenderSelectionPage() {
       >
         <LinearProgress
           variant="determinate"
-          value={40}  // Simulación de progreso (40%)
+          value={40}
           sx={{
-            bgcolor: "#333333",  // Fondo de la barra (gris oscuro)
+            bgcolor: "#333333",
             "& .MuiLinearProgress-bar": {
-              bgcolor: "#D5D962",  // Color verde del progreso
+              bgcolor: "#D5D962",
             }
           }}
         />
       </Box>
 
       <Typography
-        variant="h4"
+        variant="h5"
         component="h1"
-        sx={{ fontWeight: 700, mb: 5, textAlign: "center", mt: -17 }}  // Reducido el margen superior
+        sx={{ fontWeight: 700, mb: 3, textAlign: "center", mt: { xs: -10, md: -5 } }}
       >
         Welcome To Achieving Your Dream
       </Typography>
 
       {/* Sección de Selección de Género */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%", mt: -2 }}>
-        
-        {/* Male Selection Card */}
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: { xs: "100%", md: "40%" }, mt: 0 }}>
         <Box
           onClick={() => handleSelect('male')}
           sx={{
@@ -71,20 +71,21 @@ export default function GenderSelectionPage() {
             justifyContent: "space-between",
             bgcolor: "#000",
             color: "white",
-            p: 2,
+            p: { xs: 2, md: 3 },
             borderRadius: 3,
-            cursor: "pointer"
+            cursor: "pointer",
+            flexDirection: { xs: "column", md: "row" }
           }}
         >
           <Box>
             <Typography>Your Gender <span style={{ color: "#D5D962" }}>(Male)</span></Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <Image 
               src="/Gender images/Male image.png" 
               alt="Male" 
-              width={90} 
-              height={100} 
+              width={70} 
+              height={80} 
               style={{ borderRadius: "10px" }} 
             />
             <Radio
@@ -101,7 +102,6 @@ export default function GenderSelectionPage() {
           </Box>
         </Box>
 
-        {/* Female Selection Card */}
         <Box
           onClick={() => handleSelect('female')}
           sx={{
@@ -110,20 +110,21 @@ export default function GenderSelectionPage() {
             justifyContent: "space-between",
             bgcolor: "#FFFFFF",
             color: "black",
-            p: 2,
+            p: { xs: 2, md: 3 },
             borderRadius: 3,
-            cursor: "pointer"
+            cursor: "pointer",
+            flexDirection: { xs: "column", md: "row" }
           }}
         >
           <Box>
             <Typography>Your Gender <span style={{ color: "#D5D962" }}>(Female)</span></Typography>
           </Box>
-          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <Image 
               src="/Gender images/Female image.png" 
               alt="Female" 
-              width={90} 
-              height={100} 
+              width={70} 
+              height={80} 
               style={{ borderRadius: "10px" }} 
             />
             <Radio
@@ -141,54 +142,45 @@ export default function GenderSelectionPage() {
         </Box>
       </Box>
 
-      {/* Botones de Navegación */}
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           gap: 4,
-          width: "90%",
+          width: "100%",
           position: "absolute",
           bottom: "30px"
         }}
       >
-        {/* Botón Retroceso */}
         <IconButton
           sx={{
             border: "2px solid black",
             borderRadius: "12px",
-            width: "60px",
-            height: "60px"
+            width: "50px",
+            height: "50px"
           }}
         >
-          <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
+          <ArrowBackIosNewIcon sx={{ fontSize: 20, color: "#000000" }} />
         </IconButton>
 
-        {/* Botón Next */}
         <Button
           variant="contained"
           sx={{
             bgcolor: "#D5D962",
             color: "black",
             borderRadius: "12px",
-            py: 2,
-            px: 10,
-            fontSize: "18px",
-            fontWeight: 700,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
+            py: 1.5,
+            px: 6,
+            fontSize: "16px",
+            fontWeight: 700
           }}
         >
           Next
-          <Box sx={{ display: "flex", gap: 0.5 }}>
-            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa"}} />
-            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb"  }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 18}} />
-                    {/* simbolos */}
-
+          <Box sx={{ display: "flex", gap: 0.5, ml: 1 }}>
+            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
           </Box>
         </Button>
       </Box>
