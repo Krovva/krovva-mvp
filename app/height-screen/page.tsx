@@ -14,8 +14,8 @@ export default function HeightSelectionPage() {
     }
   };
 
-  const handleHeightChange = (event, newValue) => {
-    setHeight(newValue);
+  const handleHeightChange = (newHeight) => {
+    setHeight(newHeight);
   };
 
   const renderScale = () => {
@@ -27,9 +27,9 @@ export default function HeightSelectionPage() {
           key={i}
           sx={{
             height: isMajor ? '30px' : '15px',
-            width: '20px',
-            bgcolor: 'red',
-            margin: '0 15px',
+            width: isMajor ? '2px' : '1px',
+            bgcolor: 'white',
+            margin: '0 5px',
             display: 'inline-block',
           }}
         />
@@ -41,12 +41,40 @@ export default function HeightSelectionPage() {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          overflow: 'visible',
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          whiteSpace: 'nowrap',
+          mt: 3,
           width: '100%',
-          mt: 3
+          pb: 2,
         }}
       >
-        {scaleMarks}
+        {scaleMarks.map((mark, index) => (
+          <Box
+            key={index}
+            sx={{
+              textAlign: 'center',
+              cursor: 'pointer',
+              color: 'white',
+            }}
+            onClick={() => handleHeightChange(140 + index)}
+          >
+            {mark}
+            {index % 10 === 0 && (
+              <Typography
+                variant="caption"
+                sx={{
+                  display: 'block',
+                  mt: 1,
+                  fontSize: '12px',
+                  color: 'white',
+                }}
+              >
+                {140 + index}
+              </Typography>
+            )}
+          </Box>
+        ))}
       </Box>
     );
   };
@@ -65,6 +93,7 @@ export default function HeightSelectionPage() {
         position: "relative"
       }}
     >
+      {/* Progress Bar */}
       <Box
         sx={{
           width: "30%",
@@ -79,7 +108,7 @@ export default function HeightSelectionPage() {
       >
         <LinearProgress
           variant="determinate"
-          value={60}  // Simulación de progreso (60%)
+          value={60} // Simulating progress (60%)
           sx={{
             bgcolor: "#333333",
             "& .MuiLinearProgress-bar": {
@@ -97,16 +126,50 @@ export default function HeightSelectionPage() {
         What is your height?
       </Typography>
 
+      {/* Unit Selection */}
       <ToggleButtonGroup
         value={unit}
         exclusive
         onChange={handleUnitChange}
-        sx={{ mb: 3 }}
+        sx={{
+          display: "flex",
+          border: "2px solid black",
+          borderRadius: "50px", // Fully rounded
+          overflow: "hidden",
+          width: "200px", // Adjust group size
+          height: "50px", // Adjust height for proportional look
+          margin: "20px auto", // Center the component
+        }}
       >
-        <ToggleButton value="inches">inches</ToggleButton>
-        <ToggleButton value="cm">cm</ToggleButton>
+        <ToggleButton
+          value="inches"
+          sx={{
+            flex: 1, // Allow buttons to occupy equal space
+            "&.Mui-selected": {
+              bgcolor: "black", // Black background when selected
+              color: "white", // White text
+            },
+            borderRadius: 0, // No additional borders
+          }}
+        >
+          inches
+        </ToggleButton>
+        <ToggleButton
+          value="cm"
+          sx={{
+            flex: 1, // Allow buttons to occupy equal space
+            "&.Mui-selected": {
+              bgcolor: "black", // Black background when selected
+              color: "white", // White text
+            },
+            borderRadius: 0, // No additional borders
+          }}
+        >
+          cm
+        </ToggleButton>
       </ToggleButtonGroup>
 
+      {/* Height Display */}
       <Box
         sx={{
           bgcolor: "black",
@@ -127,6 +190,7 @@ export default function HeightSelectionPage() {
         {renderScale()}
       </Box>
 
+      {/* Navigation Buttons */}
       <Box
         sx={{
           display: "flex",
