@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const router = useRouter();
-  const pathname = usePathname(); // Obtener la ruta actual
+  const pathname = usePathname();  // Get current route
   const [selected, setSelected] = useState("");
 
   useEffect(() => {
-    // Actualizar el estado `selected` basado en la ruta actual
-    const route = pathname.replace("/", "") || "home"; // Si está en "/", selecciona 'home'
+    // Update selected status based on current route
+    const route = pathname.replace("/", "") || "home"; // If you are in /, select home.
     setSelected(route);
   }, [pathname]);
 
@@ -52,7 +52,7 @@ export default function Navbar() {
           sx={{
             width: "81.836px",
             height: "81.836px",
-            backgroundColor: selected === icon.name ? "#D6D984" : "transparent", // Fondo verde si está seleccionado
+            backgroundColor: selected === icon.name ? "#D6D984" : "transparent", 
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -67,8 +67,8 @@ export default function Navbar() {
             style={{
               filter:
                 selected === icon.name
-                  ? "brightness(0) saturate(100%) invert(0%) sepia(94%) saturate(0%) hue-rotate(0deg) brightness(0.3) contrast(1)" // Icono negro cuando está seleccionado
-                  : "brightness(0) saturate(100%) invert(93%) sepia(11%) saturate(0%) hue-rotate(0deg) brightness(0.8) contrast(0.8)", // Icono blanco cuando no está seleccionado
+                  ? "brightness(0) saturate(100%) invert(0%) sepia(94%) saturate(0%) hue-rotate(0deg) brightness(0.3) contrast(1)" 
+                  : "brightness(0) saturate(100%) invert(93%) sepia(11%) saturate(0%) hue-rotate(0deg) brightness(0.8) contrast(0.8)", 
             }}
           />
         </IconButton>
