@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Container, Box, Typography, Button } from '@mui/material';
 
 export default function Settings() {
+
   return (
     <Container
       maxWidth={false}
