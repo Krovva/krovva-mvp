@@ -6,12 +6,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 export default function HeightSelectionPage() {
   const [unit, setUnit] = useState('cm');
-  const [height, setHeight] = useState(150);
+  const [height, setHeight] = useState(170);
   const scaleContainerRef = useRef(null);
 
   const minHeight = 140;
   const maxHeight = 200;
-  const markWidth = 8; // Espaciado entre marcas en píxeles (ajustado para dispositivos móviles)
+  const markWidth = 7; // Espaciado entre marcas en píxeles (ajustado para dispositivos móviles)
 
   const handleUnitChange = (event, newUnit) => {
     if (newUnit !== null) {
