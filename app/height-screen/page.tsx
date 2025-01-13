@@ -1,19 +1,33 @@
-'use client';
-import { Box, Button, Typography, IconButton, LinearProgress, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import { useState, useEffect, useRef } from 'react';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+"use client";
+
+import React, { useState, useEffect, useRef } from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  IconButton,
+  LinearProgress,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function HeightSelectionPage() {
-  const [unit, setUnit] = useState('cm');
+  // 1. Define el tipo del estado
+  const [unit, setUnit] = useState<"inches" | "cm">("cm");
   const [height, setHeight] = useState(170);
-  const scaleContainerRef = useRef(null);
+  const scaleContainerRef = useRef<HTMLDivElement | null>(null);
 
   const minHeight = 140;
   const maxHeight = 200;
-  const markWidth = 7; // Espaciado entre marcas en píxeles (ajustado para dispositivos móviles)
+  const markWidth = 7; // Espaciado entre marcas en píxeles
 
-  const handleUnitChange = (event, newUnit) => {
+  // 2. Tipa la función
+  const handleUnitChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newUnit: "inches" | "cm"
+  ) => {
     if (newUnit !== null) {
       setUnit(newUnit);
     }
@@ -27,11 +41,11 @@ export default function HeightSelectionPage() {
         <Box
           key={i}
           sx={{
-            height: isMajor ? '50px' : '15px',
-            width: isMajor ? '3px' : '1.5px',
-            bgcolor: 'white',
-            margin: '0 8px', // Espaciado ajustado
-            display: 'inline-block',
+            height: isMajor ? "50px" : "15px",
+            width: isMajor ? "3px" : "1.5px",
+            bgcolor: "white",
+            margin: "0 8px",
+            display: "inline-block",
           }}
         />
       );
@@ -40,20 +54,20 @@ export default function HeightSelectionPage() {
       <Box
         ref={scaleContainerRef}
         sx={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          overflowX: 'scroll',
-          overflowY: 'hidden',
-          whiteSpace: 'nowrap',
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          overflowX: "scroll",
+          overflowY: "hidden",
+          whiteSpace: "nowrap",
           mt: 3,
-          width: '100%',
+          width: "100%",
           pb: 2,
-          scrollSnapType: 'x mandatory',
-          '&::-webkit-scrollbar': { display: 'none' }, // Ocultar scrollbar en dispositivos móviles
+          scrollSnapType: "x mandatory",
+          "&::-webkit-scrollbar": { display: "none" },
         }}
         onScroll={(e) => {
-          const scrollLeft = e.target.scrollLeft;
+          const scrollLeft = (e.target as HTMLDivElement).scrollLeft;
           const newHeight = minHeight + Math.round(scrollLeft / markWidth);
           if (newHeight >= minHeight && newHeight <= maxHeight && newHeight !== height) {
             setHeight(newHeight);
@@ -64,9 +78,9 @@ export default function HeightSelectionPage() {
           <Box
             key={index}
             sx={{
-              textAlign: 'center',
-              color: 'white',
-              scrollSnapAlign: 'center',
+              textAlign: "center",
+              color: "white",
+              scrollSnapAlign: "center",
             }}
           >
             {mark}
@@ -74,10 +88,10 @@ export default function HeightSelectionPage() {
               <Typography
                 variant="caption"
                 sx={{
-                  display: 'block',
+                  display: "block",
                   mt: 1,
-                  fontSize: '10px', // Reducir tamaño de texto en dispositivos móviles
-                  color: 'white',
+                  fontSize: "10px",
+                  color: "white",
                 }}
               >
                 {minHeight + index}
@@ -107,30 +121,30 @@ export default function HeightSelectionPage() {
         alignItems: "center",
         justifyContent: "center",
         px: 3,
-        position: "relative"
+        position: "relative",
       }}
     >
       {/* Progress Bar */}
       <Box
         sx={{
-          width: "80%", // Más ancho para dispositivos móviles
+          width: "80%",
           position: "absolute",
           top: "20px",
           left: "50%",
           transform: "translateX(-50%)",
           height: "10px",
           borderRadius: "5px",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
         <LinearProgress
           variant="determinate"
-          value={60} // Simulating progress (60%)
+          value={60}
           sx={{
             bgcolor: "#333333",
             "& .MuiLinearProgress-bar": {
               bgcolor: "#D5D962",
-            }
+            },
           }}
         />
       </Box>
@@ -142,8 +156,8 @@ export default function HeightSelectionPage() {
           fontWeight: 700,
           mb: 5,
           textAlign: "center",
-          mt: 2, // Reducir margen superior para pantallas pequeñas
-          fontSize: '20px', // Tamaño de fuente ajustado
+          mt: 2,
+          fontSize: "20px",
         }}
       >
         What is your height?
@@ -160,8 +174,8 @@ export default function HeightSelectionPage() {
           borderRadius: "50px",
           overflow: "hidden",
           width: "200px",
-          height: "40px", // Reducir altura para móviles
-          margin: "10px auto", // Ajustar centrado
+          height: "40px",
+          margin: "10px auto",
         }}
       >
         <ToggleButton
@@ -200,17 +214,19 @@ export default function HeightSelectionPage() {
           borderRadius: "20px",
           p: 4,
           width: "100%",
-          maxWidth: "400px", // Limitar ancho en pantallas grandes
+          maxWidth: "400px",
           textAlign: "center",
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexDirection: 'column',
-          position: 'relative'
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          position: "relative",
         }}
       >
-        <Typography variant="h2" sx={{ fontWeight: 700, fontSize: '40px' }}>{height}</Typography>
-        <Typography sx={{ color: "#D5D962", fontSize: '14px' }}>{unit}</Typography>
+        <Typography variant="h2" sx={{ fontWeight: 700, fontSize: "40px" }}>
+          {height}
+        </Typography>
+        <Typography sx={{ color: "#D5D962", fontSize: "14px" }}>{unit}</Typography>
         {renderScale()}
       </Box>
 
@@ -223,14 +239,14 @@ export default function HeightSelectionPage() {
           gap: 2,
           width: "90%",
           position: "absolute",
-          bottom: "20px" // Reducir margen inferior
+          bottom: "20px",
         }}
       >
         <IconButton
           sx={{
             border: "2px solid black",
             borderRadius: "12px",
-            width: "50px", // Reducir tamaño para móviles
+            width: "50px",
             height: "50px",
           }}
         >
@@ -245,8 +261,8 @@ export default function HeightSelectionPage() {
             borderRadius: "12px",
             py: 1,
             px: 8,
-            fontSize: "16px", // Reducir tamaño para móviles
-            fontWeight: 700
+            fontSize: "16px",
+            fontWeight: 700,
           }}
         >
           Next
