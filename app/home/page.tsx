@@ -290,11 +290,10 @@ export default function Home() {
         }}
       >
         {[
-          { title: "Warm up", image: "/Exercises/warmup.png" },
-          { title: "Yoga", image: "/images/yoga.png" },
-          { title: "Lifting", image: "/images/lifting.png" },
-          { title: "Cardio", image: "/images/cardio.png" },
-          { title: "HIIT", image: "/images/hiit.png" },
+          { title: "Warm up", image: "/public/Exercises /warmup.png" },
+          { title: "Yoga", image: "/Exercises/yoga.png" },
+          { title: "Lifting", image: "/Exercises/lifting.png" },
+          
         ].map((category, index) => (
           <Box
             key={index}
