@@ -49,7 +49,7 @@ export default function Home() {
               fontWeight: "bold",
             }}
           >
-            EVERYDAY WE'RE MUSCLE'N
+            EVERYDAY WE&apos;RE MUSCLE&apos;N
           </Typography>
           <Typography
             variant="h4"
