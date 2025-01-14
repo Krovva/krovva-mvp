@@ -24,9 +24,9 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center", // Centrar verticalmente el contenido
+        justifyContent: "center", 
         padding: { xs: 2, sm: 3 },
-        marginTop: { xs: -2, sm: -3 }, // Ajuste adicional para eliminar espacio innecesario
+        marginTop: { xs: -2, sm: -3 }, 
       }}
     >
       {/* Header Section */}
