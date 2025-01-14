@@ -290,7 +290,7 @@ export default function Home() {
         }}
       >
         {[
-          { title: "Warm up", image: "/images/warmup.png" },
+          { title: "Warm up", image: "/Exercises/warmup.png" },
           { title: "Yoga", image: "/images/yoga.png" },
           { title: "Lifting", image: "/images/lifting.png" },
           { title: "Cardio", image: "/images/cardio.png" },
