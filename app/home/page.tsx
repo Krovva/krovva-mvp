@@ -24,9 +24,8 @@ export default function Home() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center", 
-        padding: { xs: 2, sm: 3 },
-        marginTop: { xs: -2, sm: -3 }, 
+        justifyContent: "flex-start",
+        padding: { xs: "100px 10px", sm: "40px 24px" },
       }}
     >
       {/* Header Section */}
@@ -37,7 +36,7 @@ export default function Home() {
           alignItems: "center",
           width: "100%",
           maxWidth: "389px",
-          marginBottom: 4,
+          marginBottom: 2,
         }}
       >
         <Box>
@@ -165,7 +164,7 @@ export default function Home() {
       <Box
         sx={{
           width: "100%",
-          height: "158.145px",
+          maxWidth: "389px",
           backgroundColor: "#8D9164",
           borderRadius: "20px",
           padding: "14px 20px",
@@ -242,6 +241,96 @@ export default function Home() {
             20,1
           </Typography>
         </Box>
+      </Box>
+
+      {/* Categories Header */}
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "389px",
+          marginTop: 4,
+          marginBottom: 2,
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography
+          variant="h6"
+          sx={{
+            fontWeight: "bold",
+            fontSize: "16px",
+            color: "#FFFFFF",
+          }}
+        >
+          Categories
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            fontWeight: "bold",
+            fontSize: "14px",
+            color: "#D6D984",
+          }}
+        >
+          See All
+        </Typography>
+      </Box>
+
+      {/* Categories Carrusel */}
+      <Box
+        sx={{
+          display: "flex",
+          overflowX: "auto",
+          gap: 2,
+          width: "100%",
+          maxWidth: "389px",
+          paddingBottom: 2,
+          "&::-webkit-scrollbar": { display: "none" }, 
+        }}
+      >
+        {[
+          { title: "Warm up", image: "/images/warmup.png" },
+          { title: "Yoga", image: "/images/yoga.png" },
+          { title: "Lifting", image: "/images/lifting.png" },
+          { title: "Cardio", image: "/images/cardio.png" },
+          { title: "HIIT", image: "/images/hiit.png" },
+        ].map((category, index) => (
+          <Box
+            key={index}
+            sx={{
+              minWidth: "112px",
+              height: "172px",
+              borderRadius: "15px",
+              backgroundColor: "#2B2A2D",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "10px",
+              textAlign: "center",
+            }}
+          >
+            <Image
+              src={category.image}
+              alt={category.title}
+              width={80}
+              height={80}
+              style={{ borderRadius: "10px" }}
+            />
+            <Typography
+              variant="body1"
+              sx={{
+                marginTop: 2,
+                fontWeight: "bold",
+                color: "#FFFFFF",
+              }}
+            >
+              {category.title}
+            </Typography>
+          </Box>
+        ))}
       </Box>
     </Container>
   );
