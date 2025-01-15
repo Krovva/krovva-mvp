@@ -24,13 +24,16 @@ export default function RootLayout({
 
   const pathname = usePathname();
 
+  // List of routes where the Navbar will not be shown
+  const hideNavbarRoutes = ["/onboarding/weight", "/SignIn"];
+
   return (
     <html lang="en">
       <body className={inter.className}>
         <NextAuthProvider>
           <ErudaProvider>
             <MiniKitProvider>
-              {pathname !== "/signin" && <Navbar />}
+              {!hideNavbarRoutes.includes(pathname) && <Navbar />}
               {children}
             </MiniKitProvider>
           </ErudaProvider>

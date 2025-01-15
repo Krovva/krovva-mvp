@@ -14,16 +14,16 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function HeightSelectionPage() {
-  // 1. Define el tipo del estado
+  // Define the type of the state
   const [unit, setUnit] = useState<"inches" | "cm">("cm");
   const [height, setHeight] = useState(170);
   const scaleContainerRef = useRef<HTMLDivElement | null>(null);
 
   const minHeight = 140;
   const maxHeight = 200;
-  const markWidth = 7; // Espaciado entre marcas en píxeles
+  const markWidth = 7; // Spacing between marks in pixels
 
-  // 2. Tipa la función
+  // 2. Type the function
   const handleUnitChange = (
     event: React.MouseEvent<HTMLElement>,
     newUnit: "inches" | "cm"
