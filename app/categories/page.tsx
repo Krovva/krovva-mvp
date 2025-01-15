@@ -1,133 +1,119 @@
 "use client";
 
-import React from "react";
-import {
-  Box,
-  Typography,
-  TextField,
-  InputAdornment,
-  Grid,
-  IconButton,
-} from "@mui/material";
+import React, { useState } from "react";
+import { Box, Typography, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 
 const categories = [
-  { label: "Yoga", image: "/Categories/yoga.png" },
-  { label: "Gym", image: "/Categories/lifting.png" },
-  { label: "Cardio", image: "/Categories/fullbody.png" },
-  { label: "Stretch", image: "/Categories/stretch.png" },
-  { label: "Legs", image: "/Categories/legs.png" },
+  { name: "Yoga", image: "/Categories/yoga.png" },
+  { name: "Gym", image: "/Categories/lifting.png" },
+  { name: "Cardio", image: "/Categories/cardio.png" },
+  { name: "Stretch", image: "/Categories/stretch.png" },
+  { name: "Full Body", image: "/Categories/fullbody.png" },
+  { name: "Legs", image: "/Categories/legs.png" },
 ];
 
 export default function CategoriesPage() {
+  const [searchTerm, setSearchTerm] = useState("");
+
+  // Filtrar las categorías basadas en el término de búsqueda
+  const filteredCategories = categories.filter((category) =>
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
         bgcolor: "white",
+        color: "black",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         px: 3,
-        py: 5,
+        py: 2,
       }}
     >
-      {/* Header */}
+      {/* Title */}
       <Typography
         variant="h5"
-        sx={{
-          fontWeight: 700,
-          mb: 3,
-          textAlign: "center",
-        }}
+        sx={{ fontWeight: 700, fontSize: "24px", mb: 3 }}
       >
         Categories
       </Typography>
 
       {/* Search Bar */}
-      <TextField
-        fullWidth
-        placeholder="Search"
-        variant="outlined"
-        sx={{
-          mb: 3,
-          bgcolor: "white",
-          borderRadius: "10px",
-        }}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <IconButton>
-                <SearchIcon />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
-
-      {/* Categories Grid */}
-      <Grid container spacing={2}>
-        {categories.map((category, index) => (
-          <Grid item xs={6} sm={4} key={index} sx={{ textAlign: "center" }}>
-            <Box
-              sx={{
-                width: "100px",
-                height: "100px",
-                borderRadius: "50%",
-                overflow: "hidden",
-                mx: "auto",
-                mb: 1,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
-              }}
-            >
-              <img
-                src={category.image}
-                alt={category.label}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
-              />
-            </Box>
-            <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-              {category.label}
-            </Typography>
-          </Grid>
-        ))}
-      </Grid>
-
-      {/* Navigation Bar */}
       <Box
         sx={{
-          position: "fixed",
-          bottom: "20px",
-          left: 0,
-          right: 0,
-          mx: "auto",
-          width: "90%",
-          bgcolor: "black",
-          borderRadius: "20px",
           display: "flex",
-          justifyContent: "space-around",
           alignItems: "center",
-          py: 2,
-          px: 3,
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+          bgcolor: "#F5F5F5",
+          borderRadius: "50px",
+          px: 2,
+          py: 1,
+          mb: 4,
+          width: "100%",
+          maxWidth: "400px",
         }}
       >
-        <IconButton sx={{ color: "white" }}>
-          <i className="fas fa-th"></i>
-        </IconButton>
-        <IconButton sx={{ color: "white", bgcolor: "#D5D962", p: 1 }}>
-          <i className="fas fa-dumbbell"></i>
-        </IconButton>
-        <IconButton sx={{ color: "white" }}>
-          <i className="fas fa-chart-bar"></i>
-        </IconButton>
-        <IconButton sx={{ color: "white" }}>
-          <i className="fas fa-cog"></i>
-        </IconButton>
+        <SearchIcon sx={{ color: "gray", mr: 1 }} />
+        <InputBase
+          placeholder="Search"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)} // Actualizar el estado de búsqueda
+          sx={{ flex: 1, fontSize: "16px", color: "black" }}
+        />
+      </Box>
+
+      {/* Categories Grid */}
+      <Box
+        sx={{
+          display: "grid",
+          gridTemplateColumns: "repeat(2, 1fr)",
+          gap: "46px 23px", // 46px entre filas, 23px entre columnas
+          width: "100%",
+          maxWidth: "400px",
+        }}
+      >
+        {filteredCategories.length > 0 ? (
+          filteredCategories.map((category) => (
+            <Box
+              key={category.name}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                sx={{
+                  width: "112px",
+                  height: "112px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  mb: "23px", // Espaciado de 23px debajo del círculo
+                  background: `url(${category.image}) lightgray 50% / cover no-repeat`,
+                }}
+              />
+              <Typography
+                sx={{ fontWeight: 600, fontSize: "16px", textAlign: "center" }}
+              >
+                {category.name}
+              </Typography>
+            </Box>
+          ))
+        ) : (
+          <Typography
+            sx={{
+              gridColumn: "span 2",
+              fontSize: "16px",
+              color: "gray",
+              textAlign: "center",
+            }}
+          >
+            No categories found
+          </Typography>
+        )}
       </Box>
     </Box>
   );
