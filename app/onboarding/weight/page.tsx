@@ -18,8 +18,8 @@ export default function WeightSelectionPage() {
   const [weight, setWeight] = useState(70);
   const scaleContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const minWeight = 40;
-  const maxWeight = 150;
+  const minWeight = 10;
+  const maxWeight = 200;
   const markWidth = 10;
 
   const handleUnitChange = (
@@ -57,7 +57,7 @@ export default function WeightSelectionPage() {
           overflowX: "scroll",
           whiteSpace: "nowrap",
           position: "absolute",
-          bottom: 0,
+          bottom: "10px",
           left: 0,
           right: 0,
           "&::-webkit-scrollbar": { display: "none" },
@@ -90,7 +90,7 @@ export default function WeightSelectionPage() {
                 variant="caption"
                 sx={{
                   mt: 1,
-                  color: "white",
+                  color: "#D5D962",
                   fontSize: "12px",
                 }}
               >
@@ -209,12 +209,11 @@ export default function WeightSelectionPage() {
       {/* Weight Display */}
       <Box
         sx={{
-          bgcolor: "black",
+          bgcolor: "#0D0D0D",
           color: "#D5D962",
-          borderRadius: "20px",
-          p: 4,
-          width: "100%",
-          maxWidth: "400px",
+          borderRadius: "43.9px",
+          width: "350px",
+          height: "281px",
           textAlign: "center",
           display: "flex",
           alignItems: "center",
@@ -224,10 +223,28 @@ export default function WeightSelectionPage() {
           overflow: "hidden",
         }}
       >
-        <Typography variant="h2" sx={{ fontWeight: 700, fontSize: "40px" }}>
+        {/* Number Display */}
+        <Typography
+          variant="h2"
+          sx={{
+            fontWeight: 700,
+            fontSize: "80px",
+          }}
+        >
           {weight}
         </Typography>
-        <Typography sx={{ color: "#D5D962", fontSize: "14px" }}>{unit}</Typography>
+
+        {/* Unit Display */}
+        <Typography
+          sx={{
+            color: "#D5D962",
+            fontSize: "14px",
+          }}
+        >
+          {unit}
+        </Typography>
+
+        {/* Render Scale */}
         {renderScale()}
       </Box>
 

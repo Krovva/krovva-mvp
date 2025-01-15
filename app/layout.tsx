@@ -30,7 +30,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <ErudaProvider>
             <MiniKitProvider>
-              {pathname !== "/signin" && <Navbar />}
+              {pathname !== "/SignIn" && <Navbar />}
               {children}
             </MiniKitProvider>
           </ErudaProvider>
