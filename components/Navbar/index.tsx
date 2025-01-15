@@ -22,7 +22,7 @@ export default function Navbar() {
 
   const icons = [
     { name: "home", src: "/icons/home.svg" },
-    { name: "exercises", src: "/icons/exercises.svg" },
+    { name: "categories", src: "/icons/categories.svg" },
     { name: "workouts", src: "/icons/workouts.svg" },
     { name: "settings", src: "/icons/settings.svg" },
   ];
