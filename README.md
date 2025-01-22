@@ -61,3 +61,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 [Worldcoin Docs](https://docs.world.org/)
 
 [Worldcoin Developer Portal](https://developer.worldcoin.org/)
+
+## Give us a star! ⭐
