@@ -12,6 +12,23 @@ export default function GenderSelectionPage() {
     setSelectedGender(gender);
   };
 
+  const getCardStyles = (gender: string) => ({
+    bgcolor: selectedGender === gender ? "#000" : "#FFFFFF",
+    color: selectedGender === gender ? "white" : "black",
+    px: 2,
+    borderRadius: 3,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    border: selectedGender === gender ? "1px solid #D5D962" : "none",
+  });
+
+  const getImageStyles = (gender: string) => ({
+    filter: selectedGender === gender ? "none" : "grayscale(100%)",
+    borderRadius: "10px",
+  });
+
   return (
     <Box
       sx={{
@@ -26,10 +43,10 @@ export default function GenderSelectionPage() {
         position: "relative"
       }}
     >
-      {/* Barra de Progreso (Superior) */}
+      {/* Progress Bar */}
       <Box
         sx={{
-          width: "30%",  // La barra será más pequeña (aprox. 30% del ancho)
+          width: "30%",
           position: "absolute",
           top: "30px",
           left: "50%",
@@ -41,11 +58,11 @@ export default function GenderSelectionPage() {
       >
         <LinearProgress
           variant="determinate"
-          value={40}  // Simulación de progreso (40%)
+          value={40}
           sx={{
-            bgcolor: "#333333",  // Fondo de la barra (gris oscuro)
+            bgcolor: "#333333",
             "& .MuiLinearProgress-bar": {
-              bgcolor: "#D5D962",  // Color verde del progreso
+              bgcolor: "#D5D962",
             }
           }}
         />
@@ -54,38 +71,29 @@ export default function GenderSelectionPage() {
       <Typography
         variant="h4"
         component="h1"
-        sx={{ fontWeight: 700, mb: 5, textAlign: "center", mt: -17 }}  // Reducido el margen superior
+        sx={{ fontWeight: 700, mb: 5, textAlign: "center", mt: -17 }}
       >
         Welcome To Achieving Your Dream
       </Typography>
 
-      {/* Sección de Selección de Género */}
+      {/* Gender Selection Section */}
       <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%", mt: -2 }}>
-        
-        {/* Male Selection Card */}
+        {/* Male Card */}
         <Box
           onClick={() => handleSelect('male')}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            bgcolor: "#000",
-            color: "white",
-            p: 2,
-            borderRadius: 3,
-            cursor: "pointer"
-          }}
+          sx={getCardStyles('male')}
         >
           <Box>
             <Typography>Your Gender <span style={{ color: "#D5D962" }}>(Male)</span></Typography>
           </Box>
+          
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Image 
               src="/Gender images/Male image.png" 
               alt="Male" 
               width={90} 
               height={100} 
-              style={{ borderRadius: "10px" }} 
+              style={getImageStyles('male')} 
             />
             <Radio
               checked={selectedGender === 'male'}
@@ -101,19 +109,10 @@ export default function GenderSelectionPage() {
           </Box>
         </Box>
 
-        {/* Female Selection Card */}
+        {/* Female Card */}
         <Box
           onClick={() => handleSelect('female')}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            bgcolor: "#FFFFFF",
-            color: "black",
-            p: 2,
-            borderRadius: 3,
-            cursor: "pointer"
-          }}
+          sx={getCardStyles('female')}
         >
           <Box>
             <Typography>Your Gender <span style={{ color: "#D5D962" }}>(Female)</span></Typography>
@@ -124,7 +123,7 @@ export default function GenderSelectionPage() {
               alt="Female" 
               width={90} 
               height={100} 
-              style={{ borderRadius: "10px" }} 
+              style={getImageStyles('female')} 
             />
             <Radio
               checked={selectedGender === 'female'}
@@ -141,7 +140,7 @@ export default function GenderSelectionPage() {
         </Box>
       </Box>
 
-      {/* Botones de Navegación */}
+      {/* Navigation Buttons */}
       <Box
         sx={{
           display: "flex",
@@ -153,7 +152,6 @@ export default function GenderSelectionPage() {
           bottom: "30px"
         }}
       >
-        {/* Botón Retroceso */}
         <IconButton
           sx={{
             border: "2px solid black",
@@ -165,7 +163,6 @@ export default function GenderSelectionPage() {
           <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
         </IconButton>
 
-        {/* Botón Next */}
         <Button
           variant="contained"
           sx={{
@@ -187,8 +184,6 @@ export default function GenderSelectionPage() {
             <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa"}} />
             <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb"  }} />
             <ArrowForwardIosIcon sx={{ fontSize: 18}} />
-                    {/* simbolos */}
-
           </Box>
         </Button>
       </Box>
