@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Typography, Stack, Button } from '@mui/material';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
@@ -240,6 +240,28 @@ export default function WorkoutCard({
           ))}
         </Stack>
       )}
+      {/* Botón "START NOW" */}
+      <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+        <Button
+          variant="contained"
+          sx={{
+            backgroundColor: '#D5D962', // Color del botón
+            color: 'white', // Color del texto
+            borderRadius: '12px', // Bordes redondeados
+            padding: '16px', // Espaciado interno
+            fontWeight: 'bold',
+            fontSize: '16px', // Tamaño del texto
+            textTransform: 'none', // Evitar que el texto se transforme a mayúsculas
+            width: '100%', // Ancho del botón
+            '&:hover': {
+              backgroundColor: '#C4C450', // Cambiar color al pasar el mouse
+            },
+          }}
+          onClick={() => console.log('Start workout')} //Change to the function that starts the workout
+        >
+          START NOW
+        </Button>
+      </Box>
     </Box>
   );
 }
