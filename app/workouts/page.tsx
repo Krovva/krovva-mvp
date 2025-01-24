@@ -23,18 +23,21 @@ const mockWorkoutData = {
       calories: 110,
       time: 10,
       level: 'Beginner',
+      image: '/Exercises/exercise1.png', // Ruta de la imagen
     },
     {
       name: 'Exercises with Holding Jumping Rope',
       calories: 135,
       time: 8,
       level: 'Beginner',
+      image: '/Exercises/exercise3.png', // Ruta de la imagen
     },
     {
       name: 'Exercises with Sitting Dumbbells',
       calories: 135,
       time: 5,
       level: 'Beginner',
+      image: '/Exercises/exercise1.png', // Ruta de la imagen
     },
   ],
 };

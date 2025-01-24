@@ -8,6 +8,7 @@ interface Exercise {
   calories: number;
   time: number;
   level: string;
+  image: string;
 }
 
 interface WorkoutCardProps {
@@ -171,41 +172,70 @@ export default function WorkoutCard({
                 borderRadius: '8px',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
                 padding: '16px',
+                display: 'flex', // Usar flexbox para alinear imagen y contenido
+                alignItems: 'center', // Centrar verticalmente
               }}
             >
-              {/* Nombre del ejercicio */}
-              <Typography variant="h6" fontWeight="bold" color="black" mb={1}>
-                {exercise.name}
-              </Typography>
+              {/* Contenedor de la imagen con fondo de color */}
+              <Box
+                sx={{
+                  backgroundColor: '#f0f0f0', // Color de fondo para la imagen
+                  borderRadius: '8px',
+                  padding: '8px',
+                  marginRight: '16px', // Espacio entre la imagen y el contenido
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <img
+                  src={exercise.image} // Asume que cada ejercicio tiene una propiedad `image`
+                  alt={exercise.name}
+                  style={{
+                    width: '80px', // Tamaño de la imagen
+                    height: '80px',
+                    objectFit: 'cover', // Ajustar la imagen al contenedor
+                    borderRadius: '8px', // Bordes redondeados
+                  }}
+                />
+              </Box>
 
-              {/* Calorías y Tiempo */}
-              <Stack direction="row" spacing={2} alignItems="center" mb={1}>
-                {/* Calorías */}
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <LocalFireDepartmentIcon sx={{ color: 'text.secondary', fontSize: '16px' }} />
-                  <Typography variant="body1" color="text.secondary">
-                    {exercise.calories} kcal
-                  </Typography>
-                </Stack>
-
-                {/* Separador */}
-                <Typography variant="body1" color="text.secondary">
-                  |
+              {/* Contenedor de la información del ejercicio */}
+              <Box sx={{ flex: 1 }}>
+                {/* Nombre del ejercicio */}
+                <Typography variant="h6" fontWeight="bold" color="black" mb={1}>
+                  {exercise.name}
                 </Typography>
 
-                {/* Tiempo */}
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <AccessTimeIcon sx={{ color: 'text.secondary', fontSize: '16px' }} />
-                  <Typography variant="body1" color="text.secondary">
-                    {exercise.time} min
-                  </Typography>
-                </Stack>
-              </Stack>
+                {/* Calorías y Tiempo */}
+                <Stack direction="row" spacing={2} alignItems="center" mb={1}>
+                  {/* Calorías */}
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <LocalFireDepartmentIcon sx={{ color: 'text.secondary', fontSize: '16px' }} />
+                    <Typography variant="body1" color="text.secondary">
+                      {exercise.calories} kcal
+                    </Typography>
+                  </Stack>
 
-              {/* Nivel */}
-              <Typography variant="body2" color="text.secondary">
-                {exercise.level}
-              </Typography>
+                  {/* Separador */}
+                  <Typography variant="body1" color="text.secondary">
+                    |
+                  </Typography>
+
+                  {/* Tiempo */}
+                  <Stack direction="row" spacing={1} alignItems="center">
+                    <AccessTimeIcon sx={{ color: 'text.secondary', fontSize: '16px' }} />
+                    <Typography variant="body1" color="text.secondary">
+                      {exercise.time} min
+                    </Typography>
+                  </Stack>
+                </Stack>
+
+                {/* Nivel */}
+                <Typography variant="body2" color="text.secondary">
+                  {exercise.level}
+                </Typography>
+              </Box>
             </Box>
           ))}
         </Stack>
