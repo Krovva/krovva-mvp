@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'; // Usamos el nuevo useRouter
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import WorkoutCard from '../../components/Cards/WorkoutCard'; // Importamos el componente WorkoutCard
+import { Typography } from '@mui/material'; // Importamos Typography de MUI
 
 // Mock de datos para simular la provisión de datos
 const mockWorkoutData = {
@@ -14,9 +15,12 @@ const mockWorkoutData = {
   level: 'Beginner', // Nivel del entrenamiento
   category: 'Cardio', // Categoría del entrenamiento
   weight: 'Lose', // Objetivo de peso
+  title: 'EXERCISES WITH SITTING DUMBBELLS', // Título del entrenamiento
+  description:
+    'There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour.', // Descripción del entrenamiento
 };
 
-export default function WorkoutsPage() {
+export default function WorkoutDetails() {
   const router = useRouter();
 
   // Función para manejar el clic en el ícono de flecha
@@ -72,9 +76,27 @@ export default function WorkoutsPage() {
         />
       </div>
 
-      {/* Espacio para el contenido restante */}
-      <div style={{ padding: '16px', marginTop: '60vh' }}>
-        {/* Aquí puedes agregar más contenido (nombre, lista de ejercicios, etc.) */}
+      {/* Contenedor del texto (bajado para evitar solapamiento) */}
+      <div
+        style={{
+          position: 'relative',
+          top: '100px', // Bajamos el texto para evitar que lo tape el card
+          padding: '16px',
+          textAlign: 'left', // Alinea el texto a la izquierda
+          maxWidth: '400px', // Ancho máximo del texto
+          margin: '0 auto', // Centra el contenedor del texto
+          marginLeft: '16px', // Margen izquierdo para alinear con el card
+        }}
+      >
+        {/* Título */}
+        <Typography variant="h5" fontWeight="bold" color="black" mb={2}>
+          {mockWorkoutData.title}
+        </Typography>
+
+        {/* Descripción */}
+        <Typography variant="body2" color="text.secondary">
+          {mockWorkoutData.description}
+        </Typography>
       </div>
     </div>
   );

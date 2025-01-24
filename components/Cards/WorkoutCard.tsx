@@ -22,7 +22,7 @@ export default function WorkoutCard({
     <Box
       sx={{
         backgroundColor: 'white',
-        borderRadius: '8px',
+        borderRadius: '20px',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
         padding: '24px', // Aumentamos el padding para extender el alto del card
         maxWidth: '400px',
@@ -33,16 +33,22 @@ export default function WorkoutCard({
       <Stack direction="row" spacing={4} alignItems="center" justifyContent="center" mb={4}>
         {/* Calorías */}
         <Stack direction="row" spacing={1} alignItems="center">
-          <LocalFireDepartmentIcon sx={{ color: 'orange' }} />
-          <Typography variant="body1" fontWeight="bold" color="black">
+          <LocalFireDepartmentIcon sx={{ color: 'black' }} />
+          <Typography variant="body1" color="black">
             {calories} kcal
+          </Typography>
+        </Stack>
+
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Typography variant="body1" color="black">
+            |
           </Typography>
         </Stack>
 
         {/* Tiempo */}
         <Stack direction="row" spacing={1} alignItems="center">
-          <AccessTimeIcon sx={{ color: 'gray' }} />
-          <Typography variant="body1" fontWeight="bold" color="black">
+          <AccessTimeIcon sx={{ color: 'black' }} />
+          <Typography variant="body1" color="black">
             {minutes} min
           </Typography>
         </Stack>
