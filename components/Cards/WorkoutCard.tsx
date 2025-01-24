@@ -180,17 +180,31 @@ export default function WorkoutCard({
 
               {/* Calorías y Tiempo */}
               <Stack direction="row" spacing={2} alignItems="center" mb={1}>
+                {/* Calorías */}
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <LocalFireDepartmentIcon sx={{ color: 'text.secondary', fontSize: '16px' }} />
+                  <Typography variant="body1" color="text.secondary">
+                    {exercise.calories} kcal
+                  </Typography>
+                </Stack>
+
+                {/* Separador */}
                 <Typography variant="body1" color="text.secondary">
-                  {exercise.calories} kcal
+                  |
                 </Typography>
-                <Typography variant="body1" color="text.secondary">
-                  {exercise.time} min
-                </Typography>
+
+                {/* Tiempo */}
+                <Stack direction="row" spacing={1} alignItems="center">
+                  <AccessTimeIcon sx={{ color: 'text.secondary', fontSize: '16px' }} />
+                  <Typography variant="body1" color="text.secondary">
+                    {exercise.time} min
+                  </Typography>
+                </Stack>
               </Stack>
 
               {/* Nivel */}
               <Typography variant="body2" color="text.secondary">
-                Level: {exercise.level}
+                {exercise.level}
               </Typography>
             </Box>
           ))}
