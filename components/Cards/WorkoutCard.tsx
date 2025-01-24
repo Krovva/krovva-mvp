@@ -3,12 +3,22 @@ import { Box, Typography, Stack } from '@mui/material';
 import LocalFireDepartmentIcon from '@mui/icons-material/LocalFireDepartment';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
+interface Exercise {
+  name: string;
+  calories: number;
+  time: number;
+  level: string;
+}
+
 interface WorkoutCardProps {
   calories: number;
   minutes: number;
   level: string;
   category: string;
   weight: string;
+  title?: string; // Campo opcional para el título
+  description?: string; // Campo opcional para la descripción
+  exercises?: Exercise[]; // Lista de ejercicios relacionados
 }
 
 export default function WorkoutCard({
@@ -17,6 +27,9 @@ export default function WorkoutCard({
   level,
   category,
   weight,
+  title,
+  description,
+  exercises,
 }: WorkoutCardProps) {
   return (
     <Box
@@ -24,7 +37,7 @@ export default function WorkoutCard({
         backgroundColor: 'white',
         borderRadius: '20px',
         boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
-        padding: '24px', // Aumentamos el padding para extender el alto del card
+        padding: '24px',
         maxWidth: '400px',
         margin: '0 auto',
       }}
@@ -55,7 +68,7 @@ export default function WorkoutCard({
       </Stack>
 
       {/* Segunda fila: Level, Category y Weight */}
-      <Stack direction="row" spacing={4} alignItems="center" justifyContent="center">
+      <Stack direction="row" spacing={4} alignItems="center" justifyContent="center" mb={4}>
         {/* Level */}
         <Box
           sx={{
@@ -69,14 +82,14 @@ export default function WorkoutCard({
           </Typography>
           <Box
             sx={{
-              backgroundColor: '#f0f0f0', // Gris claro
+              backgroundColor: '#f0f0f0',
               borderRadius: '8px',
-              padding: '12px 16px', // Aumentamos el padding para más espacio interno
-              width: '100px', // Ancho fijo para que sea cuadrado
+              padding: '12px 16px',
+              width: '100px',
               textAlign: 'center',
             }}
           >
-            <Typography variant="body2" color="black"> {/* Texto en negro */}
+            <Typography variant="body2" color="black">
               {level}
             </Typography>
           </Box>
@@ -95,14 +108,14 @@ export default function WorkoutCard({
           </Typography>
           <Box
             sx={{
-              backgroundColor: '#f0f0f0', // Gris claro
+              backgroundColor: '#f0f0f0',
               borderRadius: '8px',
-              padding: '12px 16px', // Aumentamos el padding para más espacio interno
-              width: '100px', // Ancho fijo para que sea cuadrado
+              padding: '12px 16px',
+              width: '100px',
               textAlign: 'center',
             }}
           >
-            <Typography variant="body2" color="black"> {/* Texto en negro */}
+            <Typography variant="body2" color="black">
               {category}
             </Typography>
           </Box>
@@ -121,19 +134,68 @@ export default function WorkoutCard({
           </Typography>
           <Box
             sx={{
-              backgroundColor: '#f0f0f0', // Gris claro
+              backgroundColor: '#f0f0f0',
               borderRadius: '8px',
-              padding: '12px 16px', // Aumentamos el padding para más espacio interno
-              width: '100px', // Ancho fijo para que sea cuadrado
+              padding: '12px 16px',
+              width: '100px',
               textAlign: 'center',
             }}
           >
-            <Typography variant="body2" color="black"> {/* Texto en negro */}
+            <Typography variant="body2" color="black">
               {weight}
             </Typography>
           </Box>
         </Box>
       </Stack>
+
+      {/* Título y Descripción */}
+      {title && (
+        <Typography variant="h6" fontWeight="bold" color="black" mb={2} textAlign="center">
+          {title}
+        </Typography>
+      )}
+      {description && (
+        <Typography variant="body2" color="text.secondary" mb={4} textAlign="center">
+          {description}
+        </Typography>
+      )}
+
+      {/* Lista de Ejercicios */}
+      {exercises && (
+        <Stack spacing={3}>
+          {exercises.map((exercise, index) => (
+            <Box
+              key={index}
+              sx={{
+                backgroundColor: 'white',
+                borderRadius: '8px',
+                boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
+                padding: '16px',
+              }}
+            >
+              {/* Nombre del ejercicio */}
+              <Typography variant="h6" fontWeight="bold" color="black" mb={1}>
+                {exercise.name}
+              </Typography>
+
+              {/* Calorías y Tiempo */}
+              <Stack direction="row" spacing={2} alignItems="center" mb={1}>
+                <Typography variant="body1" color="text.secondary">
+                  {exercise.calories} kcal
+                </Typography>
+                <Typography variant="body1" color="text.secondary">
+                  {exercise.time} min
+                </Typography>
+              </Stack>
+
+              {/* Nivel */}
+              <Typography variant="body2" color="text.secondary">
+                Level: {exercise.level}
+              </Typography>
+            </Box>
+          ))}
+        </Stack>
+      )}
     </Box>
   );
 }
