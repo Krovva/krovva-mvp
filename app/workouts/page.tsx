@@ -5,6 +5,16 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation'; // Usamos el nuevo useRouter
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import WorkoutCard from '../../components/Cards/WorkoutCard'; // Importamos el componente WorkoutCard
+
+// Mock de datos para simular la provisión de datos
+const mockWorkoutData = {
+  calories: 135, // Calorías del entrenamiento
+  minutes: 5, // Duración en minutos
+  level: 'Beginner', // Nivel del entrenamiento
+  category: 'Cardio', // Categoría del entrenamiento
+  weight: 'Lose', // Objetivo de peso
+};
 
 export default function WorkoutsPage() {
   const router = useRouter();
@@ -43,7 +53,16 @@ export default function WorkoutsPage() {
 
       {/* Espacio para el contenido restante */}
       <div style={{ padding: '16px' }}>
-        {/* Aquí irá el resto del contenido (nombre, categoría, ejercicios, etc.) */}
+        {/* Componente WorkoutCard con datos del mock */}
+        <WorkoutCard
+          calories={mockWorkoutData.calories} // Calorías desde el mock
+          minutes={mockWorkoutData.minutes} // Tiempo desde el mock
+          level={mockWorkoutData.level} // Nivel desde el mock
+          category={mockWorkoutData.category} // Categoría desde el mock
+          weight={mockWorkoutData.weight} // Objetivo de peso desde el mock
+        />
+
+        {/* Aquí puedes agregar más contenido (nombre, lista de ejercicios, etc.) */}
       </div>
     </div>
   );
