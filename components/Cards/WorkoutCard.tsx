@@ -150,12 +150,12 @@ export default function WorkoutCard({
 
       {/* Título y Descripción */}
       {title && (
-        <Typography variant="h6" fontWeight="bold" color="black" mb={2} textAlign="center">
+        <Typography variant="h6" fontWeight="bold" color="black" mb={2} textAlign="left"> {/* Cambiado a 'left' */}
           {title}
         </Typography>
       )}
       {description && (
-        <Typography variant="body2" color="text.secondary" mb={4} textAlign="center">
+        <Typography variant="body2" color="text.secondary" mb={4} textAlign="left"> {/* Cambiado a 'left' */}
           {description}
         </Typography>
       )}
