@@ -25,7 +25,7 @@ export default function WorkoutsPage() {
   };
 
   return (
-    <div style={{ backgroundColor: 'white', minHeight: '100vh' }}>
+    <div style={{ backgroundColor: 'white', minHeight: '100vh', position: 'relative' }}>
       {/* Contenedor de la imagen de portada */}
       <div style={{ position: 'relative', width: '100%', height: '50vh' }}>
         <Image
@@ -51,9 +51,18 @@ export default function WorkoutsPage() {
         </IconButton>
       </div>
 
-      {/* Espacio para el contenido restante */}
-      <div style={{ padding: '16px' }}>
-        {/* Componente WorkoutCard con datos del mock */}
+      {/* Contenedor del WorkoutCard (superpuesto a la imagen) */}
+      <div
+        style={{
+          position: 'absolute',
+          top: '40%', // Coloca el card en la mitad inferior de la imagen
+          left: '50%',
+          transform: 'translateX(-50%)', // Centra el card horizontalmente
+          width: '90%', // Ancho del card
+          maxWidth: '400px', // Ancho máximo del card
+          zIndex: 1, // Asegura que el card esté por encima de la imagen
+        }}
+      >
         <WorkoutCard
           calories={mockWorkoutData.calories} // Calorías desde el mock
           minutes={mockWorkoutData.minutes} // Tiempo desde el mock
@@ -61,7 +70,10 @@ export default function WorkoutsPage() {
           category={mockWorkoutData.category} // Categoría desde el mock
           weight={mockWorkoutData.weight} // Objetivo de peso desde el mock
         />
+      </div>
 
+      {/* Espacio para el contenido restante */}
+      <div style={{ padding: '16px', marginTop: '60vh' }}>
         {/* Aquí puedes agregar más contenido (nombre, lista de ejercicios, etc.) */}
       </div>
     </div>
