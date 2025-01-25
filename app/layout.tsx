@@ -33,7 +33,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <ErudaProvider>
             <MiniKitProvider>
-              {(pathname === "/home" || pathname === "/categories" || pathname === "/categories" || pathname === "/completed" || pathname === "/settings") && <Navbar />}
+              {(pathname === "/home" || pathname === "/categories" || pathname === "/completed" || pathname === "/settings") && <Navbar />}
               {children}
             </MiniKitProvider>
           </ErudaProvider> 
