@@ -1,11 +1,11 @@
-'use client'; // Indicates this is a Client Component
+'use client'; 
 
 import React from 'react';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Using the new useRouter
+import { useRouter } from 'next/navigation'; 
 import IconButton from '@mui/material/IconButton';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import WorkoutCard from '../../components/Cards/WorkoutCard'; // Importing the WorkoutCard component
+import WorkoutCard from '../../components/Cards/WorkoutCard'; 
 
 // Mock data to simulate data provision
 const mockWorkoutData = {
@@ -23,21 +23,21 @@ const mockWorkoutData = {
       calories: 110,
       time: 10,
       level: 'Beginner',
-      image: '/Exercises/exercise1.png', // Ruta de la imagen
+      image: '/Exercises/exercise1.png', 
     },
     {
       name: 'Exercises with Holding Jumping Rope',
       calories: 135,
       time: 8,
       level: 'Beginner',
-      image: '/Exercises/exercise3.png', // Ruta de la imagen
+      image: '/Exercises/exercise3.png', 
     },
     {
       name: 'Exercises with Sitting Dumbbells',
       calories: 135,
       time: 5,
       level: 'Beginner',
-      image: '/Exercises/exercise1.png', // Ruta de la imagen
+      image: '/Exercises/exercise1.png', 
     },
   ],
 };
@@ -45,9 +45,8 @@ const mockWorkoutData = {
 export default function WorkoutDetails() {
   const router = useRouter();
 
-  // Function to handle the click on the arrow icon
   const handleGoBack = () => {
-    router.push('/categories'); // Navigate to the categories page
+    router.push('/categories');
   };
 
   return (
@@ -59,7 +58,7 @@ export default function WorkoutDetails() {
         justifyContent: 'center',
         alignItems: 'center'
       }}>
-        {/* Contenedor de la imagen de fondo */}
+        {/* Container for cover img*/}
         <div style={{
           position: 'absolute',
           top: 0,
@@ -77,7 +76,7 @@ export default function WorkoutDetails() {
           />
         </div>
 
-        {/* Botón de retroceso */}
+        {/* Button to go back */}
         <IconButton
           onClick={handleGoBack}
           style={{
@@ -91,7 +90,7 @@ export default function WorkoutDetails() {
           <ArrowBackIosNewIcon />
         </IconButton>
 
-        {/* Contenedor del WorkoutCard */}
+        {/* WorkoutCard Container */}
         <div style={{
           top: '35vh',
           position: 'relative',

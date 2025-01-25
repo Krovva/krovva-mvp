@@ -17,9 +17,9 @@ interface WorkoutCardProps {
   level: string;
   category: string;
   weight: string;
-  title?: string; // Campo opcional para el título
-  description?: string; // Campo opcional para la descripción
-  exercises?: Exercise[]; // Lista de ejercicios relacionados
+  title?: string; 
+  description?: string; 
+  exercises?: Exercise[]; 
 }
 
 export default function WorkoutCard({
@@ -43,9 +43,9 @@ export default function WorkoutCard({
         margin: '0 auto',
       }}
     >
-      {/* Primera fila: Calorías y Tiempo */}
+      {/* First line: kcal and time */}
       <Stack direction="row" spacing={4} alignItems="center" justifyContent="center" mb={4}>
-        {/* Calorías */}
+        {/* kcal */}
         <Stack direction="row" spacing={1} alignItems="center">
           <LocalFireDepartmentIcon sx={{ color: 'black' }} />
           <Typography variant="body1" color="black">
@@ -59,7 +59,7 @@ export default function WorkoutCard({
           </Typography>
         </Stack>
 
-        {/* Tiempo */}
+        {/* time */}
         <Stack direction="row" spacing={1} alignItems="center">
           <AccessTimeIcon sx={{ color: 'black' }} />
           <Typography variant="body1" color="black">
@@ -68,7 +68,7 @@ export default function WorkoutCard({
         </Stack>
       </Stack>
 
-      {/* Segunda fila: Level, Category y Weight */}
+      {/* Second line: Level, Category and Weight */}
       <Stack direction="row" spacing={4} alignItems="center" justifyContent="center" mb={4}>
         {/* Level */}
         <Box
@@ -149,19 +149,19 @@ export default function WorkoutCard({
         </Box>
       </Stack>
 
-      {/* Título y Descripción */}
+      {/* title and description */}
       {title && (
-        <Typography variant="h6" fontWeight="bold" color="black" mb={2} textAlign="left"> {/* Cambiado a 'left' */}
+        <Typography variant="h6" fontWeight="bold" color="black" mb={2} textAlign="left"> 
           {title}
         </Typography>
       )}
       {description && (
-        <Typography variant="body2" color="text.secondary" mb={4} textAlign="left"> {/* Cambiado a 'left' */}
+        <Typography variant="body2" color="text.secondary" mb={4} textAlign="left"> 
           {description}
         </Typography>
       )}
 
-      {/* Lista de Ejercicios */}
+      {/* Exercises list */}
       {exercises && (
         <Stack spacing={3}>
           {exercises.map((exercise, index) => (
@@ -172,42 +172,42 @@ export default function WorkoutCard({
                 borderRadius: '8px',
                 boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.1)',
                 padding: '16px',
-                display: 'flex', // Usar flexbox para alinear imagen y contenido
-                alignItems: 'center', // Centrar verticalmente
+                display: 'flex', 
+                alignItems: 'center', 
               }}
             >
-              {/* Contenedor de la imagen con fondo de color */}
+              {/* Box with the image for each workout */}
               <Box
                 sx={{
-                  backgroundColor: '#f0f0f0', // Color de fondo para la imagen
+                  backgroundColor: '#f0f0f0',
                   borderRadius: '8px',
                   padding: '8px',
-                  marginRight: '16px', // Espacio entre la imagen y el contenido
+                  marginRight: '16px', 
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                 }}
               >
                 <img
-                  src={exercise.image} // Asume que cada ejercicio tiene una propiedad `image`
+                  src={exercise.image} 
                   alt={exercise.name}
                   style={{
-                    width: '80px', // Tamaño de la imagen
+                    width: '80px',
                     height: '80px',
-                    objectFit: 'cover', // Ajustar la imagen al contenedor
-                    borderRadius: '8px', // Bordes redondeados
+                    objectFit: 'cover', 
+                    borderRadius: '8px', 
                   }}
                 />
               </Box>
 
-              {/* Contenedor de la información del ejercicio */}
+              {/* box with exercise information */}
               <Box sx={{ flex: 1 }}>
-                {/* Nombre del ejercicio */}
+                {/* name */}
                 <Typography variant="h6" fontWeight="bold" color="black" mb={1}>
                   {exercise.name}
                 </Typography>
 
-                {/* Calorías y Tiempo */}
+                {/* kcal and time */}
                 <Stack direction="row" spacing={2} alignItems="center" mb={1}>
                   {/* Calorías */}
                   <Stack direction="row" spacing={1} alignItems="center">
@@ -217,12 +217,12 @@ export default function WorkoutCard({
                     </Typography>
                   </Stack>
 
-                  {/* Separador */}
+                  {/* separator */}
                   <Typography variant="body1" color="text.secondary">
                     |
                   </Typography>
 
-                  {/* Tiempo */}
+                  {/* time */}
                   <Stack direction="row" spacing={1} alignItems="center">
                     <AccessTimeIcon sx={{ color: 'text.secondary', fontSize: '16px' }} />
                     <Typography variant="body1" color="text.secondary">
@@ -231,7 +231,7 @@ export default function WorkoutCard({
                   </Stack>
                 </Stack>
 
-                {/* Nivel */}
+                {/* level */}
                 <Typography variant="body2" color="text.secondary">
                   {exercise.level}
                 </Typography>
@@ -240,21 +240,21 @@ export default function WorkoutCard({
           ))}
         </Stack>
       )}
-      {/* Botón "START NOW" */}
+      {/* Button "START NOW" */}
       <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
         <Button
           variant="contained"
           sx={{
-            backgroundColor: '#D5D962', // Color del botón
-            color: 'white', // Color del texto
-            borderRadius: '12px', // Bordes redondeados
-            padding: '16px', // Espaciado interno
+            backgroundColor: '#D5D962', 
+            color: 'white',
+            borderRadius: '12px',
+            padding: '16px', 
             fontWeight: 'bold',
-            fontSize: '16px', // Tamaño del texto
-            textTransform: 'none', // Evitar que el texto se transforme a mayúsculas
-            width: '100%', // Ancho del botón
+            fontSize: '16px',
+            textTransform: 'none', 
+            width: '100%',
             '&:hover': {
-              backgroundColor: '#C4C450', // Cambiar color al pasar el mouse
+              backgroundColor: '#C4C450', 
             },
           }}
           onClick={() => console.log('Start workout')} //Change to the function that starts the workout
