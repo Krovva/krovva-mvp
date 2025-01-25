@@ -57,6 +57,8 @@ const useWorkoutTimer = (workout: Workout) => {
     } else {
       // Workout complete
       alert("Workout complete!");
+
+      // ! WHEN YOU HAVE THE COMPLETED WORKOUT PAGE, YOU CAN NAVIGATE TO IT HERE
     }
   };
 
