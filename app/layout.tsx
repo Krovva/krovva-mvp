@@ -24,6 +24,13 @@ export default function RootLayout({
 
   const pathname = usePathname();
 
+  const showNavbar = pathname === "/home" ||
+    pathname === "/categories" ||
+    pathname === "/workouts" ||
+    pathname === "/completed" ||
+    pathname === "/settings" ||
+    /^\/workouts\/(?!details(?:\/|$))[^/]+$/.test(pathname);
+
   // List of routes where the Navbar will not be shown
   //const hideNavbarRoutes = ["/onboarding/weight", "/SignIn"];
 
@@ -33,7 +40,7 @@ export default function RootLayout({
         <NextAuthProvider>
           <ErudaProvider>
             <MiniKitProvider>
-              {(pathname === "/home" || pathname === "/categories" || pathname === "/completed" || pathname === "/settings") && <Navbar />}
+              {showNavbar && <Navbar />}
               {children}
             </MiniKitProvider>
           </ErudaProvider> 
