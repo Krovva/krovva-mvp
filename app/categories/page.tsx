@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Box, Typography, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import Link from "next/link";
 
 const categories = [
   { name: "Yoga", image: "/Categories/yoga.png" },
@@ -77,30 +78,12 @@ export default function CategoriesPage() {
       >
         {filteredCategories.length > 0 ? (
           filteredCategories.map((category) => (
-            <Box
-              key={category.name}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Box
-                sx={{
-                  width: "112px",
-                  height: "112px",
-                  borderRadius: "50%",
-                  overflow: "hidden",
-                  mb: "23px", // Espaciado de 23px debajo del círculo
-                  background: `url(${category.image}) lightgray 50% / cover no-repeat`,
-                }}
-              />
-              <Typography
-                sx={{ fontWeight: 600, fontSize: "16px", textAlign: "center" }}
-              >
-                {category.name}
-              </Typography>
-            </Box>
+            <Link href={`/workouts/${category.name.toLowerCase().replace(/\s+/g, '')}`} key={category.name}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
+                <img src={category.image} alt={category.name} style={{ width: '112px', height: '112px', marginBottom: '23px' }} />
+                <Typography sx={{ fontWeight: 600, fontSize: "16px", textAlign: "center" }}>{category.name}</Typography>
+              </Box>
+            </Link>
           ))
         ) : (
           <Typography

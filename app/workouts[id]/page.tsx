@@ -1,3 +1,3 @@
 export default function WorkoutDetailsPage() {
-    return null;
-  }
+  return null;
+}
