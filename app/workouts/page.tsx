@@ -1,31 +1,10 @@
-import Workout from "@/components/workout";
-import { Box } from "@mui/material";
+"use client"
 
+import React from 'react';
+import { useRouter } from 'next/navigation'; 
+import { workoutLists } from '../Mocks/WorkoutsList';
+import { WorkoutContainer } from '@/components/Containers/WorkoutContainer';
 
-const data= {
-  progress:70,
-  // duration:0,
-  completed:6,
-  // calories:0,
-  // weight:0,
-  // tutAccuracy:0,
-}
 export default function WorkoutsPage() {
-    return (
-      <Box
-        sx={{
-          minHeight: "100vh",
-          bgcolor: "white",
-          color: "black",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          px: 3,
-          py: 5,
-          justifyItems: "center",
-        }}
-      >
-        <Workout progress={data.progress} completed={data.completed} />
-      </Box>
-    );
+    return null;
   }
