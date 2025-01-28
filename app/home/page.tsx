@@ -28,7 +28,6 @@ export default function Home() {
         padding: { xs: "100px 10px", sm: "40px 24px" },
       }}
     >
-
       <Box
         sx={{
           display: "flex",
@@ -73,7 +72,6 @@ export default function Home() {
           }}
         />
       </Box>
-
 
       <Box
         sx={{
@@ -160,7 +158,6 @@ export default function Home() {
         </Box>
       </Box>
 
-
       <Box
         sx={{
           width: "100%",
@@ -232,10 +229,12 @@ export default function Home() {
           <Typography
             sx={{
               position: "absolute",
+              top: "30%",
+              left: "65%",
+              transform: "translate(-50%, -50%)",
               fontWeight: "bold",
-              fontSize: "20px",
-              color: "#8D9164",
-              zIndex: 2,
+              fontSize: "12px",
+              color: "#FFFFFF",
             }}
           >
             20,1
@@ -270,8 +269,8 @@ export default function Home() {
             fontWeight: "bold",
             fontSize: "14px",
             color: "#D6D984",
-            transform: "translateX(-20px)", 
-            textTransform: "none", 
+            transform: "translateX(-20px)",
+            textTransform: "none",
           }}
         >
           See all
@@ -297,17 +296,18 @@ export default function Home() {
           <Box
             key={index}
             sx={{
-              minWidth: "112px",
-              height: "172px",
+              minWidth: "120px",
+              height: "190px",
               borderRadius: "15px",
               backgroundColor: category.bgColor,
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               padding: "10px",
               textAlign: "center",
+              position: "relative", 
             }}
           >
             <Typography
@@ -323,9 +323,14 @@ export default function Home() {
             <Image
               src={category.image}
               alt={category.title}
-              width={80}
-              height={80}
-              style={{ borderRadius: "10px" }}
+              width={100}
+              height={100}
+              style={{
+                position: "absolute",
+                top: "36px", 
+                right: "0", 
+                borderRadius: "10px",
+              }}
             />
           </Box>
         ))}
