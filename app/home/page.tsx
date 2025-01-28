@@ -28,7 +28,6 @@ export default function Home() {
         padding: { xs: "100px 10px", sm: "40px 24px" },
       }}
     >
-      {/* Header Section */}
       <Box
         sx={{
           display: "flex",
@@ -65,16 +64,15 @@ export default function Home() {
         </Box>
         <Avatar
           alt="User Avatar"
-          src="/profile-picture.png"
+          src="/User/avatar.svg"
           sx={{
-            width: { xs: 40, sm: 48 },
-            height: { xs: 40, sm: 48 },
+            width: { xs: 48, sm: 56 },
+            height: { xs: 48, sm: 56 },
             border: "2px solid #FFC9E9",
           }}
         />
       </Box>
 
-      {/* This Week Section */}
       <Box
         sx={{
           width: "100%",
@@ -160,7 +158,6 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* BMI Section */}
       <Box
         sx={{
           width: "100%",
@@ -232,10 +229,12 @@ export default function Home() {
           <Typography
             sx={{
               position: "absolute",
+              top: "30%",
+              left: "65%",
+              transform: "translate(-50%, -50%)",
               fontWeight: "bold",
-              fontSize: "20px",
-              color: "#8D9164",
-              zIndex: 2,
+              fontSize: "12px",
+              color: "#FFFFFF",
             }}
           >
             20,1
@@ -243,7 +242,6 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* Categories Header */}
       <Box
         sx={{
           width: "100%",
@@ -271,13 +269,14 @@ export default function Home() {
             fontWeight: "bold",
             fontSize: "14px",
             color: "#D6D984",
+            transform: "translateX(-20px)",
+            textTransform: "none",
           }}
         >
-          See All
+          See all
         </Typography>
       </Box>
 
-      {/* Categories Carrusel */}
       <Box
         sx={{
           display: "flex",
@@ -286,48 +285,53 @@ export default function Home() {
           width: "100%",
           maxWidth: "389px",
           paddingBottom: 2,
-          "&::-webkit-scrollbar": { display: "none" }, 
+          "&::-webkit-scrollbar": { display: "none" },
         }}
       >
         {[
-          { title: "Warm up", image: "/Exercises /warmup.png" },
-          { title: "Yoga", image: "/Exercises /yoga.png" },
-          { title: "Lifting", image: "/Exercises /lifting.png" },
-          
+          { title: "Warm up", image: "/Exercises/warmup.png", bgColor: "#2B2A2D", textColor: "#FFFFFF" },
+          { title: "Yoga", image: "/Exercises/yoga.png", bgColor: "#D6D984", textColor: "#000000" },
+          { title: "Lifting", image: "/Exercises/lifting.png", bgColor: "#2B2A2D", textColor: "#FFFFFF" },
         ].map((category, index) => (
           <Box
             key={index}
             sx={{
-              minWidth: "112px",
-              height: "172px",
+              minWidth: "120px",
+              height: "190px",
               borderRadius: "15px",
-              backgroundColor: "#2B2A2D",
+              backgroundColor: category.bgColor,
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
-              justifyContent: "center",
+              justifyContent: "flex-start",
               padding: "10px",
               textAlign: "center",
+              position: "relative", 
             }}
           >
-            <Image
-              src={category.image}
-              alt={category.title}
-              width={80}
-              height={80}
-              style={{ borderRadius: "10px" }}
-            />
             <Typography
               variant="body1"
               sx={{
-                marginTop: 2,
                 fontWeight: "bold",
-                color: "#FFFFFF",
+                color: category.textColor,
+                marginBottom: "10px",
               }}
             >
               {category.title}
             </Typography>
+            <Image
+              src={category.image}
+              alt={category.title}
+              width={100}
+              height={100}
+              style={{
+                position: "absolute",
+                top: "36px", 
+                right: "0", 
+                borderRadius: "10px",
+              }}
+            />
           </Box>
         ))}
       </Box>
