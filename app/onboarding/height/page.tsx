@@ -1,274 +1,112 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Button,
-  Typography,
-  IconButton,
-  LinearProgress,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useState, useEffect, useRef } from "react"
+import { useRouter } from "next/navigation"
 
 export default function HeightSelectionPage() {
-  // Define the type of the state
-  const [unit, setUnit] = useState<"inches" | "cm">("cm");
-  const [height, setHeight] = useState(170);
-  const scaleContainerRef = useRef<HTMLDivElement | null>(null);
+  const [unit, setUnit] = useState<"inches" | "cm">("cm")
+  const [height, setHeight] = useState(170)
+  const scaleContainerRef = useRef<HTMLDivElement | null>(null)
+  const router = useRouter()
 
-  const minHeight = 140;
-  const maxHeight = 200;
-  const markWidth = 7; // Spacing between marks in pixels
+  const minHeight = 140
+  const maxHeight = 200
+  const markWidth = 14 // Spacing between marks in pixels
 
-  // 2. Type the function
-  const handleUnitChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newUnit: "inches" | "cm"
-  ) => {
-    if (newUnit !== null) {
-      setUnit(newUnit);
-    }
-  };
+  const handleUnitChange = (newUnit: "inches" | "cm") => {
+    setUnit(newUnit)
+  }
 
   const renderScale = () => {
-    const scaleMarks = [];
+    const scaleMarks = []
     for (let i = minHeight; i <= maxHeight; i += 1) {
-      const isMajor = i % 10 === 0;
+      const isMajor = i % 10 === 0
       scaleMarks.push(
-        <Box
-          key={i}
-          sx={{
-            height: isMajor ? "50px" : "15px",
-            width: isMajor ? "3px" : "1.5px",
-            bgcolor: "white",
-            margin: "0 8px",
-            display: "inline-block",
-          }}
-        />
-      );
+        <div key={i} className="inline-block text-center" style={{ width: `${markWidth}px` }}>
+          <div className={`mx-auto bg-white ${isMajor ? "h-[50px] w-[3px]" : "h-[15px] w-[1.5px]"}`} />
+          {isMajor && <span className="block text-white text-[10px] mt-1">{i}</span>}
+        </div>,
+      )
     }
     return (
-      <Box
+      <div
         ref={scaleContainerRef}
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          overflowX: "scroll",
-          overflowY: "hidden",
-          whiteSpace: "nowrap",
-          mt: 3,
-          width: "100%",
-          pb: 2,
-          scrollSnapType: "x mandatory",
-          "&::-webkit-scrollbar": { display: "none" },
-        }}
+        className="flex justify-start items-start overflow-x-scroll overflow-y-hidden whitespace-nowrap mt-3 w-full h-[80px] pb-2 relative scrollbar-hide"
         onScroll={(e) => {
-          const scrollLeft = (e.target as HTMLDivElement).scrollLeft;
-          const newHeight = minHeight + Math.round(scrollLeft / markWidth);
+          const scrollLeft = e.currentTarget.scrollLeft
+          const containerWidth = e.currentTarget.offsetWidth
+          const newHeight = Math.round(scrollLeft / markWidth) + minHeight
           if (newHeight >= minHeight && newHeight <= maxHeight && newHeight !== height) {
-            setHeight(newHeight);
+            setHeight(newHeight)
           }
         }}
       >
-        {scaleMarks.map((mark, index) => (
-          <Box
-            key={index}
-            sx={{
-              textAlign: "center",
-              color: "white",
-              scrollSnapAlign: "center",
-            }}
-          >
-            {mark}
-            {(minHeight + index) % 10 === 0 && (
-              <Typography
-                variant="caption"
-                sx={{
-                  display: "block",
-                  mt: 1,
-                  fontSize: "10px",
-                  color: "white",
-                }}
-              >
-                {minHeight + index}
-              </Typography>
-            )}
-          </Box>
-        ))}
-      </Box>
-    );
-  };
+        <div className="absolute left-1/2 h-[50px] w-[3px] bg-[#D5D962] transform -translate-x-1/2 z-10" />
+        <div className="inline-flex items-start" style={{ paddingLeft: "50%", paddingRight: "50%" }}>
+          {scaleMarks}
+        </div>
+      </div>
+    )
+  }
 
   useEffect(() => {
     if (scaleContainerRef.current) {
-      const initialScrollLeft = (height - minHeight) * markWidth;
-      scaleContainerRef.current.scrollLeft = initialScrollLeft;
+      const containerWidth = scaleContainerRef.current.offsetWidth
+      const scrollPosition = (height - minHeight) * markWidth
+      scaleContainerRef.current.scrollLeft = scrollPosition
     }
-  }, [height]);
+  }, [height])
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        bgcolor: "white",
-        color: "black",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        px: 3,
-        position: "relative",
-      }}
-    >
+    <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center px-3 relative">
       {/* Progress Bar */}
-      <Box
-        sx={{
-          width: "80%",
-          position: "absolute",
-          top: "20px",
-          left: "50%",
-          transform: "translateX(-50%)",
-          height: "10px",
-          borderRadius: "5px",
-          overflow: "hidden",
-        }}
-      >
-        <LinearProgress
-          variant="determinate"
-          value={60}
-          sx={{
-            bgcolor: "#333333",
-            "& .MuiLinearProgress-bar": {
-              bgcolor: "#D5D962",
-            },
-          }}
-        />
-      </Box>
+      <div className="w-4/5 absolute top-5 left-1/2 transform -translate-x-1/2 h-2.5 rounded-full overflow-hidden">
+        <div className="h-full bg-[#333333]">
+          <div className="h-full w-3/5 bg-[#D5D962]" />
+        </div>
+      </div>
 
-      <Typography
-        variant="h5"
-        component="h1"
-        sx={{
-          fontWeight: 700,
-          mb: 5,
-          textAlign: "center",
-          mt: 2,
-          fontSize: "20px",
-        }}
-      >
-        What is your height?
-      </Typography>
+      <h1 className="font-bold mb-5 text-center mt-2 text-xl">What is your height?</h1>
 
       {/* Unit Selection */}
-      <ToggleButtonGroup
-        value={unit}
-        exclusive
-        onChange={handleUnitChange}
-        sx={{
-          display: "flex",
-          border: "2px solid black",
-          borderRadius: "50px",
-          overflow: "hidden",
-          width: "200px",
-          height: "40px",
-          margin: "10px auto",
-        }}
-      >
-        <ToggleButton
-          value="inches"
-          sx={{
-            flex: 1,
-            "&.Mui-selected": {
-              bgcolor: "black",
-              color: "white",
-            },
-            borderRadius: 0,
-          }}
+      <div className="flex border-2 border-black rounded-full overflow-hidden w-[200px] h-[40px] mb-4">
+        <button
+          onClick={() => handleUnitChange("inches")}
+          className={`flex-1 ${unit === "inches" ? "bg-black text-white" : "bg-white text-black"}`}
         >
           inches
-        </ToggleButton>
-        <ToggleButton
-          value="cm"
-          sx={{
-            flex: 1,
-            "&.Mui-selected": {
-              bgcolor: "black",
-              color: "white",
-            },
-            borderRadius: 0,
-          }}
+        </button>
+        <button
+          onClick={() => handleUnitChange("cm")}
+          className={`flex-1 ${unit === "cm" ? "bg-black text-white" : "bg-white text-black"}`}
         >
           cm
-        </ToggleButton>
-      </ToggleButtonGroup>
+        </button>
+      </div>
 
       {/* Height Display */}
-      <Box
-        sx={{
-          bgcolor: "black",
-          color: "#D5D962",
-          borderRadius: "20px",
-          p: 4,
-          width: "100%",
-          maxWidth: "400px",
-          textAlign: "center",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          position: "relative",
-        }}
-      >
-        <Typography variant="h2" sx={{ fontWeight: 700, fontSize: "40px" }}>
-          {height}
-        </Typography>
-        <Typography sx={{ color: "#D5D962", fontSize: "14px" }}>{unit}</Typography>
+      <div className="bg-black text-[#D5D962] rounded-[20px] p-4 w-full max-w-[400px] text-center flex flex-col items-center justify-center relative">
+        <span className="font-bold text-[72px] mb-2">{height}</span>
+        <span className="text-[24px] mb-3">{unit}</span>
         {renderScale()}
-      </Box>
+      </div>
 
       {/* Navigation Buttons */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 2,
-          width: "90%",
-          position: "absolute",
-          bottom: "20px",
-        }}
-      >
-        <IconButton
-          sx={{
-            border: "2px solid black",
-            borderRadius: "12px",
-            width: "50px",
-            height: "50px",
-          }}
+      <div className="flex justify-between items-center gap-2 w-[90%] absolute bottom-5">
+        <button
+          className="border-2 border-black rounded-xl w-[50px] h-[50px] flex items-center justify-center"
+          onClick={() => router.back()}
         >
-          <ArrowBackIosNewIcon sx={{ fontSize: 18, color: "#000000" }} />
-        </IconButton>
-
-        <Button
-          variant="contained"
-          sx={{
-            bgcolor: "#D5D962",
-            color: "black",
-            borderRadius: "12px",
-            py: 1,
-            px: 8,
-            fontSize: "16px",
-            fontWeight: 700,
-          }}
+          ←
+        </button>
+        <button
+          className="bg-[#D5D962] text-black rounded-xl py-1 px-8 text-base font-bold"
+          onClick={() => router.push("/next-page")}
         >
-          Next
-          <ArrowForwardIosIcon sx={{ fontSize: 16, ml: 1 }} />
-        </Button>
-      </Box>
-    </Box>
-  );
+          Next →
+        </button>
+      </div>
+    </div>
+  )
 }
+
