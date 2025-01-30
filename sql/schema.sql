@@ -74,6 +74,18 @@ create table Workouts (
   coach varchar(50)
 );
 
+CREATE TABLE Exercises (
+  id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+  name varchar(35) not null,
+  type_id uuid references Exercise_type(id) on delete cascade,
+  image varchar(100) not null,
+  instructions varchar(255) not null,
+  calories int NOT NULL DEFAULT 0,
+  level_id uuid references Levels(id) on delete cascade,
+  created_at timestamp DEFAULT current_timestamp,
+  updated_at timestamp DEFAULT current_timestamp
+);
+
 CREATE TABLE Workout_x_exercises(
   id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
   exercise_id uuid references Exercises(id) on delete cascade,
