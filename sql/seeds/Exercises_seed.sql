@@ -1,0 +1,35 @@
+INSERT INTO Exercises (name, type_id, image, instructions, calories, level_id) VALUES
+('Standard Push-up', 
+(SELECT id FROM Exercise_type WHERE name = 'Push-ups'),
+'exercises/standard-pushup.jpg',
+'Start in plank position, lower chest to ground keeping body straight, push back up. Keep core tight and maintain neutral spine throughout movement.',
+100,
+(SELECT id FROM Levels WHERE name = 'Beginner')),
+
+('Barbell Back Squat', 
+(SELECT id FROM Exercise_type WHERE name = 'Squats'),
+'exercises/barbell-squat.jpg',
+'Place barbell on upper back, feet shoulder-width apart. Bend knees and hips to lower body, keeping chest up. Push through heels to return to starting position.',
+150,
+(SELECT id FROM Levels WHERE name = 'Intermediate')),
+
+('Pull-up Progression', 
+(SELECT id FROM Exercise_type WHERE name = 'Pull-ups'),
+'exercises/pullup.jpg',
+'Hang from bar with overhand grip, pull body up until chin clears bar, lower with control. Keep core engaged throughout movement.',
+120,
+(SELECT id FROM Levels WHERE name = 'Advanced')),
+
+('Romanian Deadlift', 
+(SELECT id FROM Exercise_type WHERE name = 'Deadlift'),
+'exercises/romanian-deadlift.jpg',
+'Hold barbell in front of thighs, hinge at hips keeping back straight, lower bar along legs until stretch in hamstrings, return to start.',
+200,
+(SELECT id FROM Levels WHERE name = 'Pro')),
+
+('Advanced Plank Complex', 
+(SELECT id FROM Exercise_type WHERE name = 'Plank'),
+'exercises/plank-complex.jpg',
+'Hold perfect plank position, alternating between forearms and hands while maintaining stable core and hip position.',
+80,
+(SELECT id FROM Levels WHERE name = 'Elite'));
