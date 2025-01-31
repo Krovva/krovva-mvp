@@ -1,112 +1,298 @@
 "use client"
 
+import React from "react"
 import { useState, useEffect, useRef } from "react"
-import { useRouter } from "next/navigation"
+import { Box, Button, Typography, IconButton, LinearProgress, ToggleButton, ToggleButtonGroup } from "@mui/material"
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 
 export default function HeightSelectionPage() {
   const [unit, setUnit] = useState<"inches" | "cm">("cm")
   const [height, setHeight] = useState(170)
   const scaleContainerRef = useRef<HTMLDivElement | null>(null)
-  const router = useRouter()
 
   const minHeight = 140
   const maxHeight = 200
-  const markWidth = 14 // Spacing between marks in pixels
+  const markWidth = 7 
 
-  const handleUnitChange = (newUnit: "inches" | "cm") => {
-    setUnit(newUnit)
+  const handleUnitChange = (event: React.MouseEvent<HTMLElement>, newUnit: "inches" | "cm") => {
+    if (newUnit !== null) {
+      setUnit(newUnit)
+    }
+  }
+
+  const handleHeightChange = (newHeight: number) => {
+    if (newHeight >= minHeight && newHeight <= maxHeight) {
+      setHeight(newHeight)
+      updateScroll(newHeight)
+    }
+  }
+
+  const updateScroll = (value: number) => {
+    if (scaleContainerRef.current) {
+      const containerWidth = scaleContainerRef.current.offsetWidth
+      const scrollPosition = (value - minHeight) * markWidth - containerWidth / 2 + markWidth / 2
+      scaleContainerRef.current.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      })
+    }
   }
 
   const renderScale = () => {
     const scaleMarks = []
     for (let i = minHeight; i <= maxHeight; i += 1) {
       const isMajor = i % 10 === 0
+      const isSelected = i === height
       scaleMarks.push(
-        <div key={i} className="inline-block text-center" style={{ width: `${markWidth}px` }}>
-          <div className={`mx-auto bg-white ${isMajor ? "h-[50px] w-[3px]" : "h-[15px] w-[1.5px]"}`} />
-          {isMajor && <span className="block text-white text-[10px] mt-1">{i}</span>}
-        </div>,
+        <Box
+          key={i}
+          onClick={() => handleHeightChange(i)}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: `${markWidth}px`,
+            cursor: "pointer",
+            position: "relative",
+          }}
+        >
+          <Box
+            sx={{
+              height: isMajor ? "50px" : "15px",
+              width: isMajor ? "3px" : "1.5px",
+              bgcolor: isSelected ? "#D5D962" : "white",
+              transition: "background-color 0.2s",
+            }}
+          />
+          {isMajor && (
+            <Typography
+              variant="caption"
+              sx={{
+                display: "block",
+                mt: 1,
+                fontSize: "10px",
+                color: "white",
+                position: "absolute",
+                bottom: "-20px",
+                width: "30px",
+                textAlign: "center",
+              }}
+            >
+              {i}
+            </Typography>
+          )}
+        </Box>
       )
     }
     return (
-      <div
+      <Box
         ref={scaleContainerRef}
-        className="flex justify-start items-start overflow-x-scroll overflow-y-hidden whitespace-nowrap mt-3 w-full h-[80px] pb-2 relative scrollbar-hide"
+        sx={{
+          display: "flex",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
+          overflowX: "scroll",
+          overflowY: "hidden",
+          whiteSpace: "nowrap",
+          mt: 3,
+          width: "100%",
+          height: "100px",
+          pb: 2,
+          scrollSnapType: "x mandatory",
+          "&::-webkit-scrollbar": { display: "none" },
+          position: "relative",
+        }}
         onScroll={(e) => {
-          const scrollLeft = e.currentTarget.scrollLeft
-          const containerWidth = e.currentTarget.offsetWidth
+          const scrollLeft = (e.target as HTMLDivElement).scrollLeft
           const newHeight = Math.round(scrollLeft / markWidth) + minHeight
           if (newHeight >= minHeight && newHeight <= maxHeight && newHeight !== height) {
             setHeight(newHeight)
           }
         }}
       >
-        <div className="absolute left-1/2 h-[50px] w-[3px] bg-[#D5D962] transform -translate-x-1/2 z-10" />
-        <div className="inline-flex items-start" style={{ paddingLeft: "50%", paddingRight: "50%" }}>
+        <Box
+          sx={{
+            position: "absolute",
+            left: "50%",
+            height: "15px",
+            width: "3px",
+            bgcolor: "#D5D962",
+            transform: "translateX(-50%)",
+            zIndex: 1,
+            bottom: "35px",
+          }}
+        />
+        <Box sx={{ display: "inline-flex", paddingLeft: "50%", paddingRight: "50%" }}>
           {scaleMarks}
-        </div>
-      </div>
+        </Box>
+      </Box>
     )
   }
 
   useEffect(() => {
     if (scaleContainerRef.current) {
       const containerWidth = scaleContainerRef.current.offsetWidth
-      const scrollPosition = (height - minHeight) * markWidth
+      const scrollPosition = (height - minHeight) * markWidth - containerWidth / 2 + markWidth / 2
       scaleContainerRef.current.scrollLeft = scrollPosition
     }
-  }, [height])
+  }, [])
 
   return (
-    <div className="min-h-screen bg-white text-black flex flex-col items-center justify-center px-3 relative">
-      {/* Progress Bar */}
-      <div className="w-4/5 absolute top-5 left-1/2 transform -translate-x-1/2 h-2.5 rounded-full overflow-hidden">
-        <div className="h-full bg-[#333333]">
-          <div className="h-full w-3/5 bg-[#D5D962]" />
-        </div>
-      </div>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        bgcolor: "white",
+        color: "black",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        px: 3,
+        position: "relative",
+      }}
+    >
+      <Box
+        sx={{
+          width: "80%",
+          position: "absolute",
+          top: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          height: "10px",
+          borderRadius: "5px",
+          overflow: "hidden",
+        }}
+      >
+        <LinearProgress
+          variant="determinate"
+          value={60}
+          sx={{
+            bgcolor: "#333333",
+            "& .MuiLinearProgress-bar": {
+              bgcolor: "#D5D962",
+            },
+          }}
+        />
+      </Box>
 
-      <h1 className="font-bold mb-5 text-center mt-2 text-xl">What is your height?</h1>
+      <Typography
+        variant="h5"
+        component="h1"
+        sx={{
+          fontWeight: 700,
+          mb: 5,
+          textAlign: "center",
+          mt: 2,
+          fontSize: "20px",
+        }}
+      >
+        What is your height?
+      </Typography>
 
-      {/* Unit Selection */}
-      <div className="flex border-2 border-black rounded-full overflow-hidden w-[200px] h-[40px] mb-4">
-        <button
-          onClick={() => handleUnitChange("inches")}
-          className={`flex-1 ${unit === "inches" ? "bg-black text-white" : "bg-white text-black"}`}
+      <ToggleButtonGroup
+        value={unit}
+        exclusive
+        onChange={handleUnitChange}
+        sx={{
+          display: "flex",
+          border: "2px solid black",
+          borderRadius: "50px",
+          overflow: "hidden",
+          width: "200px",
+          height: "40px",
+          margin: "10px auto",
+        }}
+      >
+        <ToggleButton
+          value="inches"
+          sx={{
+            flex: 1,
+            "&.Mui-selected": {
+              bgcolor: "black",
+              color: "white",
+            },
+            borderRadius: 0,
+          }}
         >
           inches
-        </button>
-        <button
-          onClick={() => handleUnitChange("cm")}
-          className={`flex-1 ${unit === "cm" ? "bg-black text-white" : "bg-white text-black"}`}
+        </ToggleButton>
+        <ToggleButton
+          value="cm"
+          sx={{
+            flex: 1,
+            "&.Mui-selected": {
+              bgcolor: "black",
+              color: "white",
+            },
+            borderRadius: 0,
+          }}
         >
           cm
-        </button>
-      </div>
+        </ToggleButton>
+      </ToggleButtonGroup>
 
-      {/* Height Display */}
-      <div className="bg-black text-[#D5D962] rounded-[20px] p-4 w-full max-w-[400px] text-center flex flex-col items-center justify-center relative">
-        <span className="font-bold text-[72px] mb-2">{height}</span>
-        <span className="text-[24px] mb-3">{unit}</span>
+      <Box
+        sx={{
+          bgcolor: "black",
+          color: "#D5D962",
+          borderRadius: "20px",
+          p: 4,
+          width: "100%",
+          maxWidth: "400px",
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          position: "relative",
+        }}
+      >
+        <Typography variant="h2" sx={{ fontWeight: 700, fontSize: "40px" }}>
+          {height}
+        </Typography>
+        <Typography sx={{ color: "#D5D962", fontSize: "14px" }}>{unit}</Typography>
         {renderScale()}
-      </div>
+      </Box>
 
-      {/* Navigation Buttons */}
-      <div className="flex justify-between items-center gap-2 w-[90%] absolute bottom-5">
-        <button
-          className="border-2 border-black rounded-xl w-[50px] h-[50px] flex items-center justify-center"
-          onClick={() => router.back()}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          gap: 2,
+          width: "90%",
+          position: "absolute",
+          bottom: "20px",
+        }}
+      >
+        <IconButton
+          sx={{
+            border: "2px solid black",
+            borderRadius: "12px",
+            width: "50px",
+            height: "50px",
+          }}
         >
-          ←
-        </button>
-        <button
-          className="bg-[#D5D962] text-black rounded-xl py-1 px-8 text-base font-bold"
-          onClick={() => router.push("/next-page")}
+          <ArrowBackIosNewIcon sx={{ fontSize: 18, color: "#000000" }} />
+        </IconButton>
+
+        <Button
+          variant="contained"
+          sx={{
+            bgcolor: "#D5D962",
+            color: "black",
+            borderRadius: "12px",
+            py: 1,
+            px: 8,
+            fontSize: "16px",
+            fontWeight: 700,
+          }}
         >
-          Next →
-        </button>
-      </div>
-    </div>
+          Next
+          <ArrowForwardIosIcon sx={{ fontSize: 16, ml: 1 }} />
+        </Button>
+      </Box>
+    </Box>
   )
 }
-
