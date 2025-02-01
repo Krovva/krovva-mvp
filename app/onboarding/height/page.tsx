@@ -1,114 +1,142 @@
-"use client";
+"use client"
 
-import React, { useState, useEffect, useRef } from "react";
-import {
-  Box,
-  Button,
-  Typography,
-  IconButton,
-  LinearProgress,
-  ToggleButton,
-  ToggleButtonGroup,
-} from "@mui/material";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import React from "react"
+import { useState, useEffect, useRef } from "react"
+import { Box, Button, Typography, IconButton, LinearProgress, ToggleButton, ToggleButtonGroup } from "@mui/material"
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 
 export default function HeightSelectionPage() {
-  // Define the type of the state
-  const [unit, setUnit] = useState<"inches" | "cm">("cm");
-  const [height, setHeight] = useState(170);
-  const scaleContainerRef = useRef<HTMLDivElement | null>(null);
+  const [unit, setUnit] = useState<"inches" | "cm">("cm")
+  const [height, setHeight] = useState(170)
+  const scaleContainerRef = useRef<HTMLDivElement | null>(null)
 
-  const minHeight = 140;
-  const maxHeight = 200;
-  const markWidth = 7; // Spacing between marks in pixels
+  const minHeight = 140
+  const maxHeight = 200
+  const markWidth = 7 
 
-  // 2. Type the function
-  const handleUnitChange = (
-    event: React.MouseEvent<HTMLElement>,
-    newUnit: "inches" | "cm"
-  ) => {
+  const handleUnitChange = (event: React.MouseEvent<HTMLElement>, newUnit: "inches" | "cm") => {
     if (newUnit !== null) {
-      setUnit(newUnit);
+      setUnit(newUnit)
     }
-  };
+  }
+
+  const handleHeightChange = (newHeight: number) => {
+    if (newHeight >= minHeight && newHeight <= maxHeight) {
+      setHeight(newHeight)
+      updateScroll(newHeight)
+    }
+  }
+
+  const updateScroll = (value: number) => {
+    if (scaleContainerRef.current) {
+      const containerWidth = scaleContainerRef.current.offsetWidth
+      const scrollPosition = (value - minHeight) * markWidth - containerWidth / 2 + markWidth / 2
+      scaleContainerRef.current.scrollTo({
+        left: scrollPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
 
   const renderScale = () => {
-    const scaleMarks = [];
+    const scaleMarks = []
     for (let i = minHeight; i <= maxHeight; i += 1) {
-      const isMajor = i % 10 === 0;
+      const isMajor = i % 10 === 0
+      const isSelected = i === height
       scaleMarks.push(
         <Box
           key={i}
+          onClick={() => handleHeightChange(i)}
           sx={{
-            height: isMajor ? "50px" : "15px",
-            width: isMajor ? "3px" : "1.5px",
-            bgcolor: "white",
-            margin: "0 8px",
-            display: "inline-block",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: `${markWidth}px`,
+            cursor: "pointer",
+            position: "relative",
           }}
-        />
-      );
+        >
+          <Box
+            sx={{
+              height: isMajor ? "50px" : "15px",
+              width: isMajor ? "3px" : "1.5px",
+              bgcolor: isSelected ? "#D5D962" : "white",
+              transition: "background-color 0.2s",
+            }}
+          />
+          {isMajor && (
+            <Typography
+              variant="caption"
+              sx={{
+                display: "block",
+                mt: 1,
+                fontSize: "10px",
+                color: "white",
+                position: "absolute",
+                bottom: "-20px",
+                width: "30px",
+                textAlign: "center",
+              }}
+            >
+              {i}
+            </Typography>
+          )}
+        </Box>
+      )
     }
     return (
       <Box
         ref={scaleContainerRef}
         sx={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
           overflowX: "scroll",
           overflowY: "hidden",
           whiteSpace: "nowrap",
           mt: 3,
           width: "100%",
+          height: "100px",
           pb: 2,
           scrollSnapType: "x mandatory",
           "&::-webkit-scrollbar": { display: "none" },
+          position: "relative",
         }}
         onScroll={(e) => {
-          const scrollLeft = (e.target as HTMLDivElement).scrollLeft;
-          const newHeight = minHeight + Math.round(scrollLeft / markWidth);
+          const scrollLeft = (e.target as HTMLDivElement).scrollLeft
+          const newHeight = Math.round(scrollLeft / markWidth) + minHeight
           if (newHeight >= minHeight && newHeight <= maxHeight && newHeight !== height) {
-            setHeight(newHeight);
+            setHeight(newHeight)
           }
         }}
       >
-        {scaleMarks.map((mark, index) => (
-          <Box
-            key={index}
-            sx={{
-              textAlign: "center",
-              color: "white",
-              scrollSnapAlign: "center",
-            }}
-          >
-            {mark}
-            {(minHeight + index) % 10 === 0 && (
-              <Typography
-                variant="caption"
-                sx={{
-                  display: "block",
-                  mt: 1,
-                  fontSize: "10px",
-                  color: "white",
-                }}
-              >
-                {minHeight + index}
-              </Typography>
-            )}
-          </Box>
-        ))}
+        <Box
+          sx={{
+            position: "absolute",
+            left: "50%",
+            height: "15px",
+            width: "3px",
+            bgcolor: "#D5D962",
+            transform: "translateX(-50%)",
+            zIndex: 1,
+            bottom: "35px",
+          }}
+        />
+        <Box sx={{ display: "inline-flex", paddingLeft: "50%", paddingRight: "50%" }}>
+          {scaleMarks}
+        </Box>
       </Box>
-    );
-  };
+    )
+  }
 
   useEffect(() => {
     if (scaleContainerRef.current) {
-      const initialScrollLeft = (height - minHeight) * markWidth;
-      scaleContainerRef.current.scrollLeft = initialScrollLeft;
+      const containerWidth = scaleContainerRef.current.offsetWidth
+      const scrollPosition = (height - minHeight) * markWidth - containerWidth / 2 + markWidth / 2
+      scaleContainerRef.current.scrollLeft = scrollPosition
     }
-  }, [height]);
+  }, [])
 
   return (
     <Box
@@ -124,7 +152,6 @@ export default function HeightSelectionPage() {
         position: "relative",
       }}
     >
-      {/* Progress Bar */}
       <Box
         sx={{
           width: "80%",
@@ -163,7 +190,6 @@ export default function HeightSelectionPage() {
         What is your height?
       </Typography>
 
-      {/* Unit Selection */}
       <ToggleButtonGroup
         value={unit}
         exclusive
@@ -206,7 +232,6 @@ export default function HeightSelectionPage() {
         </ToggleButton>
       </ToggleButtonGroup>
 
-      {/* Height Display */}
       <Box
         sx={{
           bgcolor: "black",
@@ -230,7 +255,6 @@ export default function HeightSelectionPage() {
         {renderScale()}
       </Box>
 
-      {/* Navigation Buttons */}
       <Box
         sx={{
           display: "flex",
@@ -270,5 +294,5 @@ export default function HeightSelectionPage() {
         </Button>
       </Box>
     </Box>
-  );
+  )
 }
