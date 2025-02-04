@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
         headers: {
           Authorization: `Bearer ${process.env.DEV_PORTAL_API_KEY}`,
         },
-      }
+      },
     );
     const transaction = await response.json();
     // 2. Here we optimistically confirm the transaction.

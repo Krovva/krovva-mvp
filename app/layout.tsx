@@ -19,12 +19,13 @@ export default function RootLayout({
     () => import("../components/Eruda").then((c) => c.ErudaProvider),
     {
       ssr: false,
-    }
+    },
   );
 
   const pathname = usePathname();
 
-  const showNavbar = pathname === "/home" ||
+  const showNavbar =
+    pathname === "/home" ||
     pathname === "/categories" ||
     pathname === "/workouts" ||
     pathname === "/completed" ||
@@ -43,7 +44,7 @@ export default function RootLayout({
               {showNavbar && <Navbar />}
               {children}
             </MiniKitProvider>
-          </ErudaProvider> 
+          </ErudaProvider>
         </NextAuthProvider>
       </body>
     </html>

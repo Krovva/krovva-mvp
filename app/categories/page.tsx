@@ -19,7 +19,7 @@ export default function CategoriesPage() {
 
   // Filtrar las categorías basadas en el término de búsqueda
   const filteredCategories = categories.filter((category) =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+    category.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (
@@ -78,10 +78,36 @@ export default function CategoriesPage() {
       >
         {filteredCategories.length > 0 ? (
           filteredCategories.map((category) => (
-            <Link href={`/workouts/${category.name.toLowerCase().replace(/\s+/g, '')}`} key={category.name}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <img src={category.image} alt={category.name} style={{ width: '112px', height: '112px', marginBottom: '23px' }} />
-                <Typography sx={{ fontWeight: 600, fontSize: "16px", textAlign: "center" }}>{category.name}</Typography>
+            <Link
+              href={`/workouts/${category.name.toLowerCase().replace(/\s+/g, "")}`}
+              key={category.name}
+            >
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <img
+                  src={category.image}
+                  alt={category.name}
+                  style={{
+                    width: "112px",
+                    height: "112px",
+                    marginBottom: "23px",
+                  }}
+                />
+                <Typography
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: "16px",
+                    textAlign: "center",
+                  }}
+                >
+                  {category.name}
+                </Typography>
               </Box>
             </Link>
           ))

@@ -1,49 +1,61 @@
-"use client"
+"use client";
 
-import React from "react"
-import { useState, useEffect, useRef } from "react"
-import { Box, Button, Typography, IconButton, LinearProgress, ToggleButton, ToggleButtonGroup } from "@mui/material"
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew"
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
+import React from "react";
+import { useState, useEffect, useRef } from "react";
+import {
+  Box,
+  Button,
+  Typography,
+  IconButton,
+  LinearProgress,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function HeightSelectionPage() {
-  const [unit, setUnit] = useState<"inches" | "cm">("cm")
-  const [height, setHeight] = useState(170)
-  const scaleContainerRef = useRef<HTMLDivElement | null>(null)
+  const [unit, setUnit] = useState<"inches" | "cm">("cm");
+  const [height, setHeight] = useState(170);
+  const scaleContainerRef = useRef<HTMLDivElement | null>(null);
 
-  const minHeight = 140
-  const maxHeight = 200
-  const markWidth = 7 
+  const minHeight = 140;
+  const maxHeight = 200;
+  const markWidth = 7;
 
-  const handleUnitChange = (event: React.MouseEvent<HTMLElement>, newUnit: "inches" | "cm") => {
+  const handleUnitChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newUnit: "inches" | "cm",
+  ) => {
     if (newUnit !== null) {
-      setUnit(newUnit)
+      setUnit(newUnit);
     }
-  }
+  };
 
   const handleHeightChange = (newHeight: number) => {
     if (newHeight >= minHeight && newHeight <= maxHeight) {
-      setHeight(newHeight)
-      updateScroll(newHeight)
+      setHeight(newHeight);
+      updateScroll(newHeight);
     }
-  }
+  };
 
   const updateScroll = (value: number) => {
     if (scaleContainerRef.current) {
-      const containerWidth = scaleContainerRef.current.offsetWidth
-      const scrollPosition = (value - minHeight) * markWidth - containerWidth / 2 + markWidth / 2
+      const containerWidth = scaleContainerRef.current.offsetWidth;
+      const scrollPosition =
+        (value - minHeight) * markWidth - containerWidth / 2 + markWidth / 2;
       scaleContainerRef.current.scrollTo({
         left: scrollPosition,
-        behavior: 'smooth'
-      })
+        behavior: "smooth",
+      });
     }
-  }
+  };
 
   const renderScale = () => {
-    const scaleMarks = []
+    const scaleMarks = [];
     for (let i = minHeight; i <= maxHeight; i += 1) {
-      const isMajor = i % 10 === 0
-      const isSelected = i === height
+      const isMajor = i % 10 === 0;
+      const isSelected = i === height;
       scaleMarks.push(
         <Box
           key={i}
@@ -82,8 +94,8 @@ export default function HeightSelectionPage() {
               {i}
             </Typography>
           )}
-        </Box>
-      )
+        </Box>,
+      );
     }
     return (
       <Box
@@ -104,10 +116,14 @@ export default function HeightSelectionPage() {
           position: "relative",
         }}
         onScroll={(e) => {
-          const scrollLeft = (e.target as HTMLDivElement).scrollLeft
-          const newHeight = Math.round(scrollLeft / markWidth) + minHeight
-          if (newHeight >= minHeight && newHeight <= maxHeight && newHeight !== height) {
-            setHeight(newHeight)
+          const scrollLeft = (e.target as HTMLDivElement).scrollLeft;
+          const newHeight = Math.round(scrollLeft / markWidth) + minHeight;
+          if (
+            newHeight >= minHeight &&
+            newHeight <= maxHeight &&
+            newHeight !== height
+          ) {
+            setHeight(newHeight);
           }
         }}
       >
@@ -123,20 +139,27 @@ export default function HeightSelectionPage() {
             bottom: "35px",
           }}
         />
-        <Box sx={{ display: "inline-flex", paddingLeft: "50%", paddingRight: "50%" }}>
+        <Box
+          sx={{
+            display: "inline-flex",
+            paddingLeft: "50%",
+            paddingRight: "50%",
+          }}
+        >
           {scaleMarks}
         </Box>
       </Box>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
     if (scaleContainerRef.current) {
-      const containerWidth = scaleContainerRef.current.offsetWidth
-      const scrollPosition = (height - minHeight) * markWidth - containerWidth / 2 + markWidth / 2
-      scaleContainerRef.current.scrollLeft = scrollPosition
+      const containerWidth = scaleContainerRef.current.offsetWidth;
+      const scrollPosition =
+        (height - minHeight) * markWidth - containerWidth / 2 + markWidth / 2;
+      scaleContainerRef.current.scrollLeft = scrollPosition;
     }
-  }, [])
+  }, []);
 
   return (
     <Box
@@ -251,7 +274,9 @@ export default function HeightSelectionPage() {
         <Typography variant="h2" sx={{ fontWeight: 700, fontSize: "40px" }}>
           {height}
         </Typography>
-        <Typography sx={{ color: "#D5D962", fontSize: "14px" }}>{unit}</Typography>
+        <Typography sx={{ color: "#D5D962", fontSize: "14px" }}>
+          {unit}
+        </Typography>
         {renderScale()}
       </Box>
 
@@ -294,5 +319,5 @@ export default function HeightSelectionPage() {
         </Button>
       </Box>
     </Box>
-  )
+  );
 }

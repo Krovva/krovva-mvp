@@ -24,7 +24,7 @@ export default function WeightSelectionPage() {
 
   const handleUnitChange = (
     event: React.MouseEvent<HTMLElement>,
-    newUnit: "lb" | "kg"
+    newUnit: "lb" | "kg",
   ) => {
     if (newUnit !== null) {
       setUnit(newUnit);
@@ -44,7 +44,7 @@ export default function WeightSelectionPage() {
             bgcolor: "white",
             margin: `0 ${markWidth / 2}px`,
           }}
-        />
+        />,
       );
     }
     return (

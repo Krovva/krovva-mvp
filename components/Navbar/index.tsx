@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 
 export default function Navbar() {
   const router = useRouter();
-  const pathname = usePathname();  // Get current route
+  const pathname = usePathname(); // Get current route
   const [selected, setSelected] = useState("");
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Navbar() {
           sx={{
             width: "81.836px",
             height: "81.836px",
-            backgroundColor: selected === icon.name ? "#D6D984" : "transparent", 
+            backgroundColor: selected === icon.name ? "#D6D984" : "transparent",
             borderRadius: "50%",
             display: "flex",
             alignItems: "center",
@@ -67,8 +67,8 @@ export default function Navbar() {
             style={{
               filter:
                 selected === icon.name
-                  ? "brightness(0) saturate(100%) invert(0%) sepia(94%) saturate(0%) hue-rotate(0deg) brightness(0.3) contrast(1)" 
-                  : "brightness(0) saturate(100%) invert(93%) sepia(11%) saturate(0%) hue-rotate(0deg) brightness(0.8) contrast(0.8)", 
+                  ? "brightness(0) saturate(100%) invert(0%) sepia(94%) saturate(0%) hue-rotate(0deg) brightness(0.3) contrast(1)"
+                  : "brightness(0) saturate(100%) invert(93%) sepia(11%) saturate(0%) hue-rotate(0deg) brightness(0.8) contrast(0.8)",
             }}
           />
         </IconButton>

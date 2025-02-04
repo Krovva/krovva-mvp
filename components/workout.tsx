@@ -1,17 +1,16 @@
-import badge from "@/public/badge.png"
+import badge from "@/public/badge.png";
 import Image from "next/image";
 
 export type workout = {
   progress: number;
-//   duration: number;
+  //   duration: number;
   completed: number;
-//   calories: number;
-//   weight: number;
-//   tutAccuracy: number;
+  //   calories: number;
+  //   weight: number;
+  //   tutAccuracy: number;
 };
 
-function Workout({progress, completed}: workout) {
-
+function Workout({ progress, completed }: workout) {
   return (
     <div className="w-[330px] h-fit bg-[#FFFFFF] shadow-md rounded-md py-4 px-8 text-center grid gap-1">
       <Image src={badge} alt="badge" className="mx-auto" />

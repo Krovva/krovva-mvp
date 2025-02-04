@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import React from 'react';
-import { Box, Typography } from '@mui/material';
-import WorkoutCard from '../Cards/WorkoutCard';
+import React from "react";
+import { Box, Typography } from "@mui/material";
+import WorkoutCard from "../Cards/WorkoutCard";
 
 interface Workout {
   name: string;
@@ -15,8 +15,10 @@ interface WorkoutContainerProps {
   handleWorkoutSelected: () => void;
 }
 
-export const WorkoutContainer: React.FC<WorkoutContainerProps> = ({ workouts, handleWorkoutSelected }) => {
-
+export const WorkoutContainer: React.FC<WorkoutContainerProps> = ({
+  workouts,
+  handleWorkoutSelected,
+}) => {
   return (
     <Box
       sx={{
@@ -39,7 +41,10 @@ export const WorkoutContainer: React.FC<WorkoutContainerProps> = ({ workouts, ha
           mb: 3,
         }}
       >
-        <Typography variant="h5" sx={{ fontWeight: 700, fontSize: "24px", mb: 0 }}>
+        <Typography
+          variant="h5"
+          sx={{ fontWeight: 700, fontSize: "24px", mb: 0 }}
+        >
           Workouts
         </Typography>
       </Box>
@@ -47,7 +52,7 @@ export const WorkoutContainer: React.FC<WorkoutContainerProps> = ({ workouts, ha
         sx={{
           display: "flex",
           flexDirection: "column",
-          justifyContent: 'space-between',
+          justifyContent: "space-between",
           gap: "20px",
           width: "100%",
           maxWidth: "400px",
@@ -59,10 +64,10 @@ export const WorkoutContainer: React.FC<WorkoutContainerProps> = ({ workouts, ha
             name={workout.name}
             description={workout.description}
             image={workout.image}
-            handleWorkoutSelected={() => handleWorkoutSelected()} 
+            handleWorkoutSelected={() => handleWorkoutSelected()}
           />
         ))}
       </Box>
     </Box>
-  )
-}
+  );
+};

@@ -1,9 +1,16 @@
 "use client";
-import { Box, Button, Typography, IconButton, LinearProgress, Radio } from "@mui/material";
-import { useState } from 'react';
-import Image from 'next/image';
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import {
+  Box,
+  Button,
+  Typography,
+  IconButton,
+  LinearProgress,
+  Radio,
+} from "@mui/material";
+import { useState } from "react";
+import Image from "next/image";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function GenderSelectionPage() {
   const [selectedGender, setSelectedGender] = useState<string | null>(null);
@@ -40,7 +47,7 @@ export default function GenderSelectionPage() {
         alignItems: "center",
         justifyContent: "center",
         px: 3,
-        position: "relative"
+        position: "relative",
       }}
     >
       {/* Progress Bar */}
@@ -53,7 +60,7 @@ export default function GenderSelectionPage() {
           transform: "translateX(-50%)",
           height: "6px",
           borderRadius: "8px",
-          overflow: "hidden"
+          overflow: "hidden",
         }}
       >
         <LinearProgress
@@ -63,7 +70,7 @@ export default function GenderSelectionPage() {
             bgcolor: "#333333",
             "& .MuiLinearProgress-bar": {
               bgcolor: "#D5D962",
-            }
+            },
           }}
         />
       </Box>
@@ -77,31 +84,38 @@ export default function GenderSelectionPage() {
       </Typography>
 
       {/* Gender Selection Section */}
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%", mt: -2 }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 3,
+          width: "100%",
+          mt: -2,
+        }}
+      >
         {/* Male Card */}
-        <Box
-          onClick={() => handleSelect('male')}
-          sx={getCardStyles('male')}
-        >
+        <Box onClick={() => handleSelect("male")} sx={getCardStyles("male")}>
           <Box>
-            <Typography>Your Gender <span style={{ color: "#D5D962" }}>(Male)</span></Typography>
+            <Typography>
+              Your Gender <span style={{ color: "#D5D962" }}>(Male)</span>
+            </Typography>
           </Box>
-          
+
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Image 
-              src="/Gender images/Male image.png" 
-              alt="Male" 
-              width={90} 
-              height={100} 
-              style={getImageStyles('male')} 
+            <Image
+              src="/Gender images/Male image.png"
+              alt="Male"
+              width={90}
+              height={100}
+              style={getImageStyles("male")}
             />
             <Radio
-              checked={selectedGender === 'male'}
-              onChange={() => handleSelect('male')}
+              checked={selectedGender === "male"}
+              onChange={() => handleSelect("male")}
               value="male"
               sx={{
                 color: "#D5D962",
-                '&.Mui-checked': {
+                "&.Mui-checked": {
                   color: "#D5D962",
                 },
               }}
@@ -111,27 +125,29 @@ export default function GenderSelectionPage() {
 
         {/* Female Card */}
         <Box
-          onClick={() => handleSelect('female')}
-          sx={getCardStyles('female')}
+          onClick={() => handleSelect("female")}
+          sx={getCardStyles("female")}
         >
           <Box>
-            <Typography>Your Gender <span style={{ color: "#D5D962" }}>(Female)</span></Typography>
+            <Typography>
+              Your Gender <span style={{ color: "#D5D962" }}>(Female)</span>
+            </Typography>
           </Box>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Image 
-              src="/Gender images/Female image.png" 
-              alt="Female" 
-              width={90} 
-              height={100} 
-              style={getImageStyles('female')} 
+            <Image
+              src="/Gender images/Female image.png"
+              alt="Female"
+              width={90}
+              height={100}
+              style={getImageStyles("female")}
             />
             <Radio
-              checked={selectedGender === 'female'}
-              onChange={() => handleSelect('female')}
+              checked={selectedGender === "female"}
+              onChange={() => handleSelect("female")}
               value="female"
               sx={{
                 color: "#D5D962",
-                '&.Mui-checked': {
+                "&.Mui-checked": {
                   color: "#D5D962",
                 },
               }}
@@ -149,7 +165,7 @@ export default function GenderSelectionPage() {
           gap: 4,
           width: "90%",
           position: "absolute",
-          bottom: "30px"
+          bottom: "30px",
         }}
       >
         <IconButton
@@ -157,7 +173,7 @@ export default function GenderSelectionPage() {
             border: "2px solid black",
             borderRadius: "12px",
             width: "60px",
-            height: "60px"
+            height: "60px",
           }}
         >
           <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
@@ -181,9 +197,9 @@ export default function GenderSelectionPage() {
         >
           Next
           <Box sx={{ display: "flex", gap: 0.5 }}>
-            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa"}} />
-            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb"  }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 18}} />
+            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
           </Box>
         </Button>
       </Box>

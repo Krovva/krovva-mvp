@@ -289,9 +289,24 @@ export default function Home() {
         }}
       >
         {[
-          { title: "Warm up", image: "/Exercises/warmup.png", bgColor: "#2B2A2D", textColor: "#FFFFFF" },
-          { title: "Yoga", image: "/Exercises/yoga.png", bgColor: "#D6D984", textColor: "#000000" },
-          { title: "Lifting", image: "/Exercises/lifting.png", bgColor: "#2B2A2D", textColor: "#FFFFFF" },
+          {
+            title: "Warm up",
+            image: "/Exercises/warmup.png",
+            bgColor: "#2B2A2D",
+            textColor: "#FFFFFF",
+          },
+          {
+            title: "Yoga",
+            image: "/Exercises/yoga.png",
+            bgColor: "#D6D984",
+            textColor: "#000000",
+          },
+          {
+            title: "Lifting",
+            image: "/Exercises/lifting.png",
+            bgColor: "#2B2A2D",
+            textColor: "#FFFFFF",
+          },
         ].map((category, index) => (
           <Box
             key={index}
@@ -307,7 +322,7 @@ export default function Home() {
               justifyContent: "flex-start",
               padding: "10px",
               textAlign: "center",
-              position: "relative", 
+              position: "relative",
             }}
           >
             <Typography
@@ -327,8 +342,8 @@ export default function Home() {
               height={100}
               style={{
                 position: "absolute",
-                top: "36px", 
-                right: "0", 
+                top: "36px",
+                right: "0",
                 borderRadius: "10px",
               }}
             />

@@ -2,20 +2,20 @@
 import { Box, Button, Typography, Link, Snackbar, Alert } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
 import { WalletAuthBlock } from "@/components/WalletAuth";
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState } from "react";
+import Image from "next/image";
 
 export default function SignInPage() {
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
 
   const handleSuccess = (address: any) => {
-    console.log('Successfully authenticated with address:', address);
+    console.log("Successfully authenticated with address:", address);
   };
 
-  const handleError = (error: { message: any; }) => {
-    console.error('Authentication error:', error);
-    setError(error.message || 'Authentication failed');
+  const handleError = (error: { message: any }) => {
+    console.error("Authentication error:", error);
+    setError(error.message || "Authentication failed");
     setShowError(true);
   };
 
@@ -26,7 +26,7 @@ export default function SignInPage() {
         bgcolor: "white",
         color: "black",
         width: "100%",
-        position: "relative"
+        position: "relative",
       }}
     >
       {/* Hero Image Section */}
@@ -42,7 +42,7 @@ export default function SignInPage() {
           src="/signin.png"
           alt="Fitness athlete using gym equipment"
           fill
-          style={{ 
+          style={{
             objectFit: "cover",
             objectPosition: "center",
           }}
@@ -52,8 +52,9 @@ export default function SignInPage() {
           sx={{
             position: "absolute",
             inset: 0,
-            background: "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 35.66%, white 100%)",
-            zIndex: 1
+            background:
+              "linear-gradient(180deg, rgba(255, 255, 255, 0.00) 35.66%, white 100%)",
+            zIndex: 1,
           }}
         />
       </Box>
@@ -67,7 +68,7 @@ export default function SignInPage() {
           right: 0,
           px: 3,
           pb: 4,
-          zIndex: 2
+          zIndex: 2,
         }}
       >
         <Typography
@@ -79,22 +80,22 @@ export default function SignInPage() {
             lineHeight: 1.2,
             letterSpacing: "-0.025em",
             mb: 1,
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
-          Wherever You Are{' '}
-          <Box component="span" sx={{ display: 'block' }}>
+          Wherever You Are{" "}
+          <Box component="span" sx={{ display: "block" }}>
             <Box
               component="span"
               sx={{
                 bgcolor: "#9fff00",
                 px: 1,
-                mx: -1
+                mx: -1,
               }}
             >
               Health
-            </Box>
-            {' '}Is Number One
+            </Box>{" "}
+            Is Number One
           </Box>
         </Typography>
 
@@ -103,7 +104,7 @@ export default function SignInPage() {
             color: "rgba(0, 0, 0, 0.6)",
             fontSize: "16px",
             mb: 4,
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           There is no instant way to a healthy life
@@ -129,7 +130,7 @@ export default function SignInPage() {
                 "&:hover": {
                   bgcolor: "#253136",
                 },
-                mb: 2
+                mb: 2,
               }}
             >
               Get started
@@ -141,33 +142,41 @@ export default function SignInPage() {
         <Typography
           variant="body2"
           align="center"
-          sx={{ 
+          sx={{
             color: "rgba(0, 0, 0, 0.6)",
-            fontSize: "14px"
+            fontSize: "14px",
           }}
         >
           By continuing, you agree to our{" "}
-          <Link href="/terms" underline="hover" sx={{ color: "rgba(0, 0, 0, 0.6)" }}>
+          <Link
+            href="/terms"
+            underline="hover"
+            sx={{ color: "rgba(0, 0, 0, 0.6)" }}
+          >
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link href="/privacy" underline="hover" sx={{ color: "rgba(0, 0, 0, 0.6)" }}>
+          <Link
+            href="/privacy"
+            underline="hover"
+            sx={{ color: "rgba(0, 0, 0, 0.6)" }}
+          >
             Privacy Policy
           </Link>
         </Typography>
       </Box>
 
       {/* Error Snackbar */}
-      <Snackbar 
-        open={showError} 
-        autoHideDuration={6000} 
+      <Snackbar
+        open={showError}
+        autoHideDuration={6000}
         onClose={() => setShowError(false)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
-        <Alert 
-          onClose={() => setShowError(false)} 
-          severity="error" 
-          sx={{ width: '100%' }}
+        <Alert
+          onClose={() => setShowError(false)}
+          severity="error"
+          sx={{ width: "100%" }}
         >
           {error}
         </Alert>
