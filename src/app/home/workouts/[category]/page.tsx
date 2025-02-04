@@ -14,7 +14,7 @@ export default function WorkoutListPage() {
       : [];
 
   const handleWorkoutSelected = () => {
-    router.push("/workouts/details");
+    router.push("/home/workouts/details");
   };
 
   return (

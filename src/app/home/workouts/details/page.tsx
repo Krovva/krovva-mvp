@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
-import DetailedWorkoutCard from "../../../components/Cards/DetailedWorkoutCard";
+import DetailedWorkoutCard from "@/src/components/Cards/DetailedWorkoutCard";
 
 // Mock data to simulate data provision
 const mockWorkoutData = {

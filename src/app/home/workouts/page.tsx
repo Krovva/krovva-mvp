@@ -10,7 +10,7 @@ export default function WorkoutsPage() {
   const allWorkouts = Object.values(workoutLists).flat();
 
   const handleWorkoutSelected = () => {
-    router.push("/workouts/details");
+    router.push("/home/workouts/details");
   };
   return (
     <WorkoutContainer

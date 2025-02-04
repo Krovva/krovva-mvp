@@ -19,7 +19,7 @@ export default function CategoriesPage() {
 
   // Filtrar las categorías basadas en el término de búsqueda
   const filteredCategories = categories.filter((category) =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase()),
+    category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
@@ -79,7 +79,7 @@ export default function CategoriesPage() {
         {filteredCategories.length > 0 ? (
           filteredCategories.map((category) => (
             <Link
-              href={`/workouts/${category.name.toLowerCase().replace(/\s+/g, "")}`}
+              href={`/home/workouts/${category.name.toLowerCase().replace(/\s+/g, "")}`}
               key={category.name}
             >
               <Box

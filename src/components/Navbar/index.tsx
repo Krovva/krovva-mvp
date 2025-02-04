@@ -1,12 +1,12 @@
 "use client";
 
-import { Box, IconButton } from "@mui/material";
+import { Box } from "@mui/material";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const router = useRouter();
   const pathname = usePathname(); // Get current route
   const [selected, setSelected] = useState("");
 
@@ -16,14 +16,10 @@ export default function Navbar() {
     setSelected(route);
   }, [pathname]);
 
-  const handleNavigation = (route: string) => {
-    router.push(`/${route}`);
-  };
-
   const icons = [
     { name: "home", src: "/icons/home.svg" },
     { name: "categories", src: "/icons/categories.svg" },
-    { name: "workouts", src: "/icons/workouts.svg" },
+    { name: "home/workouts", src: "/icons/workouts.svg" },
     { name: "settings", src: "/icons/settings.svg" },
   ];
 
@@ -46,12 +42,13 @@ export default function Navbar() {
       }}
     >
       {icons.map((icon) => (
-        <IconButton
+        <Link
+          href={`/${icon.name}`}
+          passHref
           key={icon.name}
-          onClick={() => handleNavigation(icon.name)}
-          sx={{
-            width: "81.836px",
-            height: "81.836px",
+          style={{
+            width: "80px",
+            height: "80px",
             backgroundColor: selected === icon.name ? "#D6D984" : "transparent",
             borderRadius: "50%",
             display: "flex",
@@ -71,7 +68,7 @@ export default function Navbar() {
                   : "brightness(0) saturate(100%) invert(93%) sepia(11%) saturate(0%) hue-rotate(0deg) brightness(0.8) contrast(0.8)",
             }}
           />
-        </IconButton>
+        </Link>
       ))}
     </Box>
   );
