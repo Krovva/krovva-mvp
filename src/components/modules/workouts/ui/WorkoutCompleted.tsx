@@ -1,6 +1,6 @@
 import badge from "@/public/badge.png";
+import type { Workout } from "@/src/@types/workout.entity";
 import Image from "next/image";
-import type { Workout } from "../@types/workout.entity";
 
 export interface WorkoutCompletedProps {
   progress: number;
@@ -12,7 +12,11 @@ export interface WorkoutCompletedProps {
   workout: Workout;
 }
 
-function Workout({ progress, completed, workout }: WorkoutCompletedProps) {
+const WorkoutCompleted = ({
+  progress,
+  completed,
+  workout,
+}: WorkoutCompletedProps) => {
   return (
     <div className="w-[330px] h-fit bg-[#FFFFFF] shadow-md rounded-md py-4 px-8 text-center grid gap-1">
       <Image src={badge} alt="badge" className="mx-auto" />
@@ -63,5 +67,5 @@ function Workout({ progress, completed, workout }: WorkoutCompletedProps) {
       </button>
     </div>
   );
-}
-export default Workout;
+};
+export default WorkoutCompleted;
