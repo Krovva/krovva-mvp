@@ -2,8 +2,8 @@
 
 import React from "react";
 import { Box } from "@mui/material";
-import WorkoutCard from "../Cards/WorkoutCard";
 import { Workout } from "@/src/@types/workout.entity";
+import WorkoutCard from "../../Cards/WorkoutCard";
 
 interface WorkoutContainerProps {
   workouts: Workout[];
