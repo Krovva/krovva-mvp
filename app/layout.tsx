@@ -24,15 +24,15 @@ export default function RootLayout({
 
   const pathname = usePathname();
 
-  const showNavbar = pathname === "/home" ||
-    pathname === "/categories" ||
-    pathname === "/workouts" ||
-    pathname === "/completed" ||
-    pathname === "/settings" ||
-    /^\/workouts\/(?!details(?:\/|$))[^/]+$/.test(pathname);
+// Mostrar Navbar solo en rutas específicas
+const showNavbar =
+  pathname === "/home" ||
+  pathname === "/categories" ||
+  pathname === "/settings" ||
+  pathname === "/workouts" || 
+  (pathname.startsWith("/workouts/") && pathname.split("/").length === 3 && !pathname.includes("details") && !pathname.includes("timer"));
 
-  // List of routes where the Navbar will not be shown
-  //const hideNavbarRoutes = ["/onboarding/weight", "/SignIn"];
+  
 
   return (
     <html lang="en">

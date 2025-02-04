@@ -17,7 +17,6 @@ const categories = [
 export default function CategoriesPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Filtrar las categorías basadas en el término de búsqueda
   const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -61,7 +60,7 @@ export default function CategoriesPage() {
         <InputBase
           placeholder="Search"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)} // Actualizar el estado de búsqueda
+          onChange={(e) => setSearchTerm(e.target.value)} 
           sx={{ flex: 1, fontSize: "16px", color: "black" }}
         />
       </Box>
@@ -71,7 +70,7 @@ export default function CategoriesPage() {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "46px 23px", // 46px entre filas, 23px entre columnas
+          gap: "46px 23px",
           width: "100%",
           maxWidth: "400px",
         }}
