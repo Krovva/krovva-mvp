@@ -1,16 +1,18 @@
 import badge from "@/public/badge.png";
 import Image from "next/image";
+import type { Workout } from "../@types/workout.entity";
 
-export type workout = {
+export interface WorkoutCompletedProps {
   progress: number;
   //   duration: number;
   completed: number;
   //   calories: number;
   //   weight: number;
   //   tutAccuracy: number;
-};
+  workout: Workout;
+}
 
-function Workout({ progress, completed }: workout) {
+function Workout({ progress, completed, workout }: WorkoutCompletedProps) {
   return (
     <div className="w-[330px] h-fit bg-[#FFFFFF] shadow-md rounded-md py-4 px-8 text-center grid gap-1">
       <Image src={badge} alt="badge" className="mx-auto" />
@@ -31,7 +33,12 @@ function Workout({ progress, completed }: workout) {
       </div>
       <div className="grid gap-y-2 py-5">
         <div className="w-full flex justify-between items-center text-[#A1A1AA] font-normal text-sm">
-          <span className="text-[#9A7A7A]">Exercise Completed:</span>
+          <span className="text-[#9A7A7A]">
+            Exercise Completed:
+            {workout.exercises.map((exercise) => {
+              return <span>{exercise.name}</span>;
+            })}
+          </span>
           <span className="text-[#040404]">{completed}</span>
         </div>
         <div className="w-full flex justify-between items-center text-[#A1A1AA] font-normal text-sm">
