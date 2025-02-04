@@ -38,6 +38,8 @@ const config: Config = {
           800: "#171619",
           900: "#100F12",
         },
+        background: "#3E463A",
+        card: "#2B2A2D",
       },
     },
   },
