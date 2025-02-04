@@ -23,26 +23,7 @@ export default function CategoriesPage() {
   );
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        bgcolor: "white",
-        color: "black",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        px: 3,
-        py: 2,
-      }}
-    >
-      {/* Title */}
-      <Typography
-        variant="h5"
-        sx={{ fontWeight: 700, fontSize: "24px", mb: 3 }}
-      >
-        Categories
-      </Typography>
-
+    <>
       {/* Search Bar */}
       <Box
         sx={{
@@ -71,8 +52,8 @@ export default function CategoriesPage() {
         sx={{
           display: "grid",
           gridTemplateColumns: "repeat(2, 1fr)",
-          gap: "46px 23px", // 46px entre filas, 23px entre columnas
-          width: "100%",
+          gap: "20px 20px",
+          width: "95%",
           maxWidth: "400px",
         }}
       >
@@ -88,14 +69,17 @@ export default function CategoriesPage() {
                   flexDirection: "column",
                   alignItems: "center",
                   textAlign: "center",
+                  backgroundColor: "#2B2A2D",
+                  borderRadius: "15px",
+                  p: 2,
                 }}
               >
                 <img
                   src={category.image}
                   alt={category.name}
                   style={{
-                    width: "112px",
-                    height: "112px",
+                    width: "90px",
+                    height: "90px",
                     marginBottom: "23px",
                   }}
                 />
@@ -124,6 +108,6 @@ export default function CategoriesPage() {
           </Typography>
         )}
       </Box>
-    </Box>
+    </>
   );
 }
