@@ -16,63 +16,7 @@ export default function Home() {
   };
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        minHeight: "100vh",
-        backgroundColor: "#3E463A",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: { xs: "100px 10px", sm: "40px 24px" },
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-          maxWidth: "389px",
-          marginBottom: 2,
-        }}
-      >
-        <Box>
-          <Typography
-            variant="subtitle2"
-            sx={{
-              color: "#FCFCFC",
-              opacity: 0.8,
-              fontSize: "14px",
-              fontWeight: "bold",
-            }}
-          >
-            EVERYDAY WE&apos;RE MUSCLE&apos;N
-          </Typography>
-          <Typography
-            variant="h4"
-            sx={{
-              color: "#FCFCFC",
-              fontWeight: "bold",
-              marginTop: 1,
-              fontSize: { xs: "20px", sm: "24px" },
-            }}
-          >
-            Hello, Kakashi 👋
-          </Typography>
-        </Box>
-        <Avatar
-          alt="User Avatar"
-          src="/User/avatar.svg"
-          sx={{
-            width: { xs: 48, sm: 56 },
-            height: { xs: 48, sm: 56 },
-            border: "2px solid #FFC9E9",
-          }}
-        />
-      </Box>
-
+    <>
       <Box
         sx={{
           width: "100%",
@@ -350,6 +294,6 @@ export default function Home() {
           </Box>
         ))}
       </Box>
-    </Container>
+    </>
   );
 }
