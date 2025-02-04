@@ -1,6 +1,6 @@
 "use client";
 
-import { pageData } from "@/src/constants/phrases/header-items";
+import { pageData } from "@/src/constants/phrasals/header-items";
 import { Avatar, Box, Typography } from "@mui/material";
 import { usePathname } from "next/navigation";
 
@@ -12,6 +12,10 @@ const Header = () => {
     subtitle: "Welcome to your fitness journey!",
     title: lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1),
   };
+
+  // Comprobar si la URL contiene "/timer/" o "/completed/"
+  const isTimerOrCompleted =
+    pathname.includes("/timer/") || pathname.includes("/completed/");
 
   return (
     <Box
@@ -39,18 +43,20 @@ const Header = () => {
           </Typography>
         )}
 
-        <Typography
-          variant="h4"
-          sx={{
-            color: "#FCFCFC",
-            fontWeight: "bold",
-            textTransform: "uppercase",
-            marginTop: 1,
-            fontSize: { xs: "20px", sm: "24px" },
-          }}
-        >
-          {currentPage.title}
-        </Typography>
+        {!isTimerOrCompleted && (
+          <Typography
+            variant="h4"
+            sx={{
+              color: "#FCFCFC",
+              fontWeight: "bold",
+              textTransform: "uppercase",
+              marginTop: 1,
+              fontSize: { xs: "20px", sm: "24px" },
+            }}
+          >
+            {currentPage.title}
+          </Typography>
+        )}
       </Box>
 
       {pathname === "/home" && (
