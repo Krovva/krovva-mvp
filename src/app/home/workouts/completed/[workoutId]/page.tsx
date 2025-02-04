@@ -1,22 +1,21 @@
 "use client";
 
-import Workout from "@/src/components/workout";
+import WorkoutCompleted from "@/src/components/modules/workouts/ui/WorkoutCompleted";
 import { workoutList } from "@/src/constants/mocks/WorkoutsList";
 import Box from "@mui/material/Box";
 import { useParams } from "next/navigation";
 
-export default function WorkoutDetailsPage() {
-  const data = {
-    progress: 70,
-    // duration:0,
-    completed: 6,
-    // calories:0,
-    // weight:0,
-    // tutAccuracy:0,
-  };
+const data = {
+  progress: 70,
+  // duration:0,
+  completed: 6,
+  // calories:0,
+  // weight:0,
+  // tutAccuracy:0,
+};
 
+const WorkoutDetailsPage = () => {
   const { workoutId } = useParams();
-
   const workout = workoutList.find((w) => w.id === workoutId);
 
   if (!workout) {
@@ -37,11 +36,13 @@ export default function WorkoutDetailsPage() {
         justifyItems: "center",
       }}
     >
-      <Workout
+      <WorkoutCompleted
         progress={data.progress}
         completed={data.completed}
         workout={workout}
       />
     </Box>
   );
-}
+};
+
+export default WorkoutDetailsPage;
