@@ -39,7 +39,10 @@ const config: Config = {
           900: "#100F12",
         },
         background: "#3E463A",
-        card: "#2B2A2D",
+        cards: {
+          1: "#2B2A2D",
+          2: "#8D9164",
+        },
       },
     },
   },
