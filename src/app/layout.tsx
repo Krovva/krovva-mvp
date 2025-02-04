@@ -26,9 +26,9 @@ export default function RootLayout({
 
   const showNavbar =
     pathname === "/home" ||
-    pathname === "/categories" ||
-    pathname === "/workouts" ||
-    pathname === "/completed" ||
+    pathname === "/home/workouts/categories" ||
+    pathname === "/home/workouts/workouts" ||
+    pathname === "/home/workouts/completed" ||
     pathname === "/settings" ||
     /^\/workouts\/(?!details(?:\/|$))[^/]+$/.test(pathname);
 
