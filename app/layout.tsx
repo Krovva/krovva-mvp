@@ -24,7 +24,7 @@ export default function RootLayout({
 
   const pathname = usePathname();
 
-// Mostrar Navbar solo en rutas específicas
+
 const showNavbar =
   pathname === "/home" ||
   pathname === "/categories" ||
