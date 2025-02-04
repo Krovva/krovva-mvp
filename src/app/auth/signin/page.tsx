@@ -149,7 +149,7 @@ export default function SignInPage() {
         >
           By continuing, you agree to our{" "}
           <Link
-            href="/terms"
+            href="/terms-service"
             underline="hover"
             sx={{ color: "rgba(0, 0, 0, 0.6)" }}
           >
@@ -157,7 +157,7 @@ export default function SignInPage() {
           </Link>{" "}
           and{" "}
           <Link
-            href="/privacy"
+            href="/privacy-policy"
             underline="hover"
             sx={{ color: "rgba(0, 0, 0, 0.6)" }}
           >

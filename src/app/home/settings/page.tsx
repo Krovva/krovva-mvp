@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Container, Box, Typography, Button } from "@mui/material";
+import Link from "next/link";
 
 export default function Settings() {
   return (
@@ -159,7 +160,7 @@ export default function Settings() {
               }}
             >
               <Typography variant="body1" sx={{ color: "white" }}>
-                Terms Of Service
+                <Link href="/terms-service">Terms Of Service</Link>
               </Typography>
             </Box>
             <Box
@@ -171,7 +172,7 @@ export default function Settings() {
               }}
             >
               <Typography variant="body1" sx={{ color: "white" }}>
-                Privacy Policy
+                <Link href="/privacy-policy">Privacy Policy</Link>
               </Typography>
             </Box>
           </Box>

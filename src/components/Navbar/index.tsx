@@ -20,7 +20,7 @@ export default function Navbar() {
     { name: "home", src: "/icons/home.svg" },
     { name: "home/categories", src: "/icons/categories.svg" },
     { name: "home/workouts", src: "/icons/workouts.svg" },
-    { name: "settings", src: "/icons/settings.svg" },
+    { name: "home/settings", src: "/icons/settings.svg" },
   ];
 
   return (

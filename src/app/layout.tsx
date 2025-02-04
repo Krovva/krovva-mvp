@@ -3,10 +3,8 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
 import NextAuthProvider from "../components/next-auth-provider";
 import MiniKitProvider from "../components/minikit-provider";
-import Navbar from "../components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,16 +20,6 @@ export default function RootLayout({
     }
   );
 
-  const pathname = usePathname();
-
-  const showNavbar =
-    pathname === "/home" ||
-    pathname === "/home/workouts/categories" ||
-    pathname === "/home/workouts/workouts" ||
-    pathname === "/home/workouts/completed" ||
-    pathname === "/settings" ||
-    /^\/workouts\/(?!details(?:\/|$))[^/]+$/.test(pathname);
-
   // List of routes where the Navbar will not be shown
   //const hideNavbarRoutes = ["/onboarding/weight", "/SignIn"];
 
@@ -40,10 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <NextAuthProvider>
           <ErudaProvider>
-            <MiniKitProvider>
-              {showNavbar && <Navbar />}
-              {children}
-            </MiniKitProvider>
+            <MiniKitProvider>{children}</MiniKitProvider>
           </ErudaProvider>
         </NextAuthProvider>
       </body>
