@@ -12,7 +12,10 @@ export default function Navbar() {
 
   useEffect(() => {
     // Update selected status based on current route
-    const route = pathname.replace("/", "") || "home"; // If you are in /, select home.
+    let route = pathname.replace("/", "") || "home"; // If you are in /, select home.
+    if (route.startsWith("home/workouts")) {
+      route = "home/workouts";
+    }
     setSelected(route);
   }, [pathname]);
 
