@@ -4,15 +4,7 @@ import React, { useState } from "react";
 import { Box, Typography, InputBase } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import Link from "next/link";
-
-const categories = [
-  { name: "Yoga", image: "/Categories/yoga.png" },
-  { name: "Gym", image: "/Categories/lifting.png" },
-  { name: "Cardio", image: "/Categories/cardio.png" },
-  { name: "Stretch", image: "/Categories/stretch.png" },
-  { name: "Full Body", image: "/Categories/fullbody.png" },
-  { name: "Legs", image: "/Categories/legs.png" },
-];
+import { categories } from "@/src/constants/mocks/WorkoutCategories";
 
 export default function CategoriesPage() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -60,7 +52,7 @@ export default function CategoriesPage() {
         {filteredCategories.length > 0 ? (
           filteredCategories.map((category) => (
             <Link
-              href={`/home/workouts/${category.name.toLowerCase().replace(/\s+/g, "")}`}
+              href={`/home/workouts/category/${category.name.toLowerCase().replace(/\s+/g, "")}`}
               key={category.name}
             >
               <Box
@@ -88,6 +80,7 @@ export default function CategoriesPage() {
                     fontWeight: 600,
                     fontSize: "16px",
                     textAlign: "center",
+                    textTransform: "capitalize",
                   }}
                 >
                   {category.name}
