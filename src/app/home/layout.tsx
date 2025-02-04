@@ -1,5 +1,5 @@
 import Header from "@/src/components/layout/Header";
-import Navbar from "@/src/components/Navbar";
+import Navbar from "@/src/components/layout/Navbar";
 import { Container } from "@mui/material";
 import React from "react";
 
