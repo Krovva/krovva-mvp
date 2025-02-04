@@ -1,28 +1,18 @@
 "use client";
 import Image from "next/image";
-import { Container, Box, Typography, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Link from "next/link";
 
 export default function Settings() {
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        minHeight: "100vh",
-        backgroundColor: "#364033",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 2,
-      }}
-    >
+    <>
       {/* Main Container */}
       <Box
         sx={{
           width: "100%",
           maxWidth: "389px",
           borderRadius: "37.924px",
-          backgroundColor: "#364033",
+          backgroundColor: "#1E1D20",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -38,7 +28,7 @@ export default function Settings() {
               width: "169.661px",
               height: "169.661px",
               borderRadius: "50%",
-              border: "5px solid #FFC9E9",
+              border: "2px solid white",
               backgroundImage: 'url("/profile-picture.png")',
               backgroundSize: "cover",
               backgroundPosition: "center",
@@ -54,7 +44,7 @@ export default function Settings() {
                 right: 8,
                 minWidth: "30.94px",
                 height: "30.94px",
-                backgroundColor: "#F5F2B8",
+                backgroundColor: "#2B2A2D",
                 borderRadius: "50%",
                 display: "flex",
                 alignItems: "center",
@@ -67,7 +57,7 @@ export default function Settings() {
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
                 height="16"
-                fill="#5F5F5F"
+                fill="white"
                 viewBox="0 0 16 16"
               >
                 <path d="M12.146.854a.5.5 0 0 1 .708 0l2.292 2.292a.5.5 0 0 1 0 .708l-9.5 9.5a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l9.5-9.5zm-.646.646L2 11.146V13h1.854l9.5-9.5L11.5 2 8 5.5 7.5 5 11 1.5l-.5-.5z" />
@@ -80,7 +70,7 @@ export default function Settings() {
           >
             Youssef Labidi
           </Typography>
-          <Typography variant="body2" sx={{ color: "gray" }}>
+          <Typography variant="body2" sx={{ color: "white" }}>
             172 CM
           </Typography>
           <Typography variant="h6" sx={{ fontWeight: "bold", color: "white" }}>
@@ -178,6 +168,6 @@ export default function Settings() {
           </Box>
         </Box>
       </Box>
-    </Container>
+    </>
   );
 }
