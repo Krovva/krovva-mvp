@@ -1,37 +1,15 @@
 import React from "react";
-import { Box, Typography, Stack, Button } from "@mui/material";
+import { Box, Typography, Stack } from "@mui/material";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
-
-interface Exercise {
-  name: string;
-  calories: number;
-  time: number;
-  level: string;
-  image: string;
-}
+import { Workout } from "@/src/@types/workout.entity";
+import Link from "next/link";
 
 interface WorkoutCardProps {
-  calories: number;
-  minutes: number;
-  level: string;
-  category: string;
-  weight: string;
-  title?: string;
-  description?: string;
-  exercises?: Exercise[];
+  workout: Workout;
 }
 
-export default function DetailedWorkoutCard({
-  calories,
-  minutes,
-  level,
-  category,
-  weight,
-  title,
-  description,
-  exercises,
-}: WorkoutCardProps) {
+export default function DetailedWorkoutCard({ workout }: WorkoutCardProps) {
   return (
     <Box
       sx={{
@@ -40,9 +18,38 @@ export default function DetailedWorkoutCard({
         boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
         padding: "24px",
         maxWidth: "400px",
-        margin: "0 auto",
+        marginBottom: 20,
       }}
     >
+      {/* Button "START NOW" */}
+      <Box sx={{ display: "flex", justifyContent: "center", mb: 4 }}>
+        <Link
+          href={`/home/workouts/timer/${workout.id}`}
+          passHref
+          style={{ width: "100%" }}
+        >
+          <Box
+            sx={{
+              backgroundColor: "#D5D962",
+              color: "white",
+              borderRadius: "12px",
+              padding: "16px",
+              fontWeight: "bold",
+              fontSize: "16px",
+              textTransform: "none",
+              textAlign: "center",
+              textDecoration: "none",
+              width: "100%",
+              display: "block",
+              "&:hover": {
+                backgroundColor: "#C4C450",
+              },
+            }}
+          >
+            START NOW
+          </Box>
+        </Link>
+      </Box>
       {/* First line: kcal and time */}
       <Stack
         direction="row"
@@ -55,7 +62,7 @@ export default function DetailedWorkoutCard({
         <Stack direction="row" spacing={1} alignItems="center">
           <LocalFireDepartmentIcon sx={{ color: "black" }} />
           <Typography variant="body1" color="black">
-            {calories} kcal
+            {workout.calories} kcal
           </Typography>
         </Stack>
 
@@ -69,7 +76,7 @@ export default function DetailedWorkoutCard({
         <Stack direction="row" spacing={1} alignItems="center">
           <AccessTimeIcon sx={{ color: "black" }} />
           <Typography variant="body1" color="black">
-            {minutes} min
+            {workout.minutes} min
           </Typography>
         </Stack>
       </Stack>
@@ -103,7 +110,7 @@ export default function DetailedWorkoutCard({
             }}
           >
             <Typography variant="body2" color="black">
-              {level}
+              {workout.level}
             </Typography>
           </Box>
         </Box>
@@ -129,7 +136,7 @@ export default function DetailedWorkoutCard({
             }}
           >
             <Typography variant="body2" color="black">
-              {category}
+              {workout.category}
             </Typography>
           </Box>
         </Box>
@@ -155,14 +162,14 @@ export default function DetailedWorkoutCard({
             }}
           >
             <Typography variant="body2" color="black">
-              {weight}
+              {workout.weight}
             </Typography>
           </Box>
         </Box>
       </Stack>
 
       {/* title and description */}
-      {title && (
+      {workout.name && (
         <Typography
           variant="h6"
           fontWeight="bold"
@@ -170,24 +177,24 @@ export default function DetailedWorkoutCard({
           mb={2}
           textAlign="left"
         >
-          {title}
+          {workout.name}
         </Typography>
       )}
-      {description && (
+      {workout.description && (
         <Typography
           variant="body2"
           color="text.secondary"
           mb={4}
           textAlign="left"
         >
-          {description}
+          {workout.description}
         </Typography>
       )}
 
       {/* Exercises list */}
-      {exercises && (
+      {workout.exercises && (
         <Stack spacing={3}>
-          {exercises.map((exercise, index) => (
+          {workout.exercises.map((exercise, index) => (
             <Box
               key={index}
               sx={{
@@ -267,28 +274,6 @@ export default function DetailedWorkoutCard({
           ))}
         </Stack>
       )}
-      {/* Button "START NOW" */}
-      <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: "#D5D962",
-            color: "white",
-            borderRadius: "12px",
-            padding: "16px",
-            fontWeight: "bold",
-            fontSize: "16px",
-            textTransform: "none",
-            width: "100%",
-            "&:hover": {
-              backgroundColor: "#C4C450",
-            },
-          }}
-          onClick={() => console.log("Start workout")} //Change to the function that starts the workout
-        >
-          START NOW
-        </Button>
-      </Box>
     </Box>
   );
 }
