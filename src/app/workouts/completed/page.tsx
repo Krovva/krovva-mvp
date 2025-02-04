@@ -1,4 +1,4 @@
-import Workout from "@/components/workout";
+import Workout from "@/src/components/workout";
 import Box from "@mui/material/Box";
 
 export default function WorkoutDetailsPage() {

@@ -2,8 +2,8 @@
 
 import React from "react";
 import { useParams, useRouter } from "next/navigation";
-import { WorkoutContainer } from "@/components/Containers/WorkoutContainer";
-import { workoutLists } from "../../Mocks/WorkoutsList";
+import { WorkoutContainer } from "@/src/components/Containers/WorkoutContainer";
+import { workoutLists } from "@/src/constants/mocks/WorkoutsList";
 
 export default function WorkoutListPage() {
   const router = useRouter();

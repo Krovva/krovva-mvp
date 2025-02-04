@@ -2,11 +2,11 @@
 
 import { Inter } from "next/font/google";
 import "./globals.css";
-import MiniKitProvider from "@/components/minikit-provider";
 import dynamic from "next/dynamic";
-import NextAuthProvider from "@/components/next-auth-provider";
-import Navbar from "@/components/Navbar/index";
 import { usePathname } from "next/navigation";
+import NextAuthProvider from "../components/next-auth-provider";
+import MiniKitProvider from "../components/minikit-provider";
+import Navbar from "../components/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
     () => import("../components/Eruda").then((c) => c.ErudaProvider),
     {
       ssr: false,
-    },
+    }
   );
 
   const pathname = usePathname();

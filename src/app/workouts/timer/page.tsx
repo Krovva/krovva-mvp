@@ -1,6 +1,6 @@
 "use client";
 
-import WorkoutTimer from "@/components/modules/workouts/ui/WorkoutTimer";
+import WorkoutTimer from "@/src/components/modules/workouts/ui/WorkoutTimer";
 
 export default function TimerPage() {
   return <WorkoutTimer />;

@@ -1,9 +1,9 @@
 "use client";
 import { Box, Button, Typography, Link, Snackbar, Alert } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
-import { WalletAuthBlock } from "@/components/WalletAuth";
 import { useState } from "react";
 import Image from "next/image";
+import { WalletAuthBlock } from "@/src/components/WalletAuth";
 
 export default function SignInPage() {
   const [error, setError] = useState("");
