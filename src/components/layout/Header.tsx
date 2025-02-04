@@ -25,17 +25,20 @@ const Header = () => {
       }}
     >
       <Box>
-        <Typography
-          variant="subtitle2"
-          sx={{
-            color: "#FCFCFC",
-            opacity: 0.8,
-            fontSize: "14px",
-            fontWeight: "bold",
-          }}
-        >
-          {currentPage.subtitle}
-        </Typography>
+        {pathname === "/home" && (
+          <Typography
+            variant="subtitle2"
+            sx={{
+              color: "#FCFCFC",
+              opacity: 0.8,
+              fontSize: "14px",
+              fontWeight: "bold",
+            }}
+          >
+            {currentPage.subtitle}
+          </Typography>
+        )}
+
         <Typography
           variant="h4"
           sx={{
@@ -49,15 +52,18 @@ const Header = () => {
           {currentPage.title}
         </Typography>
       </Box>
-      <Avatar
-        alt="User Avatar"
-        src="/User/avatar.svg"
-        sx={{
-          width: { xs: 48, sm: 56 },
-          height: { xs: 48, sm: 56 },
-          border: "1px solid white",
-        }}
-      />
+
+      {pathname === "/home" && (
+        <Avatar
+          alt="User Avatar"
+          src="/User/avatar.svg"
+          sx={{
+            width: { xs: 48, sm: 56 },
+            height: { xs: 48, sm: 56 },
+            border: "1px solid white",
+          }}
+        />
+      )}
     </Box>
   );
 };
