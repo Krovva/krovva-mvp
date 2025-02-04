@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useParams } from "next/navigation";
-import { WorkoutContainer } from "@/src/components/Containers/WorkoutContainer";
 import { workoutList } from "@/src/constants/mocks/WorkoutsList";
 import { Workout } from "@/src/@types/workout.entity";
+import { WorkoutContainer } from "@/src/components/layout/containers/WorkoutContainer";
 
 export default function WorkoutListPage() {
   const { category } = useParams();
