@@ -9,6 +9,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       maxWidth={false}
       sx={{
         minHeight: "100vh",
+        height: "auto",
         backgroundColor: "#3E463A",
         display: "flex",
         flexDirection: "column",
