@@ -1,23 +1,16 @@
 "use client";
 
 import React from "react";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import WorkoutCard from "../Cards/WorkoutCard";
-
-interface Workout {
-  name: string;
-  description: string;
-  image: string;
-}
+import { Workout } from "@/src/@types/workout.entity";
 
 interface WorkoutContainerProps {
   workouts: Workout[];
-  handleWorkoutSelected: () => void;
 }
 
 export const WorkoutContainer: React.FC<WorkoutContainerProps> = ({
   workouts,
-  handleWorkoutSelected,
 }) => {
   return (
     <Box
@@ -28,15 +21,16 @@ export const WorkoutContainer: React.FC<WorkoutContainerProps> = ({
         gap: "20px",
         width: "100%",
         maxWidth: "400px",
+        marginBottom: 20,
       }}
     >
-      {workouts.map((workout, index) => (
+      {workouts.map((workout) => (
         <WorkoutCard
-          key={index}
+          key={workout.id}
+          id={workout.id}
           name={workout.name}
           description={workout.description}
           image={workout.image}
-          handleWorkoutSelected={() => handleWorkoutSelected()}
         />
       ))}
     </Box>
