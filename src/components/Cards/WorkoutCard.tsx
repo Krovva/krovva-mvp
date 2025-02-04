@@ -25,7 +25,8 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({
         alignItems: "center",
         justifyContent: "space-between",
         textAlign: "center",
-        p: 2,
+        backgroundColor: "#2B2A2D",
+        borderRadius: "15px",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -33,9 +34,8 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({
           src={image}
           alt={name}
           style={{
-            width: "101px",
-            height: "68px",
-            marginBottom: "10px",
+            width: "30%",
+            height: "100%",
             borderRadius: "10px",
           }}
         />
@@ -44,7 +44,8 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            ml: 1,
+            width: "60%",
+            px: 2,
           }}
         >
           <Typography
@@ -60,27 +61,30 @@ const WorkoutCard: React.FC<WorkoutCardProps> = ({
             {description}
           </Typography>
         </Box>
+        <div className="w-1/12">
+          <IconButton
+            onClick={handleWorkoutSelected}
+            sx={{
+              marginLeft: "auto",
+              backgroundColor: "#F7F7F7",
+              borderRadius: "50%",
+              boxShadow: "0px 4px 6px #00729840",
+              "&:hover": {
+                backgroundColor: "#F7F7F7",
+              },
+              width: "28px",
+              height: "28px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              p: 2,
+              marginRight: "15px",
+            }}
+          >
+            <ArrowForwardIosIcon sx={{ fontSize: 20, color: "black" }} />
+          </IconButton>
+        </div>
       </Box>
-      <IconButton
-        onClick={handleWorkoutSelected}
-        sx={{
-          marginLeft: "auto",
-          backgroundColor: "#F7F7F7",
-          borderRadius: "50%",
-          boxShadow: "0px 4px 6px #00729840",
-          "&:hover": {
-            backgroundColor: "#F7F7F7",
-          },
-          width: "28px",
-          height: "28px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          p: 1,
-        }}
-      >
-        <ArrowForwardIosIcon sx={{ fontSize: 20, color: "black" }} />
-      </IconButton>
     </Box>
   );
 };
