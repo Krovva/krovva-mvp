@@ -1,12 +1,26 @@
+import Header from "@/src/components/layout/Header";
 import Navbar from "@/src/components/Navbar";
+import { Container } from "@mui/material";
 import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <Navbar />
+    <Container
+      maxWidth={false}
+      sx={{
+        minHeight: "100vh",
+        backgroundColor: "#3E463A",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "flex-start",
+        padding: { xs: "30px 10px", sm: "30px 10px" },
+      }}
+    >
+      <Header />
       {children}
-    </div>
+      <Navbar />
+    </Container>
   );
 };
 
