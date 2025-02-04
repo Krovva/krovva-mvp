@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Workout } from "../@types/workouts.entity";
+import { useRouter } from "next/navigation";
+import { Workout } from "@/src/@types/workout.entity";
 
 const useWorkoutTimer = (workout: Workout) => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
@@ -10,6 +11,7 @@ const useWorkoutTimer = (workout: Workout) => {
   const [isResting, setIsResting] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isLastExercise, setIsLastExercise] = useState(false);
+  const router = useRouter();
 
   const currentExercise = workout.exercises[currentExerciseIndex];
 
@@ -56,9 +58,7 @@ const useWorkoutTimer = (workout: Workout) => {
       setTimeLeft(workout.exercises[currentExerciseIndex + 1].time);
     } else {
       // Workout complete
-      alert("Workout complete!");
-
-      // ! WHEN YOU HAVE THE COMPLETED WORKOUT PAGE, YOU CAN NAVIGATE TO IT HERE
+      router.push(`/home/workouts/completed/${workout.id}`);
     }
   };
 

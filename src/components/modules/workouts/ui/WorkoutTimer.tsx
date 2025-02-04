@@ -3,22 +3,14 @@ import Image from "next/image";
 import { CircularProgress } from "@mui/material";
 import PauseIcon from "@mui/icons-material/Pause";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
-import { Workout } from "../@types/workouts.entity";
 import useWorkoutTimer from "../hooks/useTimer.hook";
+import { Workout } from "@/src/@types/workout.entity";
 
-const WorkoutTimer = () => {
-  // Mock Data
-  const workout: Workout = {
-    name: "Stretching Workout",
-    description: "A relaxing full-body stretching routine.",
-    category: "Stretching",
-    exercises: [
-      { name: "Neck Stretch", time: 10, rest: 10, reps: 1 },
-      { name: "Shoulder Rolls", time: 20, rest: 10, reps: 2 },
-      { name: "Hamstring Stretch", time: 40, rest: 15, reps: 1 },
-    ],
-  };
+interface WorkoutTimerProps {
+  workout: Workout;
+}
 
+const WorkoutTimer = ({ workout }: WorkoutTimerProps) => {
   const {
     currentExercise,
     currentExerciseIndex,
@@ -32,33 +24,24 @@ const WorkoutTimer = () => {
   } = useWorkoutTimer(workout);
 
   return (
-    <Container
-      maxWidth={false}
-      sx={{
-        minHeight: "100vh",
-        backgroundColor: "#000000",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: { xs: "20px", sm: "40px 24px" },
-      }}
-    >
+    <>
       {/* Image */}
       <Box
         sx={{
           width: "100%",
           maxWidth: "380px",
           position: "relative",
-          borderRadius: "16px",
+          borderRadius: "15px",
           overflow: "hidden",
           marginBottom: 2,
+          display: "flex",
+          justifyContent: "center",
         }}
       >
         <Image
           src="/Timer/women timer.svg"
           alt="Meditating Woman"
-          width={380}
+          width={350}
           height={50}
           className="!h-96"
         />
@@ -172,7 +155,7 @@ const WorkoutTimer = () => {
           <DirectionsRunIcon /> {isLastExercise ? "Finish" : "Next"}
         </Button>
       </Box>
-    </Container>
+    </>
   );
 };
 
