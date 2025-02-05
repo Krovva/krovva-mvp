@@ -225,6 +225,7 @@ const WorkoutCompleted = ({ workout }: WorkoutCompletedProps) => {
               <Stack spacing={3}>
                 {workout.exercises.map((exercise, index) => (
                   <DetailedWorkoutExercise
+                    key={index}
                     isInCompleted={false}
                     exercise={exercise}
                     index={index}

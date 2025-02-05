@@ -210,6 +210,7 @@ export default function DetailedWorkoutCard({ workout }: WorkoutCardProps) {
         <Stack spacing={3}>
           {workout.exercises.map((exercise, index) => (
             <DetailedWorkoutExercise
+              key={index}
               isInCompleted={true}
               exercise={exercise}
               index={index}
