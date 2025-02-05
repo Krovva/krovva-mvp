@@ -29,7 +29,7 @@ export default function Settings() {
               height: "169.661px",
               borderRadius: "50%",
               border: "2px solid white",
-              backgroundImage: 'url("/profile-picture.png")',
+              backgroundImage: 'url("/User/avatar.svg")',
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
