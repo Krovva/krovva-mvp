@@ -13,7 +13,7 @@ export const workoutList: Workout[] = [
     description: "There are many variations of passages.",
     exercises: [
       {
-        name: "Exercises with Jumping Rope",
+        name: "Jumping Rope",
         calories: 110,
         time: 10,
         level: "Beginner",
@@ -22,7 +22,7 @@ export const workoutList: Workout[] = [
         reps: 15,
       },
       {
-        name: "Exercises with Holding Jumping Rope",
+        name: "Holding Jumping Rope",
         calories: 135,
         time: 8,
         level: "Beginner",
@@ -31,7 +31,7 @@ export const workoutList: Workout[] = [
         reps: 12,
       },
       {
-        name: "Exercises with Sitting Dumbbells",
+        name: "Sitting Dumbbells",
         calories: 135,
         time: 5,
         level: "Beginner",
