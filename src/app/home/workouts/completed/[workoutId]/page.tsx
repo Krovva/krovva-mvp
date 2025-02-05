@@ -23,25 +23,11 @@ const WorkoutDetailsPage = () => {
   }
 
   return (
-    <Box
-      sx={{
-        minHeight: "100vh",
-        bgcolor: "white",
-        color: "black",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        px: 3,
-        py: 5,
-        justifyItems: "center",
-      }}
-    >
-      <WorkoutCompleted
-        progress={data.progress}
-        completed={data.completed}
-        workout={workout}
-      />
-    </Box>
+    <WorkoutCompleted
+      progress={data.progress}
+      completed={data.completed}
+      workout={workout}
+    />
   );
 };
 
