@@ -1,9 +1,10 @@
 ## 📘 Description
+
 -
 
 ## ✅ Acceptance Criteria
--
 
+-
 
 ⚠ Do not apply until the ODHack begins, if you apply before we will not review your applications.
 
