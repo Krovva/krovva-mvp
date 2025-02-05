@@ -4,6 +4,7 @@ import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Workout } from "@/src/@types/workout.entity";
 import Link from "next/link";
+import DetailedWorkoutExercise from "./DetailedWorkoutExercise";
 
 interface WorkoutCardProps {
   workout: Workout;
@@ -195,82 +196,11 @@ export default function DetailedWorkoutCard({ workout }: WorkoutCardProps) {
       {workout.exercises && (
         <Stack spacing={3}>
           {workout.exercises.map((exercise, index) => (
-            <Box
-              key={index}
-              sx={{
-                backgroundColor: "white",
-                borderRadius: "8px",
-                boxShadow: "0px 4px 12px rgba(0, 0, 0, 0.1)",
-                padding: "16px",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              {/* Box with the image for each workout */}
-              <Box
-                sx={{
-                  backgroundColor: "#f0f0f0",
-                  borderRadius: "8px",
-                  padding: "8px",
-                  marginRight: "16px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <img
-                  src={exercise.image}
-                  alt={exercise.name}
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    objectFit: "cover",
-                    borderRadius: "8px",
-                  }}
-                />
-              </Box>
-
-              {/* box with exercise information */}
-              <Box sx={{ flex: 1 }}>
-                {/* name */}
-                <Typography variant="h6" fontWeight="bold" color="black" mb={1}>
-                  {exercise.name}
-                </Typography>
-
-                {/* kcal and time */}
-                <Stack direction="row" spacing={2} alignItems="center" mb={1}>
-                  {/* Calorías */}
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <LocalFireDepartmentIcon
-                      sx={{ color: "text.secondary", fontSize: "16px" }}
-                    />
-                    <Typography variant="body1" color="text.secondary">
-                      {exercise.calories} kcal
-                    </Typography>
-                  </Stack>
-
-                  {/* separator */}
-                  <Typography variant="body1" color="text.secondary">
-                    |
-                  </Typography>
-
-                  {/* time */}
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <AccessTimeIcon
-                      sx={{ color: "text.secondary", fontSize: "16px" }}
-                    />
-                    <Typography variant="body1" color="text.secondary">
-                      {exercise.time} min
-                    </Typography>
-                  </Stack>
-                </Stack>
-
-                {/* level */}
-                <Typography variant="body2" color="text.secondary">
-                  {exercise.level}
-                </Typography>
-              </Box>
-            </Box>
+            <DetailedWorkoutExercise
+              isInCompleted={true}
+              exercise={exercise}
+              index={index}
+            />
           ))}
         </Stack>
       )}
