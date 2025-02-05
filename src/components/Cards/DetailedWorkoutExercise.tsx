@@ -2,6 +2,8 @@ import { Box, Stack, Typography } from "@mui/material";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { Exercise } from "@/src/@types/workout.entity";
+import RepeatOneIcon from "@mui/icons-material/RepeatOne";
+import FlashOnIcon from "@mui/icons-material/FlashOn";
 
 interface DetailedWorkoutExerciseProps {
   exercise: Exercise;
@@ -115,9 +117,7 @@ const DetailedWorkoutExercise = ({
               >
                 {/* Rest */}
                 <Stack direction="row" spacing={1} alignItems="center">
-                  <LocalFireDepartmentIcon
-                    sx={{ color: "gray", fontSize: "16px" }}
-                  />
+                  <FlashOnIcon sx={{ color: "gray", fontSize: "16px" }} />
                   <Typography
                     variant="body2"
                     color={`${isInCompleted ? "#1E1D20" : "white"}`}
@@ -136,9 +136,7 @@ const DetailedWorkoutExercise = ({
 
                 {/* Reps */}
                 <Stack direction="row" spacing={1} alignItems="center">
-                  <LocalFireDepartmentIcon
-                    sx={{ color: "gray", fontSize: "16px" }}
-                  />
+                  <RepeatOneIcon sx={{ color: "gray", fontSize: "16px" }} />
                   <Typography
                     variant="body2"
                     color={`${isInCompleted ? "#1E1D20" : "white"}`}
