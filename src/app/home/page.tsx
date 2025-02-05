@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Box, Container, Typography, Avatar, Button } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
+import { categories } from "@/src/constants/mocks/WorkoutCategories";
 
 export default function Home() {
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
@@ -207,18 +209,20 @@ export default function Home() {
         >
           Categories
         </Typography>
-        <Typography
-          variant="body2"
-          sx={{
-            fontWeight: "bold",
-            fontSize: "14px",
-            color: "#D6D984",
-            transform: "translateX(-20px)",
-            textTransform: "none",
-          }}
-        >
-          See all
-        </Typography>
+        <Link href="/home/categories">
+          <Typography
+            variant="body2"
+            sx={{
+              fontWeight: "bold",
+              fontSize: "14px",
+              color: "#D6D984",
+              transform: "translateX(-20px)",
+              textTransform: "none",
+            }}
+          >
+            See all
+          </Typography>
+        </Link>
       </Box>
 
       <Box
@@ -232,67 +236,61 @@ export default function Home() {
           "&::-webkit-scrollbar": { display: "none" },
         }}
       >
-        {[
-          {
-            title: "Warm up",
-            image: "/Exercises/warmup.png",
-            bgColor: "#2B2A2D",
-            textColor: "#FFFFFF",
-          },
-          {
-            title: "Yoga",
-            image: "/Exercises/yoga.png",
-            bgColor: "#D6D984",
-            textColor: "#000000",
-          },
-          {
-            title: "Lifting",
-            image: "/Exercises/lifting.png",
-            bgColor: "#2B2A2D",
-            textColor: "#FFFFFF",
-          },
-        ].map((category, index) => (
-          <Box
-            key={index}
-            sx={{
-              minWidth: "120px",
-              height: "190px",
-              borderRadius: "15px",
-              backgroundColor: category.bgColor,
-              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "flex-start",
-              padding: "10px",
-              textAlign: "center",
-              position: "relative",
-            }}
-          >
-            <Typography
-              variant="body1"
-              sx={{
-                fontWeight: "bold",
-                color: category.textColor,
-                marginBottom: "10px",
-              }}
-            >
-              {category.title}
-            </Typography>
-            <Image
-              src={category.image}
-              alt={category.title}
-              width={100}
-              height={100}
-              style={{
-                position: "absolute",
-                top: "36px",
-                right: "0",
-                borderRadius: "10px",
-              }}
-            />
-          </Box>
-        ))}
+        {categories.map((category, index) => {
+          const colors = [
+            { bgColor: "#D6D984", textColor: "#000000" },
+            { bgColor: "#2B2A2D", textColor: "#FFFFFF" },
+            { bgColor: "#FFFFFF", textColor: "#000000" },
+          ];
+
+          const { bgColor, textColor } = colors[index % 3];
+
+          return (
+            <Link href={`/home/workouts/category/${category.name}`} key={index}>
+              <Box
+                key={index}
+                sx={{
+                  minWidth: "120px",
+                  height: "190px",
+                  borderRadius: "15px",
+                  backgroundColor: bgColor,
+                  boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "flex-start",
+                  padding: "10px",
+                  textAlign: "center",
+                  position: "relative",
+                }}
+              >
+                <Typography
+                  variant="body1"
+                  sx={{
+                    fontWeight: "bold",
+                    color: textColor,
+                    marginBottom: "10px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {category.name}
+                </Typography>
+                <Image
+                  src={category.coverImage}
+                  alt={category.name}
+                  width={100}
+                  height={100}
+                  style={{
+                    position: "absolute",
+                    top: "36px",
+                    right: "0",
+                    borderRadius: "10px",
+                  }}
+                />
+              </Box>
+            </Link>
+          );
+        })}
       </Box>
     </>
   );
