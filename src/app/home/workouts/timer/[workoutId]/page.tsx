@@ -1,6 +1,6 @@
 "use client";
 
-import WorkoutTimer from "@/src/components/modules/workouts/ui/WorkoutTimer";
+import WorkoutTimer from "@/src/components/modules/workouts/ui/components/WorkoutTimer";
 import { workoutList } from "@/src/constants/mocks/WorkoutsList";
 import { useParams } from "next/navigation";
 

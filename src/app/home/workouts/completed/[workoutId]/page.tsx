@@ -1,6 +1,6 @@
 "use client";
 
-import WorkoutCompleted from "@/src/components/modules/workouts/ui/WorkoutCompleted";
+import WorkoutCompleted from "@/src/components/modules/workouts/ui/components/WorkoutCompleted";
 import { workoutList } from "@/src/constants/mocks/WorkoutsList";
 import Box from "@mui/material/Box";
 import { useParams } from "next/navigation";

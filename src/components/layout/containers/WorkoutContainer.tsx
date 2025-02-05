@@ -3,7 +3,7 @@
 import React from "react";
 import { Box } from "@mui/material";
 import { Workout } from "@/src/@types/workout.entity";
-import WorkoutCard from "../../Cards/WorkoutCard";
+import WorkoutCard from "../../modules/workouts/ui/cards/WorkoutCard";
 
 interface WorkoutContainerProps {
   workouts: Workout[];

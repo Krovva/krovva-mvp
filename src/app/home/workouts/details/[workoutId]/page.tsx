@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { useParams } from "next/navigation";
-import DetailedWorkoutCard from "@/src/components/Cards/DetailedWorkoutCard";
+import DetailedWorkoutCard from "@/src/components/modules/workouts/ui/cards/DetailedWorkoutCard";
 import { workoutList } from "@/src/constants/mocks/WorkoutsList";
 
 export default function WorkoutDetails() {

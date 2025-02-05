@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Box, Stack, Typography } from "@mui/material";
 import Link from "next/link";
 import badge from "@/public/badge.png";
-import DetailedWorkoutExercise from "@/src/components/Cards/DetailedWorkoutExercise";
+import DetailedWorkoutExercise from "@/src/components/modules/workouts/ui/cards/DetailedWorkoutExercise";
 
 export interface WorkoutCompletedProps {
   workout: Workout;

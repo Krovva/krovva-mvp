@@ -14,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const ErudaProvider = dynamic(
-    () => import("../components/Eruda").then((c) => c.ErudaProvider),
+    () => import("../providers/erude-provider").then((c) => c.ErudaProvider),
     {
       ssr: false,
     }

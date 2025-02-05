@@ -3,7 +3,7 @@ import Image from "next/image";
 import { CircularProgress } from "@mui/material";
 import PauseIcon from "@mui/icons-material/Pause";
 import DirectionsRunIcon from "@mui/icons-material/DirectionsRun";
-import useWorkoutTimer from "../hooks/useTimer.hook";
+import useWorkoutTimer from "../../hooks/useTimer.hook";
 import { Workout } from "@/src/@types/workout.entity";
 
 interface WorkoutTimerProps {
