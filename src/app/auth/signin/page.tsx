@@ -3,7 +3,7 @@ import { Box, Button, Typography, Link, Snackbar, Alert } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
 import { useState } from "react";
 import Image from "next/image";
-import { WalletAuthBlock } from "@/src/components/WalletAuth";
+import { WalletAuthBlock } from "@/src/components/modules/auth/wallet";
 
 export default function SignInPage() {
   const [error, setError] = useState("");
