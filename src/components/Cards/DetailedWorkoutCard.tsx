@@ -110,7 +110,11 @@ export default function DetailedWorkoutCard({ workout }: WorkoutCardProps) {
               textAlign: "center",
             }}
           >
-            <Typography variant="body2" color="black">
+            <Typography
+              variant="body2"
+              color="black"
+              textTransform="capitalize"
+            >
               {workout.level}
             </Typography>
           </Box>
@@ -124,7 +128,12 @@ export default function DetailedWorkoutCard({ workout }: WorkoutCardProps) {
             alignItems: "center",
           }}
         >
-          <Typography variant="body2" color="text.secondary" mb={1}>
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            mb={1}
+            textTransform="capitalize"
+          >
             Category
           </Typography>
           <Box
@@ -136,7 +145,11 @@ export default function DetailedWorkoutCard({ workout }: WorkoutCardProps) {
               textAlign: "center",
             }}
           >
-            <Typography variant="body2" color="black">
+            <Typography
+              variant="body2"
+              color="black"
+              textTransform="capitalize"
+            >
               {workout.category}
             </Typography>
           </Box>
