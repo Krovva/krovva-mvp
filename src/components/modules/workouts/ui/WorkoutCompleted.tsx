@@ -1,71 +1,269 @@
-import badge from "@/public/badge.png";
 import type { Workout } from "@/src/@types/workout.entity";
 import Image from "next/image";
+import { Box, Stack, Typography } from "@mui/material";
+import Link from "next/link";
+import badge from "@/public/badge.png";
+import DetailedWorkoutExercise from "@/src/components/Cards/DetailedWorkoutExercise";
 
 export interface WorkoutCompletedProps {
-  progress: number;
-  //   duration: number;
-  completed: number;
-  //   calories: number;
-  //   weight: number;
-  //   tutAccuracy: number;
   workout: Workout;
 }
 
-const WorkoutCompleted = ({
-  progress,
-  completed,
-  workout,
-}: WorkoutCompletedProps) => {
+const WorkoutCompleted = ({ workout }: WorkoutCompletedProps) => {
+  const totalCalories = workout.exercises.reduce(
+    (sum, exercise) => sum + exercise.calories,
+    0
+  );
+  const totalTime = workout.exercises.reduce(
+    (sum, exercise) => sum + exercise.time,
+    0
+  );
+
   return (
-    <div className="w-[330px] h-fit bg-[#FFFFFF] shadow-md rounded-md py-4 px-8 text-center grid gap-1">
-      <Image src={badge} alt="badge" className="mx-auto" />
-      <h1 className="text-[#000000] font-semibold text-xl">Workout Complete</h1>
-      <h2 className="text-center text-[#0A0A0A] text-base font-normal">
-        Streak: 10 days
-      </h2>
-      <div className="grid gap-1">
-        <div className="font-medium text-sm flex justify-between">
-          <span>Overall progress:</span>
-          <span>{progress}%</span>
-        </div>
-        <div className="h-3 w-full bg-[#434343] rounded-full">
-          <span
-            className={`h-full bg-[#B0C929] w-[${progress}%] rounded-full block`}
-          />
-        </div>
-      </div>
-      <div className="grid gap-y-2 py-5">
-        <div className="w-full flex justify-between items-center text-[#A1A1AA] font-normal text-sm">
-          <span className="text-[#9A7A7A]">
-            Exercise Completed:
-            {workout.exercises.map((exercise) => {
-              return <span>{exercise.name}</span>;
-            })}
-          </span>
-          <span className="text-[#040404]">{completed}</span>
-        </div>
-        <div className="w-full flex justify-between items-center text-[#A1A1AA] font-normal text-sm">
-          <span>Duration:</span>
-          <span className="text-[#040404]"></span>
-        </div>
-        <div className="w-full flex justify-between items-center text-[#A1A1AA] font-normal text-sm">
-          <span>Calories burned:</span>
-          <span className="text-[#040404]"></span>
-        </div>
-        <div className="w-full flex justify-between items-center text-[#A1A1AA] font-normal text-sm">
-          <span>Weight lifted:</span>
-          <span className="text-[#040404]"></span>
-        </div>
-        <div className="w-full flex justify-between items-center text-[#A1A1AA] font-normal text-sm">
-          <span>TUT accuracy</span>
-          <span className="text-[#040404]"></span>
-        </div>
-      </div>
-      <button className="bg-[#D6D984] w-full py-2 rounded-md font-extrabold capitalize text-[#000000] text-center">
-        see full summary{" "}
-      </button>
-    </div>
+    <>
+      {/* Main Container */}
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "389px",
+          borderRadius: "37.924px",
+          backgroundColor: "#1E1D20",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          padding: 4,
+          gap: 3,
+        }}
+      >
+        <Box
+          sx={{
+            textAlign: "center",
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              gap: 2,
+            }}
+          >
+            <Image src={badge} alt="badge" className="mx-auto" />
+            <Image
+              src={workout.image}
+              width={80}
+              height={40}
+              alt="badge"
+              className="mx-auto"
+              style={{ objectFit: "cover", borderRadius: "8px" }}
+            />
+          </Box>
+
+          <Typography
+            variant="h5"
+            sx={{ mt: 2, fontWeight: "bold", color: "white" }}
+          >
+            {workout.name}
+          </Typography>
+
+          <Box
+            sx={{
+              width: "100%",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              mt: 1,
+            }}
+          >
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                gap: 1,
+                mt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: "white", textTransform: "uppercase" }}
+              >
+                {workout.level}
+              </Typography>
+              |
+              <Typography
+                variant="body2"
+                sx={{ color: "white", textTransform: "uppercase" }}
+              >
+                {workout.category}
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                gap: 1,
+                mt: 1,
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{ color: "white", textTransform: "uppercase" }}
+              >
+                {workout.minutes} Minutes
+              </Typography>
+              |
+              <Typography
+                variant="body2"
+                sx={{ color: "white", textTransform: "uppercase" }}
+              >
+                {workout.weight}
+              </Typography>
+              |
+              <Typography
+                variant="body2"
+                sx={{ color: "white", textTransform: "uppercase" }}
+              >
+                {workout.calories} kcal
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Achieved */}
+        <Box sx={{ width: "100%" }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ fontWeight: "bold", color: "white", mb: 2 }}
+          >
+            Achieved
+          </Typography>
+          <Box
+            sx={{
+              width: "100%",
+              borderRadius: "27.445px",
+              border: "1px solid #2B2A2D",
+              backgroundColor: "#2B2A2D",
+              display: "flex",
+              flexDirection: "column",
+              px: 3,
+              py: 2,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                borderBottom: "1px solid gray",
+                pb: 2,
+              }}
+            >
+              <Typography variant="body1" sx={{ color: "white" }}>
+                <Link href="#">
+                  <Typography variant="body1" sx={{ color: "white" }}>
+                    <span style={{ fontWeight: "bold", marginRight: 5 }}>
+                      Total Time:
+                    </span>
+                    {totalTime} min
+                  </Typography>
+                </Link>
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                pt: 2,
+              }}
+            >
+              <Typography variant="body1" sx={{ color: "white" }}>
+                <Link href="#">
+                  <Typography variant="body1" sx={{ color: "white" }}>
+                    <span style={{ fontWeight: "bold", marginRight: 5 }}>
+                      Total Calories:
+                    </span>
+                    {totalCalories} kcal
+                  </Typography>
+                </Link>
+              </Typography>
+            </Box>
+          </Box>
+        </Box>
+
+        {/* Exercises */}
+        <Box sx={{ width: "100%" }}>
+          <Typography
+            variant="subtitle2"
+            sx={{ fontWeight: "bold", color: "white", mb: 2 }}
+          >
+            Exercises Completed
+          </Typography>
+          <Box
+            sx={{
+              width: "100%",
+              borderRadius: "27.445px",
+              border: "1px solid #2B2A2D",
+              backgroundColor: "#2B2A2D",
+              display: "flex",
+              flexDirection: "column",
+              px: 1,
+              py: 2,
+              mb: 20,
+            }}
+          >
+            {/* Exercises list */}
+            {workout.exercises && (
+              <Stack spacing={3}>
+                {workout.exercises.map((exercise, index) => (
+                  <DetailedWorkoutExercise
+                    isInCompleted={false}
+                    exercise={exercise}
+                    index={index}
+                  />
+                ))}
+              </Stack>
+            )}
+            {/* Button "DONE" */}
+            <Box
+              sx={{ display: "flex", justifyContent: "center", mt: 4, mb: 2 }}
+            >
+              <Link href="/home" passHref style={{ width: "100%" }}>
+                <Box
+                  sx={{
+                    backgroundColor: "#D5D962",
+                    color: "white",
+                    borderRadius: "12px",
+                    padding: "16px",
+                    fontWeight: "bold",
+                    fontSize: "16px",
+                    textTransform: "none",
+                    textAlign: "center",
+                    textDecoration: "none",
+
+                    width: "100%",
+                    display: "block",
+                    "&:hover": {
+                      backgroundColor: "#C4C450",
+                    },
+                  }}
+                >
+                  DONE
+                </Box>
+              </Link>
+            </Box>
+          </Box>
+        </Box>
+      </Box>
+    </>
   );
 };
 export default WorkoutCompleted;
