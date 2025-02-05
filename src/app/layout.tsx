@@ -17,7 +17,7 @@ export default function RootLayout({
     () => import("../providers/erude-provider").then((c) => c.ErudaProvider),
     {
       ssr: false,
-    }
+    },
   );
 
   // List of routes where the Navbar will not be shown

@@ -45,7 +45,7 @@ export const WalletAuthBlock = ({
         nonce: nonce,
         requestId: "0",
         expirationTime: new Date(
-          new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+          new Date().getTime() + 7 * 24 * 60 * 60 * 1000,
         ),
         notBefore: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
         statement: "Connect your wallet in Krovva",
@@ -92,7 +92,7 @@ export const WalletAuthBlock = ({
           if (result.status === "success" && result.isValid) {
             console.log(
               "✅ Authentication successful! Wallet:",
-              MiniKit.walletAddress
+              MiniKit.walletAddress,
             );
             onSuccess?.(MiniKit.walletAddress || "");
             setNonce(null);
@@ -103,7 +103,7 @@ export const WalletAuthBlock = ({
           console.error("❌ Failed verification", error);
           onError?.(error);
         }
-      }
+      },
     );
 
     return () => {

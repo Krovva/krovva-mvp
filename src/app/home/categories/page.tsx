@@ -11,7 +11,7 @@ export default function CategoriesPage() {
 
   // Filtrar las categorías basadas en el término de búsqueda
   const filteredCategories = categories.filter((category) =>
-    category.name.toLowerCase().includes(searchTerm.toLowerCase())
+    category.name.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   return (

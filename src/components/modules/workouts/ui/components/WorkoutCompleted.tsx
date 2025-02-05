@@ -12,11 +12,11 @@ export interface WorkoutCompletedProps {
 const WorkoutCompleted = ({ workout }: WorkoutCompletedProps) => {
   const totalCalories = workout.exercises.reduce(
     (sum, exercise) => sum + exercise.calories,
-    0
+    0,
   );
   const totalTime = workout.exercises.reduce(
     (sum, exercise) => sum + exercise.time,
-    0
+    0,
   );
 
   return (
