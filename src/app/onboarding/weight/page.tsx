@@ -258,7 +258,7 @@ export default function WeightSelectionPage() {
         sx={{
           bgcolor: "black",
           color: "#D5D962",
-          borderRadius: "20px",
+          borderRadius: "43.912px",
           p: 4,
           width: "350.299px",
           maxWidth: "281.437px",
