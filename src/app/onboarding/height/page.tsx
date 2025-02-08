@@ -224,7 +224,7 @@ export default function HeightSelectionPage() {
           overflow: "hidden",
           width: "200px",
           height: "40px",
-          margin: "10px auto",
+          margin: "15px auto",
         }}
       >
         <ToggleButton
@@ -261,8 +261,8 @@ export default function HeightSelectionPage() {
           color: "#D5D962",
           borderRadius: "20px",
           p: 4,
-          width: "100%",
-          maxWidth: "400px",
+          width: "350.299px",
+          maxWidth: "281.437px",
           textAlign: "center",
           display: "flex",
           alignItems: "center",
@@ -285,21 +285,21 @@ export default function HeightSelectionPage() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          gap: 2,
+          gap: 4,
           width: "90%",
           position: "absolute",
-          bottom: "20px",
+          bottom: "30px",
         }}
       >
         <IconButton
           sx={{
             border: "2px solid black",
             borderRadius: "12px",
-            width: "50px",
-            height: "50px",
+            width: "60px",
+            height: "60px",
           }}
         >
-          <ArrowBackIosNewIcon sx={{ fontSize: 18, color: "#000000" }} />
+          <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
         </IconButton>
 
         <Button
@@ -308,14 +308,22 @@ export default function HeightSelectionPage() {
             bgcolor: "#D5D962",
             color: "black",
             borderRadius: "12px",
-            py: 1,
-            px: 8,
-            fontSize: "16px",
+            py: 2,
+            px: 10,
+            fontSize: "18px",
             fontWeight: 700,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
           }}
         >
           Next
-          <ArrowForwardIosIcon sx={{ fontSize: 16, ml: 1 }} />
+          <Box sx={{ display: "flex", gap: 0.5 }}>
+            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
+          </Box>
         </Button>
       </Box>
     </Box>
