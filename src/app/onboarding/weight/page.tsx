@@ -20,31 +20,80 @@ export default function WeightSelectionPage() {
 
   const minWeight = 10;
   const maxWeight = 200;
-  const markWidth = 10;
+  const markWidth = 7;
 
   const handleUnitChange = (
     event: React.MouseEvent<HTMLElement>,
-    newUnit: "lb" | "kg",
+    newUnit: "lb" | "kg"
   ) => {
     if (newUnit !== null) {
       setUnit(newUnit);
     }
   };
 
+  const handleWeightChange = (newWeight: number) => {
+    if (newWeight >= minWeight && newWeight <= maxWeight) {
+      setWeight(newWeight);
+      updateScroll(newWeight);
+    }
+  };
+
+  const updateScroll = (value: number) => {
+    if (scaleContainerRef.current) {
+      const containerWidth = scaleContainerRef.current.offsetWidth;
+      const scrollPosition =
+        (value - minWeight) * markWidth - containerWidth / 2 + markWidth / 2;
+      scaleContainerRef.current.scrollTo({
+        left: scrollPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   const renderScale = () => {
     const scaleMarks = [];
-    for (let i = minWeight; i <= maxWeight; i++) {
+    for (let i = minWeight; i <= maxWeight; i += 1) {
       const isMajor = i % 10 === 0;
+      const isSelected = i === weight;
       scaleMarks.push(
         <Box
           key={i}
+          onClick={() => handleWeightChange(i)}
           sx={{
-            height: isMajor ? "50px" : "20px",
-            width: "2px",
-            bgcolor: "white",
-            margin: `0 ${markWidth / 2}px`,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            width: `${markWidth}px`,
+            cursor: "pointer",
+            position: "relative",
           }}
-        />,
+        >
+          <Box
+            sx={{
+              height: isMajor ? "50px" : "15px",
+              width: isMajor ? "3px" : "1.5px",
+              bgcolor: isSelected ? "#D5D962" : "white",
+              transition: "background-color 0.2s",
+            }}
+          />
+          {isMajor && (
+            <Typography
+              variant="caption"
+              sx={{
+                display: "block",
+                mt: 1,
+                fontSize: "10px",
+                color: "white",
+                position: "absolute",
+                bottom: "-20px",
+                width: "30px",
+                textAlign: "center",
+              }}
+            >
+              {i}
+            </Typography>
+          )}
+        </Box>
       );
     }
     return (
@@ -52,15 +101,18 @@ export default function WeightSelectionPage() {
         ref={scaleContainerRef}
         sx={{
           display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
+          justifyContent: "flex-start",
+          alignItems: "flex-start",
           overflowX: "scroll",
+          overflowY: "hidden",
           whiteSpace: "nowrap",
-          position: "absolute",
-          bottom: "10px",
-          left: 0,
-          right: 0,
+          mt: 3,
+          width: "100%",
+          height: "100px",
+          pb: 2,
+          scrollSnapType: "x mandatory",
           "&::-webkit-scrollbar": { display: "none" },
+          position: "relative",
         }}
         onScroll={(e) => {
           const scrollLeft = (e.target as HTMLDivElement).scrollLeft;
@@ -74,41 +126,39 @@ export default function WeightSelectionPage() {
           }
         }}
       >
-        {scaleMarks.map((mark, index) => (
-          <Box
-            key={index}
-            sx={{
-              scrollSnapAlign: "center",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            {mark}
-            {(minWeight + index) % 10 === 0 && (
-              <Typography
-                variant="caption"
-                sx={{
-                  mt: 1,
-                  color: "#D5D962",
-                  fontSize: "12px",
-                }}
-              >
-                {minWeight + index}
-              </Typography>
-            )}
-          </Box>
-        ))}
+        <Box
+          sx={{
+            position: "absolute",
+            left: "50%",
+            height: "15px",
+            width: "3px",
+            bgcolor: "#D5D962",
+            transform: "translateX(-50%)",
+            zIndex: 1,
+            bottom: "35px",
+          }}
+        />
+        <Box
+          sx={{
+            display: "inline-flex",
+            paddingLeft: "50%",
+            paddingRight: "50%",
+          }}
+        >
+          {scaleMarks}
+        </Box>
       </Box>
     );
   };
 
   useEffect(() => {
     if (scaleContainerRef.current) {
-      const initialScrollLeft = (weight - minWeight) * markWidth;
-      scaleContainerRef.current.scrollLeft = initialScrollLeft;
+      const containerWidth = scaleContainerRef.current.offsetWidth;
+      const scrollPosition =
+        (weight - minWeight) * markWidth - containerWidth / 2 + markWidth / 2;
+      scaleContainerRef.current.scrollLeft = scrollPosition;
     }
-  }, [weight]);
+  }, []);
 
   return (
     <Box
@@ -124,7 +174,6 @@ export default function WeightSelectionPage() {
         position: "relative",
       }}
     >
-      {/* Progress Bar */}
       <Box
         sx={{
           width: "80%",
@@ -163,7 +212,6 @@ export default function WeightSelectionPage() {
         What is your weight?
       </Typography>
 
-      {/* Unit Selection */}
       <ToggleButtonGroup
         value={unit}
         exclusive
@@ -175,7 +223,7 @@ export default function WeightSelectionPage() {
           overflow: "hidden",
           width: "200px",
           height: "40px",
-          margin: "10px auto",
+          margin: "15px auto",
         }}
       >
         <ToggleButton
@@ -206,69 +254,52 @@ export default function WeightSelectionPage() {
         </ToggleButton>
       </ToggleButtonGroup>
 
-      {/* Weight Display */}
       <Box
         sx={{
-          bgcolor: "#0D0D0D",
+          bgcolor: "black",
           color: "#D5D962",
-          borderRadius: "43.9px",
-          width: "350px",
-          height: "281px",
+          borderRadius: "43.912px",
+          p: 4,
+          width: "350.299px",
+          maxWidth: "281.437px",
           textAlign: "center",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
           flexDirection: "column",
           position: "relative",
-          overflow: "hidden",
         }}
       >
-        {/* Number Display */}
-        <Typography
-          variant="h2"
-          sx={{
-            fontWeight: 700,
-            fontSize: "80px",
-          }}
-        >
+        <Typography variant="h2" sx={{ fontWeight: 700, fontSize: "40px" }}>
           {weight}
         </Typography>
-
-        {/* Unit Display */}
-        <Typography
-          sx={{
-            color: "#D5D962",
-            fontSize: "14px",
-          }}
-        >
+        <Typography sx={{ color: "#D5D962", fontSize: "14px" }}>
           {unit}
         </Typography>
-
-        {/* Render Scale */}
         {renderScale()}
       </Box>
 
-      {/* Navigation Buttons */}
+     
       <Box
         sx={{
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          gap: 2,
+          gap: 4,
           width: "90%",
           position: "absolute",
-          bottom: "20px",
+          bottom: "30px",
         }}
       >
         <IconButton
           sx={{
             border: "2px solid black",
             borderRadius: "12px",
-            width: "50px",
-            height: "50px",
+            width: "60px",
+            height: "60px",
           }}
         >
-          <ArrowBackIosNewIcon sx={{ fontSize: 18, color: "#000000" }} />
+          <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
         </IconButton>
 
         <Button
@@ -277,14 +308,22 @@ export default function WeightSelectionPage() {
             bgcolor: "#D5D962",
             color: "black",
             borderRadius: "12px",
-            py: 1,
-            px: 8,
-            fontSize: "16px",
+            py: 2,
+            px: 10,
+            fontSize: "18px",
             fontWeight: 700,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
           }}
         >
           Next
-          <ArrowForwardIosIcon sx={{ fontSize: 16, ml: 1 }} />
+          <Box sx={{ display: "flex", gap: 0.5 }}>
+            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
+            <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
+          </Box>
         </Button>
       </Box>
     </Box>
