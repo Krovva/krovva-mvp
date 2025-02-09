@@ -3,7 +3,6 @@ import {
   Box,
   Button,
   Typography,
-  IconButton,
   LinearProgress,
   Radio,
 } from "@mui/material";
