@@ -1,16 +1,21 @@
 "use client";
+
 import { Box, Button, Typography, Link, Snackbar, Alert } from "@mui/material";
 import { ArrowForward } from "@mui/icons-material";
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation"; 
 import { WalletAuthBlock } from "@/src/components/modules/auth/wallet";
 
 export default function SignInPage() {
   const [error, setError] = useState("");
   const [showError, setShowError] = useState(false);
-
+  const router = useRouter(); 
   const handleSuccess = (address: any) => {
     console.log("Successfully authenticated with address:", address);
+    
+    
+    router.push("/onboarding/gender"); 
   };
 
   const handleError = (error: { message: any }) => {
@@ -112,7 +117,7 @@ export default function SignInPage() {
 
         {/* WalletAuth Integration */}
         <WalletAuthBlock
-          onSuccess={handleSuccess}
+          onSuccess={handleSuccess} 
           onError={handleError}
           buttonComponent={
             <Button
