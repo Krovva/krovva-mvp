@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import Image from "next/image";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import Link from "next/link";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export default function GenderSelectionPage() {
@@ -84,15 +84,7 @@ export default function GenderSelectionPage() {
       </Typography>
 
       {/* Gender Selection Section */}
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: 3,
-          width: "100%",
-          mt: -2,
-        }}
-      >
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 3, width: "100%", mt: -2 }}>
         {/* Male Card */}
         <Box onClick={() => handleSelect("male")} sx={getCardStyles("male")}>
           <Box>
@@ -100,7 +92,6 @@ export default function GenderSelectionPage() {
               Your Gender <span style={{ color: "#D5D962" }}>(Male)</span>
             </Typography>
           </Box>
-
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <Image
               src="/Gender images/Male image.png"
@@ -124,10 +115,7 @@ export default function GenderSelectionPage() {
         </Box>
 
         {/* Female Card */}
-        <Box
-          onClick={() => handleSelect("female")}
-          sx={getCardStyles("female")}
-        >
+        <Box onClick={() => handleSelect("female")} sx={getCardStyles("female")}>
           <Box>
             <Typography>
               Your Gender <span style={{ color: "#D5D962" }}>(Female)</span>
@@ -160,48 +148,38 @@ export default function GenderSelectionPage() {
       <Box
         sx={{
           display: "flex",
-          justifyContent: "space-between",
+          justifyContent: "flex-end",
           alignItems: "center",
-          gap: 4,
           width: "90%",
           position: "absolute",
           bottom: "30px",
         }}
       >
-        <IconButton
-          sx={{
-            border: "2px solid black",
-            borderRadius: "12px",
-            width: "60px",
-            height: "60px",
-          }}
-        >
-          <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
-        </IconButton>
-
-        <Button
-          variant="contained"
-          sx={{
-            bgcolor: "#D5D962",
-            color: "black",
-            borderRadius: "12px",
-            py: 2,
-            px: 10,
-            fontSize: "18px",
-            fontWeight: 700,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          Next
-          <Box sx={{ display: "flex", gap: 0.5 }}>
-            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
-          </Box>
-        </Button>
+        <Link href="/onboarding/weight" passHref>
+          <Button
+            variant="contained"
+            sx={{
+              bgcolor: "#D5D962",
+              color: "black",
+              borderRadius: "12px",
+              py: 2,
+              px: 10,
+              fontSize: "18px",
+              fontWeight: 700,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              minWidth: "150px",
+            }}
+          >
+            Next
+            <Box sx={{ display: "flex", gap: 0.5 }}>
+              <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
+              <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
+              <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
+            </Box>
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

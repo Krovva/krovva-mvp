@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-
+import Link from "next/link";
 export default function HeightSelectionPage() {
   const [unit, setUnit] = useState<"inches" | "cm">("cm");
   const [height, setHeight] = useState(170);
@@ -281,51 +281,57 @@ export default function HeightSelectionPage() {
       </Box>
 
       <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 4,
-          width: "90%",
-          position: "absolute",
-          bottom: "30px",
-        }}
-      >
-        <IconButton
-          sx={{
-            border: "2px solid black",
-            borderRadius: "12px",
-            width: "60px",
-            height: "60px",
-          }}
-        >
-          <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
-        </IconButton>
+  sx={{
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    gap: 4,
+    width: "90%",
+    position: "absolute",
+    bottom: "30px",
+  }}
+>
+  <Link href="/onboarding/weight" passHref>
+    <IconButton
+      component="a"
+      sx={{
+        border: "2px solid black",
+        borderRadius: "12px",
+        width: "60px",
+        height: "60px",
+      }}
+    >
+      <ArrowBackIosNewIcon sx={{ fontSize: 22, color: "#000000" }} />
+    </IconButton>
+  </Link>
 
-        <Button
-          variant="contained"
-          sx={{
-            bgcolor: "#D5D962",
-            color: "black",
-            borderRadius: "12px",
-            py: 2,
-            px: 10,
-            fontSize: "18px",
-            fontWeight: 700,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-          }}
-        >
-          Next
-          <Box sx={{ display: "flex", gap: 0.5 }}>
-            <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
-            <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
-          </Box>
-        </Button>
+  <Link href="/home" passHref>
+    <Button
+      component="a"
+      variant="contained"
+      sx={{
+        bgcolor: "#D5D962",
+        color: "black",
+        borderRadius: "12px",
+        py: 2,
+        px: 10,
+        fontSize: "18px",
+        fontWeight: 700,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "100%",
+      }}
+    >
+      Next
+      <Box sx={{ display: "flex", gap: 0.5 }}>
+        <ArrowForwardIosIcon sx={{ fontSize: 14, color: "#aaa" }} />
+        <ArrowForwardIosIcon sx={{ fontSize: 16, color: "#bbb" }} />
+        <ArrowForwardIosIcon sx={{ fontSize: 18 }} />
       </Box>
-    </Box>
+    </Button>
+  </Link>
+</Box>
+</Box>
   );
 }
